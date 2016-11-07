@@ -24,6 +24,8 @@ describe('the AccountsManager', () => {
         var result = render.getRenderOutput();
         expect(result.type).toBe('div');
         expect(result.props.className).toBe('AccountsManager')
+        expect(result.props.children[0].props.className).toBe('Account-header')
+        expect(result.props.children[0].props.children.type).toBe('h1')
     });
 });
 
