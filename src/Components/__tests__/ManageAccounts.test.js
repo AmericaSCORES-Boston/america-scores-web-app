@@ -32,7 +32,7 @@ describe('the ManageAccountsManager', () => {
 describe('the list of Accounts', () => {
         var manageAccountManager = <ManageAccountsTable accounts={testdata} />
         manageAccountManager = TestUtils.renderIntoDocument(manageAccountManager);
-        var rows = TestUtils.scryRenderedDOMComponentsWithClass(manageAccountManager, 'gitAccount-row')
+        var rows = TestUtils.scryRenderedDOMComponentsWithClass(manageAccountManager, 'account-row')
         var columns = TestUtils.scryRenderedDOMComponentsWithTag(manageAccountManager, 'th')
     it('has the correct number of rows', () => {
         expect(rows.length).toBe(testdata.length)
