@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 
-class AccountsManager extends Component {
+class ManageAccountsManager extends Component {
   render() {
     return (
-      <div className="AccountsManager">
+      <div className="ManageAccountsManager">
         <div className="Account-header">
-        <h1>Accounts</h1>
+
+        <h1>Manage Accounts</h1>
         </div>
-        <AccountsTable  accounts={this.props.accounts} />
+        <ManageAccountsTable  accounts={this.props.accounts} />
       </div>
       );
   }
 }
 
-class AccountsTable extends Component {
+class ManageAccountsTable extends Component {
   render() {
     var rows = [];
     this.props.accounts.forEach(function(account) {
@@ -37,7 +38,7 @@ class AccountsTable extends Component {
 class AccountRow extends Component {
    render() {
     return (
-      <tr className="coach-row">
+      <tr className="account-row">
         <td>{this.props.account.name}</td>
         <td>{this.props.account.type}</td>
         <td>{this.props.account.permissions}</td>
@@ -47,6 +48,6 @@ class AccountRow extends Component {
 }
 
 export  {
-  AccountsManager,
-  AccountsTable
+  ManageAccountsManager,
+  ManageAccountsTable
 };
