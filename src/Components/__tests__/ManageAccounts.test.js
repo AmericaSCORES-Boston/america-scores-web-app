@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import {ManageAccountsManager,ManageAccountsTable} from '../ManageAccounts';
+import {ManageAccountsManager,ManageAccountsTable} from '../ManageAccounts.js';
 
 var testdata = [
   {name: 'Guy 1', type: 'Coach', permissions: 'Program 1, Program 2'},
