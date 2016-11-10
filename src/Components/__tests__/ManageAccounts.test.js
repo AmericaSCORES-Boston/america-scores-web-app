@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import {ManageAccountsManager,ManageAccountsTable} from '../ManageAccounts.js';
+import {ManageAccountsManager,ManageAccountsTable} from '../ManageAccounts';
 
 var testdata = [
   {name: 'Guy 1', type: 'Coach', permissions: 'Program 1, Program 2'},
@@ -9,7 +9,7 @@ var testdata = [
   {name: 'Guy 3', type: 'Coach', permissions: 'Locaiton 4'},
   {name: 'Girl 1', type: 'Volunteer', permissions: 'Program 2'},
   {name: 'Girl 2', type: 'Coach', permissions: 'Program 4'},
-  {name: 'Girl 3', type: 'Coach', permissions: 'Program 5'},
+  {name: 'Girl 3', type: 'Coach', permissions: 'Program 5'}
 ];
 
 it('renders fully without crashing', () => {
