@@ -1,4 +1,8 @@
 
+# America Scores PACER Web App
+[![Build Status](https://travis-ci.org/CS4500-AmericaSCORES/america-scores-web-app.svg?branch=master)](https://travis-ci.org/CS4500-AmericaSCORES/america-scores-web-app)
+
+This is the source code for the web app portion the America Scores Boston's PACER data collection system. This was developed by students in Norteastern's CS4500 Software Development class.  
 
 ## Quick Start
 
