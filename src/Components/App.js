@@ -17,6 +17,9 @@ class App extends Component {
       // </div>
 
       <div className="login-page">
+      <img src={asLogo} alt="AS LOGO" align="center"
+        style={{width: 500, height: 500, position: 'absolute',  justifyContent: 'center',
+  alignItems: 'center', right:'37%'}} />
         <div className="form">
           <form>
             <input type="text" placeholder="username"/>
@@ -24,9 +27,7 @@ class App extends Component {
             <button type="submit">Login</button>
           </form>
         </div>
-        <img src={asLogo} alt="AS LOGO" align="center"
-          style={{width: 500, height: 500, position: 'absolute',  justifyContent: 'center',
-    alignItems: 'center', right:'37%'}} />
+
 
       </div>
 
