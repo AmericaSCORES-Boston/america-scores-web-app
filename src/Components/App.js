@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../App.css';
+import asLogo from '../Assets/aslogo.png'
 
 class App extends Component {
   render() {
@@ -23,7 +24,7 @@ class App extends Component {
             <button type="submit">Login</button>
           </form>
         </div>
-        <img src="aslogo.png" alt="AS LOGO" align="center"
+        <img src={asLogo} alt="AS LOGO" align="center"
           style={{width: 500, height: 500, position: 'absolute',  justifyContent: 'center',
     alignItems: 'center', right:'37%'}} />
 
