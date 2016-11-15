@@ -22,3 +22,49 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/*
+Made with help from Aigars Silkalns's Flat HTML5/CSS3 Login Form css
+*/
+.login {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width:200px;
+	height:200px;
+  padding: 8% 0 0;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+}
+.form input {
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  outline: 0;
+  background: #ff5050;
+  width: 100%;
+  border: 1;
+  color: #FFFFFF;
+  font-size: 16px;
+}
+
+body {
+    background-image: url("%PUBLIC_URL%/aslogo.png");
+}
+
+
