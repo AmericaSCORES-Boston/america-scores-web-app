@@ -18,6 +18,7 @@ deploy:
     region: us-east-1
     local_dir: web-app
     skip_cleanup: true
+    upload-dir: dev
     on:
       branch: develop
     bucket: amscores-deploy
