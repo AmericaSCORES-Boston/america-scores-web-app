@@ -3,8 +3,6 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../App.css';
-import ManageAccountsManager from './ManageAccounts.js';
-import ManageAccountsTable from './ManageAccounts.js';
 
 
 class App extends Component {
@@ -18,10 +16,6 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <div className="ManageAccounts">
-	      <ManageAccountsManager />
-        <ManageAccountsTable />
-        </div>
       </div>
     );
   }
