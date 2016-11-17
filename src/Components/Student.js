@@ -45,11 +45,11 @@ var testdata = [
 
 var reactLogo = require('../Assets/User.png');
 
-class page extends React.Component {
+class StudentManager extends React.Component {
   render() {
     return (
-        <div classname = "studentpage">
-        <div classname = "header">
+        <div className = "studentpage">
+        <div className = "header">
           <h1> STUDENT </h1>
         </div>
         <img src={reactLogo} data-reactid=".0.0"/>
@@ -59,4 +59,4 @@ class page extends React.Component {
   }
 }
 
-export  default page;
+export  default StudentManager;
