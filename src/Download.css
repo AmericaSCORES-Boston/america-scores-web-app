@@ -1,0 +1,16 @@
+
+.download-elements {
+  text-align: center;
+  margin: auto;
+
+}
+
+.student-box {
+border: solid;
+padding: 10px;
+font: 24px/36px sans-serif;
+width: 200px;
+height: 100px ;
+overflow-y: scroll;
+margin: auto;
+}

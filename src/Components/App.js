@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
 import '../App.css';
 import asLogo from '../Assets/aslogo.png'
 
@@ -16,17 +15,16 @@ class App extends Component {
       //   </p>
       // </div>
 
-      <div className="login-page">
-      <img src={asLogo} alt="AS LOGO" align="center"
-        style={{width: 500, height: 500, position: 'absolute',  justifyContent: 'center',
-  alignItems: 'center', right:'37%'}} />
-        <div className="form">
+      <div className="form">
+        <div >
           <form>
             <input type="text" placeholder="username"/>
             <input type="password" placeholder="password"/>
             <button type="submit">Login</button>
           </form>
         </div>
+
+        <img src={asLogo} alt="AS LOGO" style={{width: 300, height: 300}}/>
 
 
       </div>

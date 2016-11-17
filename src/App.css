@@ -26,14 +26,6 @@
 /*
 Made with help from Aigars Silkalns's Flat HTML5/CSS3 Login Form css
 */
-.login {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width:200px;
-	height:200px;
-  padding: 8% 0 0;
-}
 
 .form {
   position: relative;
@@ -62,5 +54,6 @@ Made with help from Aigars Silkalns's Flat HTML5/CSS3 Login Form css
   color: #FFFFFF;
   font-size: 16px;
 }
+
 
 
