@@ -35,13 +35,13 @@ class StudentsTable extends React.Component {
   }
 }
 
-// var testdata = [
-//   {name: 'A', dob: '11/11/1111', locations: 'l1, l2, l3'},
-//   {name: 'B', dob: '11/11/1111', locations: 'l1, l2, l3'},
-//   {name: 'C', dob: '11/11/1111', locations: 'l1, l2, l3'},
-//   {name: 'D', dob: '11/11/1111', locations: 'l1, l2, l3'},
-//   {name: 'E', dob: '11/11/1111', locations: 'l1, l2, l3'}
-// ];
+var testdata = [
+  {name: 'A', dob: '11/11/1111', locations: 'l1, l2, l3'},
+  {name: 'B', dob: '11/11/1111', locations: 'l1, l2, l3'},
+  {name: 'C', dob: '11/11/1111', locations: 'l1, l2, l3'},
+  {name: 'D', dob: '11/11/1111', locations: 'l1, l2, l3'},
+  {name: 'E', dob: '11/11/1111', locations: 'l1, l2, l3'}
+];
 
 var reactLogo = require('../Assets/User.png');
 
@@ -53,22 +53,10 @@ class page extends React.Component {
           <h1> STUDENT </h1>
         </div>
         <img src={reactLogo} data-reactid=".0.0"/>
-        <StudentsTable products={this.props.product} />
+        <StudentsTable products={testdata} />
         </div>
     );
   }
 }
 
-// ReactDOM.render(
-//   <div>
-//   <h1> STUDENT </h1>
-//   <img src="http://placehold.it/400x20undefined1" data-reactid=".0.0"/>
-//   <StudentsTable products={testdata} />
-//   </div>,
-//   document.getElementById('container')
-// );
-
-export  {
-  StudentsTable,
-  page
-};
+export  default page;
