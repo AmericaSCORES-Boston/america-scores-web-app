@@ -31,5 +31,9 @@ Made with help from Aigars Silkalns's Flat HTML5/CSS3 Login Form css
   font-size: 16px;
 }
 
+.side-nav {
+  display: none;
+}
+
 
 

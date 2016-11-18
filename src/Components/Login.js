@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../Login.css';
 import asLogo from '../Assets/aslogo.png'
 
-class App extends Component {
+class Login extends Component {
   render() {
     return (
-      <style>
-          #side-nav{
-            display: none;
-          }
-      </style>
       <div className="form">
           <form action="/manageAccounts">
             <input type="text" name="username" placeholder="username"/>
@@ -25,4 +20,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Login;
