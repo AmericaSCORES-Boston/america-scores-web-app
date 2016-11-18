@@ -7,11 +7,11 @@ class Download extends Component {
     return (
       <div className="download-elements">
         <h1>CSV Data</h1>
-        <img src={csvLogo} style ={{width: 100, height: 100}}/>
+        <img src={csvLogo} alt="CSV Icon"/>
 
-        <form action="/record" id="csvForm">
+        <form action="/RecordResponse" id="csvForm">
           Location:
-          &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
           Program:
           <br/>
 
@@ -36,10 +36,10 @@ class Download extends Component {
           <br/><br/>
           Student:
           <div className="student-box">
-            Amal Nazeem<hr/>
-            Charlie Baker<hr/>
-            Hillary Clinton<hr/>
-            Donald Trump<hr/>
+            Percy Jackson<hr/>
+            Annabeth Chase<hr/>
+            Brian Smith<hr/>
+            Pam Ho<hr/>
           </div>
 
           <br/>
