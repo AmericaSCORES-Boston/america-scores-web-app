@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactTestUtils from 'react-addons-test-utils'
+import TestUtils from 'react-addons-test-utils';
 import {MyAccountConstants, MyAccountCompiler, MyAccountsData} from '../MyAccounts.js';
 
 //Not finalized since I am unsure how the exact syntax is. But It gives the general idea of what I want.
