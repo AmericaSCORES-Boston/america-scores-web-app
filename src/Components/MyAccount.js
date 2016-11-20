@@ -26,7 +26,7 @@ render () {
 		const data=[];
 		<div className="all">
 		<center><h1>My Account</h1>
-    <RenData data={data} />
+    		<RenData data={data} />
 		</center>
 		</div>
 	}
