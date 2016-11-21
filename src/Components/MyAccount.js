@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+var icon = require('../Assets/User-icon.png');
+
 class MyAccountCompiler extends React.Component {
 	
   function RenData(props) {
@@ -26,6 +28,7 @@ render () {
 		const data=[];
 		<div className="all">
 		<center><h1>My Account</h1>
+		<img src={icon} alt="UserIcon" data-reactid=".0.0"/>
     		<RenData data={data} />
 		</center>
 		</div>
