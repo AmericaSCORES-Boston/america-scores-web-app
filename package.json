@@ -60,6 +60,14 @@
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
+    "coverageDirectory": "<rootDir>/coverage",
+    "coveragePathIgnorePatterns":[
+      "<rootDir>/coverage",
+      "<rootDir>/config",
+      "<rootDir>/node_modules",
+      "<rootDir>/public",
+      "<rootDir>/scripts"
+    ],
     "moduleFileExtensions": [
       "jsx",
       "js",

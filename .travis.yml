@@ -3,7 +3,7 @@ node_js:
 - "6.9"
 
 script:
-  - npm run test
+  - npm run testAllWithCoverage
   - npm run build
 
 before_deploy:
