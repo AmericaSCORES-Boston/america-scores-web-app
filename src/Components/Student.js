@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import  'whatwg-fetch';
 class Students extends React.Component {
   render() {
     return (
@@ -46,6 +46,12 @@ var testdata = [
 var reactLogo = require('../Assets/User.png');
 
 class StudentManager extends React.Component {
+  componentDidMount() {
+    fetch('buts',{mode: 'no-cors'})
+    .then(function(response) {
+     response.text().then(function(THAT){console.log('WHAT IS THAT',THAT)})
+   })
+}
   render() {
     return (
         <div className = "studentpage">
@@ -55,8 +61,7 @@ class StudentManager extends React.Component {
         <img src={reactLogo} data-reactid=".0.0"/>
         <StudentsTable products={testdata} />
         </div>
-    );
+    )};
   }
-}
 
 export  default StudentManager;
