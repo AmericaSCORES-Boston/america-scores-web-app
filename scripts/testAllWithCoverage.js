@@ -10,10 +10,11 @@ require('dotenv').config({silent: true});
 const jest = require('jest');
 const argv = process.argv.slice(2);
 
-// // Watch unless on CI
-// if (!process.env.CI) {
-//   argv.push('--watchAll');
-// }
+// Watch unless on CI
+if (!process.env.CI) {
+  argv.push('--watchAll');
+  argv.push('--coverage');
+}
 
 
 jest.run(argv);
