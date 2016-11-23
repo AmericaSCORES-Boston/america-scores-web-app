@@ -12,7 +12,8 @@ before_deploy:
   - mv web-app-latest.zip web-app/
 
 after-success:
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage && echo after-success
+
 deploy:
   - provider: s3
     access_key_id: $AMSCORES_AWS_KEY_ID
