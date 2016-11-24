@@ -18,7 +18,7 @@ it('renders fully without crashing', () => {
 describe('the MyAccountCompiler', () => {
     it('renders correctly', () => {
         const render = TestUtils.createRenderer()
-        render.render(<MyAccountCompiler data={[]}/>)
+        render.render(<MyAccountCompiler />)
         var result = render.getRenderOutput();
         expect(result.type).toBe('div');
     });
