@@ -11,8 +11,8 @@ before_deploy:
   - mkdir -p web-app
   - mv web-app-latest.zip web-app/
 
-after-success:
-  - echo after-success
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
 
 deploy:
   - provider: s3
