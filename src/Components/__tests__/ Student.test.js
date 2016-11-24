@@ -20,4 +20,4 @@ describe('student page', () => {
         expect(result.props.children[0].props.children.type).toBe('h1');
         expect(result.props.children[1].type).toBe('img');
     });
-}); 
+});
