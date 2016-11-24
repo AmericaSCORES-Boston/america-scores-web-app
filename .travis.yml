@@ -12,7 +12,7 @@ before_deploy:
   - mv web-app-latest.zip web-app/
 
 after-success:
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage && echo after-success
+  - echo after-success
 
 deploy:
   - provider: s3
