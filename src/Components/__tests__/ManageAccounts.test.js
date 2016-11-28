@@ -25,3 +25,36 @@ describe('the ManageAccountsManager', () => {
         expect(result.type).toBe('div');
     });
 });
+describe('the ManageAccountsManager', () => {
+    it('correctly handles valid changes to program', () => {
+        const render = TestUtils.createRenderer()
+        render.render(<ManageAccountsManager />)
+        const div = document.createElement('div');
+        var tree = TestUtils.renderIntoDocument(<ManageAccountsManager />);
+        let row = TestUtils.findRenderedDOMComponentWithClass(tree, 'Girl 1')
+        let cell = row.cells[2]
+        TestUtils.Simulate.click(cell)
+        let input = TestUtils.findRenderedDOMComponentWithTag(tree, 'input')
+        expect(input.value).toBe('Program 2')
+        input.value= "correctValue"
+        TestUtils.Simulate.change(input);
+        TestUtils.Simulate.blur(input);
+        row = TestUtils.findRenderedDOMComponentWithClass(tree, 'Girl 1')
+        cell = row.cells[2]
+    })
+    it('correctly handles invalid changes to program', () => {
+        const render = TestUtils.createRenderer()
+        render.render(<ManageAccountsManager />)
+        const div = document.createElement('div');
+        var tree = TestUtils.renderIntoDocument(<ManageAccountsManager />);
+        let row = TestUtils.findRenderedDOMComponentWithClass(tree, 'Girl 1')
+        let cell = row.cells[2]
+        TestUtils.Simulate.click(cell)
+        let input = TestUtils.findRenderedDOMComponentWithTag(tree, 'input')
+        expect(input.value).toBe('Program 2')
+        input.value= "incorrectValue"
+        TestUtils.Simulate.change(input);
+        TestUtils.Simulate.keyDown(input, {key: "Enter", keyCode: 13, which: 13});
+        expect(cell.innerHTML).toBe('Program 2')
+      });
+});
