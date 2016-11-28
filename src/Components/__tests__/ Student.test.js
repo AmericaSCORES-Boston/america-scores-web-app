@@ -15,9 +15,5 @@ describe('student page', () => {
         render.render(<StudentManager />)
         var result = render.getRenderOutput();
         expect(result.type).toBe('div');
-        expect(result.props.className).toBe('studentpage');
-        expect(result.props.children[0].props.className).toBe('header');
-        expect(result.props.children[0].props.children.type).toBe('h1');
-        expect(result.props.children[1].type).toBe('img');
     });
 });
