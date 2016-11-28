@@ -8,7 +8,7 @@ it('renders fully without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<MyAccountCompiler data={[]} />, div);
 });
-
+  
 describe('the MyAccountCompiler', () => {
     it('renders correctly', () => {
         const render = TestUtils.createRenderer()
