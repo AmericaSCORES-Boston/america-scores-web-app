@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import {MyAccountConstants, MyAccountCompiler, MyAccountsData} from '../MyAccounts.js';
+import {MyAccountCompiler} from '../MyAccount';
 
 //Not finalized since I am unsure how the exact syntax is. But It gives the general idea of what I want.
 
@@ -23,3 +23,4 @@ describe('the MyAccountCompiler', () => {
         expect(result.type).toBe('div');
     });
 });
+
