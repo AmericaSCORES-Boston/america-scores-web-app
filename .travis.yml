@@ -3,13 +3,16 @@ node_js:
 - "6.9"
 
 script:
-  - npm run test
+  - npm run-script testAll
   - npm run build
 
 before_deploy:
   - zip -r web-app-latest build/ appspec.yml scripts/stop-server.sh
   - mkdir -p web-app
   - mv web-app-latest.zip web-app/
+
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
 
 deploy:
   - provider: s3
