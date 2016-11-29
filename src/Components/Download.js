@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import csvLogo from '../Assets/ApolloLocation.png'
 import '../Download.css'
 
+/**
+  This class represents the Download Page. It will deal with
+*/
 class Download extends Component {
   render() {
     return (
@@ -46,6 +49,9 @@ class Download extends Component {
 
           <button type="submit">Export</button>
         </form>
+
+        /* Temporary, eventually need to connect to the form, but point to a different thing */
+        <a href='/WipeResponse'><button>WipeData</button></a>
       </div>
     );
   }

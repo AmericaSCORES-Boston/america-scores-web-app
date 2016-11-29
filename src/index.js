@@ -6,7 +6,8 @@ import StudentManager from './Components/Student';
 import './index.css';
 import { Router, Route, browserHistory } from 'react-router';
 import ManageAccountsManager from './Components/ManageAccounts';
-import RecordResponse from './Components/RecordResponse'
+import RecordResponse from './Components/RecordResponse';
+import WipeResponse from './Components/WipeResponse';
 
 
 ReactDOM.render((
@@ -16,6 +17,7 @@ ReactDOM.render((
             <Route path="/Students" component={StudentManager} />
             <Route path="/ManageAccounts" component={ManageAccountsManager} />
             <Route path="/RecordResponse" component={RecordResponse} />
+            <Route path="/WipeResponse" component={WipeResponse} />
         </Router>
     ),
   document.getElementById('root')
