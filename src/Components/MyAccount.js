@@ -39,4 +39,4 @@ render() {
 	};
 };
 
-export defaulf MyAccountCompiler;
+export default MyAccountCompiler;
