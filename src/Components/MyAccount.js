@@ -38,3 +38,5 @@ render() {
 		);
 	};
 };
+
+export defaulf MyAccountCompiler;
