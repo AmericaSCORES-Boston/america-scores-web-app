@@ -8,7 +8,7 @@ class MyAccountCompiler extends React.Component {
 render() {
 	function renData(props) {
     		const content = props.data.map((adata) =>
-      			<div>
+      			<div className="userData">	       
        				<p><strong>Name:</strong> {adata.name}</p>
         			<br />
         			<p><strong>Email:</strong> {adata.email}</p>
@@ -20,7 +20,7 @@ render() {
     	);
     	
   		return (
-    		<div>
+    		<div className="displayData">
       		{content}
     		</div>
   		);
@@ -30,10 +30,17 @@ render() {
 
 	return(
 		<div className="all">
-			<center><h1>My Account</h1>
-			<img src={icon} alt="UserIcon" data-reactid=".0.0"/>      
-    		<renData data={data} />
-			</center>
+			<div className="Header">
+				<div className="Title">
+				<h1>My Account</h1>
+				</div>
+				<div className="PageIcon">
+				<img src={icon} alt="UserIcon" data-reactid=".0.0"/> 
+				</div>
+			</div>
+			<div className="dataMethod">
+				<renData data={data} />
+			</div>
 		</div>
 		);
 	};
