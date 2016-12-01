@@ -1,1 +1,16 @@
 
+.Header {
+  margin: auto;
+  width: 60 %;
+  text-align: center; 
+  padding: 10px;
+}
+
+.dataMethod {
+  margin: auto;
+  width: 60 %;
+  text-align: justify;
+  padding: 10px;
+  font-size: 150%;
+}
+
