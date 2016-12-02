@@ -3,12 +3,12 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import icon from '../Assets/User.png';
 
 class StudentManager extends Component {
-   //  componentDidMount() {
-   //    fetch('localhost:8888/api/students')
-   //    .then(function(response) {
+    componentDidMount() {
+      fetch('localhost:8888/api/students')
+      // .then(function(response) {
    //      console.log(response)
    // })
-// }
+}
   render() {
     function onRowSelect(row, isSelected){
     }
