@@ -11,8 +11,6 @@ class StudentManager extends Component {
 }
   render() {
     function onRowSelect(row, isSelected){
-      console.log(row);
-      console.log("selected: " + isSelected)
     }
     var testdata = [
       {name: 'A', dob: '11/11/1111', locations: 'l1, l2, l3'},
