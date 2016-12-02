@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+//The User Account Icon.
 var icon = require('../Assets/User-icon.png');
 
+//This renders out the data of the most updated version of the User's own Account information 
+//for them to view 
 class MyAccountCompiler extends React.Component {
 	
 render() {
