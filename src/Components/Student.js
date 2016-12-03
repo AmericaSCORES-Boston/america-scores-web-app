@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import  'whatwg-fetch';
-class Students extends React.Component {
+
+class Students extends Component {
   render() {
     return (
       <tr>
@@ -15,7 +15,7 @@ class Students extends React.Component {
   }
 }
 
-class StudentsTable extends React.Component {
+class StudentsTable extends Component {
   render() {
     var rows = [];
     this.props.products.forEach(function(product) {
@@ -46,22 +46,17 @@ var testdata = [
 var reactLogo = require('../Assets/User.png');
 
 class StudentManager extends React.Component {
-  componentDidMount() {
-    fetch('buts',{mode: 'no-cors'})
-    .then(function(response) {
-     response.text().then(function(THAT){console.log('WHAT IS THAT',THAT)})
-   })
-}
   render() {
     return (
-        <div className = "studentpage">
-        <div className = "header">
+        <div className="studentpage">
+        <div className="header">
           <h1> STUDENT </h1>
         </div>
-        <img src={reactLogo} data-reactid=".0.0"/>
+        <img src={reactLogo} alt="StudentIcon" data-reactid=".0.0"/>
         <StudentsTable products={testdata} />
         </div>
-    )};
+    );
   }
+}
 
 export  default StudentManager;
