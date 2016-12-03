@@ -6,10 +6,10 @@ import icon from '../Assets/Location.png';
 class Sites extends Component {
   render() {
 
-    function onRowSelect(row, isSelected){
+    /*function onRowSelect(row, isSelected){
       console.log(row);
       console.log("selected: " + isSelected)
-    }
+    }*/
 
     var testdata = [
       {name: 'Location1'},
