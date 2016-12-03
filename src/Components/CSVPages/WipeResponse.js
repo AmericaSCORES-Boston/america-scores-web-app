@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../Download.css'
+import './CSVPages.css';
 
-class WipeResponse extends Component {
+class CSVWipeResponse extends Component {
   render() {
     return (
       <div className='download-elements'>
@@ -14,4 +14,4 @@ class WipeResponse extends Component {
   }
 }
 
-export default WipeResponse;
+export default CSVWipeResponse;
