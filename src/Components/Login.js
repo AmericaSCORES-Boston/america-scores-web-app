@@ -1,22 +1,29 @@
-import React, { Component } from 'react';
 import '../Login.css';
+import React, { PropTypes as T } from 'react'
+import {ButtonToolbar, Button, Jumbotron} from 'react-bootstrap'
+import AuthService from '../utils/AuthService'
 import asLogo from '../Assets/aslogo.png'
 
-class Login extends Component {
+export class Login extends React.Component {
+  static propTypes = {
+    location: T.object,
+    auth: T.instanceOf(AuthService)
+  }
   render() {
+    const { auth } = this.props
     return (
-      <div className="form">
-          <form action="/MyAccount">
-            <input type="text" name="username" placeholder="username"/>
-            <input type="password" name="password" placeholder="password"/>
-            <button type="submit">Login</button>
-          </form>
-
-        <img src={asLogo} alt="AS LOGO" style={{width: 300, height: 350, padding: 30}}/>
-
+      <div className="root">
+        <Jumbotron>
+        <h2 className="root">
+          <img src={asLogo} width="150px" height="168px" alt="AS Logo Icon" />
+        </h2>
+        <h2>Login</h2>
+        <ButtonToolbar className="toolbar">
+          <Button bsStyle="primary" onClick={auth.login.bind(this)}>Login</Button>
+        </ButtonToolbar>
+        </Jumbotron>
       </div>
-
-    );
+    )
   }
 }
 
