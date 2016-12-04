@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../Download.css';
+import './CSVPages.css';
 
-class RecordResponse extends Component {
+class CSVRecordResponse extends Component {
   render() {
     return (
       <div className='download-elements'>
@@ -16,4 +16,4 @@ class RecordResponse extends Component {
   }
 }
 
-export default RecordResponse;
+export default CSVRecordResponse;
