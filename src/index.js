@@ -10,11 +10,13 @@ import CSVProgram from './Components/CSVPages/Program';
 import CSVStudent from './Components/CSVPages/Student';
 import RecordResponse from './Components/CSVPages/RecordResponse';
 import WipeResponse from './Components/CSVPages/WipeResponse';
+import Sites from './Components/Sites';
 
 
 ReactDOM.render((
         <Router history={browserHistory}>
             <Route path="/" component={Login} />
+            <Route path="/Sites" component={Sites} />
             <Route path="/Students" component={StudentManager} />
             <Route path="/ManageAccounts" component={ManageAccountsManager} />
             <Route path="/CSVPage" component={CSVLocation} />

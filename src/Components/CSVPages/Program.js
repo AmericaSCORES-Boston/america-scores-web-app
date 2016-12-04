@@ -10,6 +10,7 @@ Endpoint: /CSVPage2
 */
 class CSVProgram extends Component {
   render() {
+    var tempJSONArray = [{"program_id":1,"site_id":1,"program_name":"LMElementaryBoys"},{"program_id":5,"site_id":1,"program_name":"Www"},{"program_id":6,"site_id":1,"program_name":"Another one"},{"program_id":7,"site_id":1,"program_name":"Another one"},{"program_id":8,"site_id":1,"program_name":"Wwww"},{"program_id":9,"site_id":1,"program_name":"Test1234"},{"program_id":10,"site_id":1,"program_name":"Eeee"},{"program_id":11,"site_id":1,"program_name":"Another"},{"program_id":12,"site_id":1,"program_name":"Again"},{"program_id":13,"site_id":1,"program_name":"Eeeeee"},{"program_id":14,"site_id":1,"program_name":"1234"},{"program_id":15,"site_id":1,"program_name":"Test"},{"program_id":16,"site_id":1,"program_name":"Rrrr"},{"program_id":17,"site_id":1,"program_name":"Rrrrrr"},{"program_id":18,"site_id":1,"program_name":"Test"},{"program_id":27,"site_id":1,"program_name":"new program"},{"program_id":29,"site_id":1,"program_name":"Test"},{"program_id":30,"site_id":1,"program_name":"Bggg"},{"program_id":31,"site_id":1,"program_name":""},{"program_id":32,"site_id":1,"program_name":"Testing123"},{"program_id":33,"site_id":1,"program_name":""},{"program_id":34,"site_id":1,"program_name":"1234"},{"program_id":35,"site_id":1,"program_name":"Tes4gnkjrnejrgkn"}];
     return(
       <div className="download-elements">
 
@@ -24,18 +25,31 @@ class CSVProgram extends Component {
 
           <br/><br/>
 
-          <select name="program">
-            //METHOD WILL GO HERE
-            <option value="default" selected="selected">Select One:</option>
-            <option value="prog1">Program 1</option>
-            <option value="prog2">Program 2</option>
-            <option value="prog3">Program 3</option>
-          </select>
+          <ProgramSelect programs={tempJSONArray} />
 
-          <br/><br/><br/>
+          <br/>
 
-          <button type="submit">Select</button>
+          <button type="next">Select</button>
         </form>
+
+        <a href='/CSVPage'><button>Start Over</button></a>
+      </div>
+    );
+  }
+}
+
+/*
+Represents a component that holds all the values of the List of programs we get
+*/
+class ProgramSelect extends Component {
+  render() {
+    return (
+      <div>
+        <select name="program">
+          {this.props.programs.map(function(prog, index) {
+            return <option key={index} value={prog.program_id}>{prog.program_name}</option>;
+          })}
+        </select>
       </div>
     );
   }

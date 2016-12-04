@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import csvLogo from '../../Assets/CSV-icon.png';
 import './CSVPages.css';
 
+
+
+
 /*
 Represents the page of all the America Scores locations where the admin can
 select a location and then in the next page they will see all the programs
@@ -11,6 +14,8 @@ Endpoint: /CSVPage
 */
 class CSVLocation extends Component {
   render() {
+    var tempJSONArray = [{"site_id":1,"site_name":"Lin-Manuel Elementary","site_address":"1155 Tremont Street, Roxbury Crossing, MA"},{"site_id":2,"site_name":"Yawkey Boys and Girls Club","site_address":"115 Warren St, Roxbury, MA"}];
+
     return (
       <div className="download-elements">
 
@@ -25,18 +30,34 @@ class CSVLocation extends Component {
 
           <br/><br/>
 
-          <select name="location">
-            // METHOD WILL GO HERE
-            <option value="default" selected="selected">Select One:</option>
-            <option value="location1">Location 1</option>
-            <option value="location2">Location 2</option>
-            <option value="location3">Location 3</option>
-          </select>
+          <SiteSelect sites={tempJSONArray} />
 
-          <br/><br/><br/>
+          <br/>
 
-          <button type="submit">Select</button>
+          <button type="submit">Next</button>
         </form>
+      </div>
+    );
+  }
+}
+
+
+/*
+Represents the list of Sites that will be mapped to a list of options
+ex:
+<option value="1">Location 1</option>
+*/
+class SiteSelect extends Component {
+  render() {
+    return (
+      <div>
+        <select name="location">
+          {this.props.sites.map(
+            function(site, index) {
+              return <option key={index} value={site.site_id}>{site.site_name}</option>;
+            }
+          )}
+        </select>
       </div>
     );
   }
