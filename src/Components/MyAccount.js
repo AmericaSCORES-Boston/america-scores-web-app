@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Api from '../api';
+//import Api from '../api';
 
 //The User Account Icon.
 var icon = require('../Assets/User-icon.png');
