@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import csvLogo2 from '../../Assets/CSV-icon2.png';
 import './CSVPages.css';
+import Api from '../../api.js';
 
 /*
 Represents the page after the admin has chosen a locaiton that lists all the
@@ -9,30 +10,38 @@ see the students associated with the program they have chosen.
 Endpoint: /CSVPage2
 */
 class CSVProgram extends Component {
+  constructor() {
+    super();
+    this.state = {
+      ProgramsArray: [{program_id:0,program_name:"Loading..."}] //So it has something to show if API down
+    };
+  }
   render() {
-    var tempJSONArray = [{"program_id":1,"site_id":1,"program_name":"LMElementaryBoys"},{"program_id":5,"site_id":1,"program_name":"Www"},{"program_id":6,"site_id":1,"program_name":"Another one"},{"program_id":7,"site_id":1,"program_name":"Another one"},{"program_id":8,"site_id":1,"program_name":"Wwww"},{"program_id":9,"site_id":1,"program_name":"Test1234"},{"program_id":10,"site_id":1,"program_name":"Eeee"},{"program_id":11,"site_id":1,"program_name":"Another"},{"program_id":12,"site_id":1,"program_name":"Again"},{"program_id":13,"site_id":1,"program_name":"Eeeeee"},{"program_id":14,"site_id":1,"program_name":"1234"},{"program_id":15,"site_id":1,"program_name":"Test"},{"program_id":16,"site_id":1,"program_name":"Rrrr"},{"program_id":17,"site_id":1,"program_name":"Rrrrrr"},{"program_id":18,"site_id":1,"program_name":"Test"},{"program_id":27,"site_id":1,"program_name":"new program"},{"program_id":29,"site_id":1,"program_name":"Test"},{"program_id":30,"site_id":1,"program_name":"Bggg"},{"program_id":31,"site_id":1,"program_name":""},{"program_id":32,"site_id":1,"program_name":"Testing123"},{"program_id":33,"site_id":1,"program_name":""},{"program_id":34,"site_id":1,"program_name":"1234"},{"program_id":35,"site_id":1,"program_name":"Tes4gnkjrnejrgkn"}];
+    let _this = this; //so that we can set the state inside the following function (otherwise scope messes us up)
+    Api.fetchPrograms(this.props.location.query.location).then(function(value) {
+      _this.setState({ProgramsArray:value});
+    });
+
     return(
       <div className="download-elements">
+
+        <img src={csvLogo2} alt="CSV Icon2"/>
 
         <h1>CSV Data</h1>
 
         <br/>
-
-        <img src={csvLogo2} alt="CSV Icon2"/>
 
         <form action="/CSVPage3" id="programForm">
           Program:
 
           <br/><br/>
 
-          <ProgramSelect programs={tempJSONArray} />
+          <ProgramSelect programs={this.state.ProgramsArray} />
 
           <br/>
 
-          <button type="next">Select</button>
+          <a href='/CSVPage'><button>Start Over</button></a><button type="next">Next</button>
         </form>
-
-        <a href='/CSVPage'><button>Start Over</button></a>
       </div>
     );
   }

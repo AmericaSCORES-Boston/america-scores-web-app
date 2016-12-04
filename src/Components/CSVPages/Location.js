@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import csvLogo from '../../Assets/CSV-icon.png';
 import './CSVPages.css';
+import Api from '../../api.js';
 
 
 
@@ -13,25 +14,34 @@ with all the students in that program, where they can download the CSV.
 Endpoint: /CSVPage
 */
 class CSVLocation extends Component {
-  render() {
-    var tempJSONArray = [{"site_id":1,"site_name":"Lin-Manuel Elementary","site_address":"1155 Tremont Street, Roxbury Crossing, MA"},{"site_id":2,"site_name":"Yawkey Boys and Girls Club","site_address":"115 Warren St, Roxbury, MA"}];
+  constructor() {
+    super();
+    this.state = {
+      SitesArray:[{site_id:0,site_name:"Loading..."}] //so it has something to show if API is down
+    };
+  }
 
+  componentDidMount() {
+    let _this = this; //So that we can set the state inside the funciton (otherwise scope messes us up)
+    Api.fetchSites().then(function(value) {
+      _this.setState({SitesArray:value});
+    });
+  }
+  render() {
     return (
       <div className="download-elements">
-
+      
+        <img src={csvLogo} alt="CSV Icon"/>
         <h1>CSV Data</h1>
 
         <br/>
-
-        <img src={csvLogo} alt="CSV Icon"/>
 
         <form action="/CSVPage2" id="locationForm">
           Location:
 
           <br/><br/>
 
-          <SiteSelect sites={tempJSONArray} />
-
+          <SiteSelect sites={this.state.SitesArray} />
           <br/>
 
           <button type="submit">Next</button>
@@ -55,8 +65,7 @@ class SiteSelect extends Component {
           {this.props.sites.map(
             function(site, index) {
               return <option key={index} value={site.site_id}>{site.site_name}</option>;
-            }
-          )}
+          })}
         </select>
       </div>
     );

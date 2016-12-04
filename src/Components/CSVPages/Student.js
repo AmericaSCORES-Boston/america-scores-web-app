@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import csvLogo3 from '../../Assets/CSV-icon3.png';
 import './CSVPages.css';
+import Api from '../../api.js';
 
 /*
 Represents the page showing a preview of all the students for the program that
@@ -8,29 +9,36 @@ the client has chosen.
 Endpoint: /CSVPage3
 */
 class CSVStudent extends Component {
+  constructor() {
+    super();
+    this.state = {
+      StudentsArray:[{first_name:"Loading..."}]
+    }
+  }
   render() {
-    var tempJSONArray=[{"student_id":2,"first_name":"Annabeth","last_name":"Chase","dob":"1993-07-12T00:00:00.000Z"},{"student_id":5,"first_name":"Newt","last_name":"Scamanader","dob":"2001-11-09T00:00:00.000Z"},{"student_id":7,"first_name":"Francis","last_name":"Underwood","dob":"1959-11-05T00:00:00.000Z"},{"student_id":8,"first_name":"Sharon","last_name":"Holster","dob":"2001-11-09T00:00:00.000Z"},{"student_id":9,"first_name":"Harry","last_name":"Potter","dob":"2000-01-01T00:00:00.000Z"},{"student_id":11,"first_name":"Ron","last_name":"Weasley","dob":"1998-03-15T00:00:00.000Z"}];
+    let _this = this;
+    Api.fetchStudents(this.props.location.query.program).then(function(value) {
+      _this.setState({StudentsArray:value});
+    });
     return (
       <div className="download-elements">
+
+        <img src={csvLogo3} alt="CSV Icon3"/>
 
         <h1>CSV Data</h1>
 
         <br/>
 
-        <img src={csvLogo3} alt="CSV Icon3"/>
-
-        <br/><br/>
+        <br/>
 
         Students in this Program:
-        <StudentListBox students={tempJSONArray}/>
+        <StudentListBox students={this.state.StudentsArray}/>
         <br/>
 
         <a href='/RecordResponse'><button>Download</button></a>
         <a href='/WipeResponse'><button>Wipe Data</button></a>
 
         <br/>
-        <a href='/CSVPage'><button>Start Over</button></a>
-
       </div>
     );
   }
