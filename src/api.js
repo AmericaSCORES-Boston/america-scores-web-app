@@ -1,5 +1,5 @@
-const root = "http://crossorigin.me/http://ec2-54-87-140-118.compute-1.amazonaws.com/api",
-    rootNoProxy="http://ec2-54-87-140-118.compute-1.amazonaws.com/api",
+const root = "http://ec2-54-87-140-118.compute-1.amazonaws.com/api",
+    originUrl = "http://ec2-54-87-140-118.compute-1.amazonaws.com/",
     POST = "POST",
     PUT = "PUT";
 
@@ -21,7 +21,8 @@ function createRequestOptions(request_type, data) {
         method: request_type,
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Origin': originUrl
         },
         body: JSON.stringify(data)
     };
@@ -66,7 +67,7 @@ const Api = {
     },
 
     getReportLink(program_id) {
-      return rootNoProxy + '/programs/' + program_id + '/report';
+      return root + '/programs/' + program_id + '/report';
     },
 
     getAllStudents() {

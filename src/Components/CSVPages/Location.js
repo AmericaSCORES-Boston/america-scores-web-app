@@ -21,12 +21,14 @@ class CSVLocation extends Component {
     };
   }
 
-  render() {
+  componentDidMount() {
     let _this = this; //So that we can set the state inside the funciton (otherwise scope messes us up)
     Api.fetchSites().then(function(value) {
       _this.setState({SitesArray:value});
     });
-    
+  }
+
+  render() {
     return (
       <div className="download-elements">
 
