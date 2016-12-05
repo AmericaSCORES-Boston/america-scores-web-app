@@ -13,7 +13,7 @@ var Students = React.createClass({
       for (let i = 0; i < json.length; i++) {
         data.push({name: (json[i].first_name + " " + 
                          json[i].last_name),
-                  DateofBirth: json[i].dob});
+                  DateofBirth: json[i].dob.split("T")[0]});
       }
       _this.setState({
         allStudent : data
@@ -27,13 +27,7 @@ var Students = React.createClass({
   componentDidMount: function() {
   },
 
-  parse: function() {
-    
-  },
-
-
   render: function() {
-
     function onRowSelect(row, isSelected) {
       console.log(row)
       console.log("selected: " + isSelected)
@@ -56,7 +50,7 @@ var Students = React.createClass({
             <h1 className="Account-header"> Students </h1>
             <BootstrapTable data={this.state.allStudent} triped={true} hover={true} condensed={true} selectRow={selectRowProp}>
               <TableHeaderColumn isKey={true} dataField="name">Name</TableHeaderColumn>
-              <TableHeaderColumn dataField="DateofBirth">DateofBirth</TableHeaderColumn>
+              <TableHeaderColumn dataField="DateofBirth">Date Of Birth(yyyy-mm-dd)</TableHeaderColumn>
             </BootstrapTable>
           </div>
         </div>
