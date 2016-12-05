@@ -1,6 +1,9 @@
 import React from 'react'
 import '../Login.css';
 
+/*
+This container sends the auth instance
+*/
 export class Container extends React.Component {
   render() {
     let children = null;

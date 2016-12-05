@@ -4,6 +4,9 @@ import '../ManageAccounts.css'
 import icon from '../Assets/User.png';
 import Api from '../api';
 
+/*
+Page for Rendering all the students
+*/
 var Students = React.createClass({
 
   getInitialState: function() {
@@ -11,7 +14,7 @@ var Students = React.createClass({
     let data = []
     Api.getAllStudents().then(json => {
       for (let i = 0; i < json.length; i++) {
-        data.push({name: (json[i].first_name + " " + 
+        data.push({name: (json[i].first_name + " " +
                          json[i].last_name),
                   DateofBirth: json[i].dob.split("T")[0]});
       }
