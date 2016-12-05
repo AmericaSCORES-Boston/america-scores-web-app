@@ -4,9 +4,12 @@ import '../ManageAccounts.css'
 import icon from '../Assets/Location.png';
 import Api from '../api';
 
+/*
+The page for showing which sites are available
+*/
 var Sites = React.createClass({
 
-  getInitialState: function() { 
+  getInitialState: function() {
     return {
       locations: []
     }
