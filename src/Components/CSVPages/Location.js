@@ -21,16 +21,15 @@ class CSVLocation extends Component {
     };
   }
 
-  componentDidMount() {
+  render() {
     let _this = this; //So that we can set the state inside the funciton (otherwise scope messes us up)
     Api.fetchSites().then(function(value) {
       _this.setState({SitesArray:value});
     });
-  }
-  render() {
+    
     return (
       <div className="download-elements">
-      
+
         <img src={csvLogo} alt="CSV Icon"/>
         <h1>CSV Data</h1>
 

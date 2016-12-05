@@ -16,10 +16,16 @@ class CSVProgram extends Component {
       ProgramsArray: [{program_id:0,program_name:"Loading..."}] //So it has something to show if API down
     };
   }
+
   render() {
     let _this = this; //so that we can set the state inside the following function (otherwise scope messes us up)
     Api.fetchPrograms(this.props.location.query.location).then(function(value) {
-      _this.setState({ProgramsArray:value});
+      if (value.length === 0) {
+        _this.setState({ProgramsArray:[{program_id:0,program_name:"None"}]});
+      }
+      else {
+        _this.setState({ProgramsArray:value});
+      }
     });
 
     return(
@@ -40,8 +46,9 @@ class CSVProgram extends Component {
 
           <br/>
 
-          <a href='/CSVPage'><button>Start Over</button></a><button type="next">Next</button>
+          <button type="next">Next</button>
         </form>
+        <a href='/CSVPage'><button>Start Over</button></a>
       </div>
     );
   }
