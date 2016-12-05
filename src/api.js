@@ -71,6 +71,10 @@ const Api = {
 
     getReportLink(program_id) {
       return rootNoProxy + '/programs/' + program_id + '/report';
+    },
+
+    getAllStudents() {
+        return request(createEndpoint('/students'));
     }
 };
 

@@ -1,43 +1,68 @@
 import React, { Component } from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
+import '../ManageAccounts.css'
 import icon from '../Assets/User.png';
+import Api from '../api';
 
-class StudentManager extends Component {
-  componentDidMount() {
+var Students = React.createClass({
 
-  }
-  render() {
-    function onRowSelect(row, isSelected){
+  getInitialState: function() {
+    let _this = this
+    let data = []
+    Api.getAllStudents().then(json => {
+      for (let i = 0; i < json.length; i++) {
+        data.push({name: (json[i].first_name + " " + 
+                         json[i].last_name),
+                  DateofBirth: json[i].dob});
+      }
+      _this.setState({
+        allStudent : data
+      })
+    });
+    return {
+      allStudent: []
     }
-    var testdata = [
-      {name: 'A', dob: '11/11/1111', locations: 'l1, l2, l3'},
-      {name: 'B', dob: '11/11/1111', locations: 'l1, l2, l3'},
-      {name: 'C', dob: '11/11/1111', locations: 'l1, l2, l3'},
-      {name: 'D', dob: '11/11/1111', locations: 'l1, l2, l3'},
-      {name: 'E', dob: '11/11/1111', locations: 'l1, l2, l3'}
-    ];
+  },
+
+  componentDidMount: function() {
+  },
+
+  parse: function() {
+    
+  },
+
+
+  render: function() {
+
+    function onRowSelect(row, isSelected) {
+      console.log(row)
+      console.log("selected: " + isSelected)
+    }
+
     var selectRowProp = {
       mode: "radio",
       clickToSelect: true,
       bgColor: "rgb(238, 193, 213)",
       onSelect: onRowSelect,
       hideSelectColumn: true
-    };
+    }
+
     return (
       <div className="container-fluid">
-      <div className="row">
-      <div className="col-xs-3"></div>
-      <div className="col-xs-6 text-center">
-      <img src={icon} className="img-responsive center-block" alt="logo" />
-      <h1 className="Student-header"> STUDENT </h1>
-      <BootstrapTable data={testdata} triped={true} hover={true} condensed={true} selectRow={selectRowProp}>
-      <TableHeaderColumn isKey={true} dataField="name">Name</TableHeaderColumn>
-      <TableHeaderColumn dataField="locations">Locations</TableHeaderColumn>
-      </BootstrapTable>
-      </div>
-      </div>
+        <div className="row">
+          <div className="col-xs-3"></div>
+          <div className="col-xs-6 text-center">
+            <img src={icon} className="img-responsive center-block" alt="logo" />
+            <h1 className="Account-header"> Students </h1>
+            <BootstrapTable data={this.state.allStudent} triped={true} hover={true} condensed={true} selectRow={selectRowProp}>
+              <TableHeaderColumn isKey={true} dataField="name">Name</TableHeaderColumn>
+              <TableHeaderColumn dataField="DateofBirth">DateofBirth</TableHeaderColumn>
+            </BootstrapTable>
+          </div>
+        </div>
       </div>
       );
   }
-}
-export  default  StudentManager;
+
+})
+export default Students;
