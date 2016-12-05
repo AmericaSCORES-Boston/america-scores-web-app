@@ -13,6 +13,7 @@ import RecordResponse from './Components/CSVPages/RecordResponse';
 import WipeResponse from './Components/CSVPages/WipeResponse';
 import Sites from './Components/Sites';
 import Container from './Components/Container';
+import MyAccountCompiler from './Components/MyAccount';
 
 const auth = new AuthService('F8iBVF34KoTqGgOd4fj5D6IRSax8JWxz', 'asbadmin.auth0.com');
 // validate authentication for private routes
@@ -27,6 +28,7 @@ ReactDOM.render((
             <Route path="/" component={Container} auth={auth}>
                 <IndexRedirect to="Login" />
                 <Route path="Login" component={Login} />
+                <Route path="MyAccount" component={MyAccountCompiler} />
                 <Route path="Sites" component={Sites} onEnter={requireAuth} />
                 <Route path="Students" component={StudentManager} onEnter={requireAuth} />
                 <Route path="ManageAccounts" component={ManageAccountsManager} onEnter={requireAuth} />
