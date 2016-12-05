@@ -36,6 +36,11 @@ var Programs = React.createClass({
     }
   },
 
+  //This function returns whether selectedRowId is 0 and therefore button should be disabled
+  isNoRowSelected: function() {
+    return this.state.selectedRowId === 0;
+  },
+
   //this function sends the user back to the Sites page
   goBack: function() {
     window.location = '/Sites';
@@ -75,7 +80,8 @@ var Programs = React.createClass({
             </BootstrapTable>
             <div className="download-elements">
               <button onClick={_this.goBack}>Back</button>
-              <button onClick={_this.goSeeStudentsOfSelectedProgram}>See Students</button>
+              <button onClick={_this.goSeeStudentsOfSelectedProgram}
+                disabled={_this.isNoRowSelected()}>See Students</button>
             </div>
           </div>
         </div>

@@ -35,6 +35,11 @@ var Sites = React.createClass({
     window.location = '/Programs?location=' + this.state.selectedRowId;
   },
 
+  //This function returns whether selectedRowId is 0 and therefore button should be disabled
+  isNoRowSelected: function() {
+    return this.state.selectedRowId === 0;
+  },
+
   render: function() {
     let _this=this;
     function onRowSelect(row, isSelected) {
@@ -63,7 +68,7 @@ var Sites = React.createClass({
               <TableHeaderColumn isKey={true} dataField="name">Location Name</TableHeaderColumn>
             </BootstrapTable>
             <div className="download-elements">
-              <button onClick={_this.seeProgramsOfSelectedSite}>See Programs</button>
+              <button onClick={_this.seeProgramsOfSelectedSite} disabled={_this.isNoRowSelected()}>See Programs</button>
             </div>
           </div>
         </div>
