@@ -1,5 +1,5 @@
 const root = "http://ec2-54-87-140-118.compute-1.amazonaws.com/api",
-    originUrl = "http://ec2-54-87-140-118.compute-1.amazonaws.com/"
+    originUrl = "http://ec2-54-87-140-118.compute-1.amazonaws.com/",
     POST = "POST",
     PUT = "PUT";
 
