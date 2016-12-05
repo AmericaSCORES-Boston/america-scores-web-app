@@ -2,6 +2,9 @@ import { EventEmitter } from 'events'
 import Auth0Lock from 'auth0-lock'
 import { browserHistory } from 'react-router'
 
+/*
+The auth service is what connects this app to 0Auth
+*/
 export default class AuthService extends EventEmitter {
   constructor(clientId, domain) {
     super()

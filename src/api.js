@@ -40,6 +40,10 @@ const Api = {
         return request(createEndpoint('/sites/' + site_id + '/programs'), createRequestOptions(POST, { program_name }));
     },
 
+    addSite(site_id, program_name) {
+        return request(createEndpoint('/sites/' + site_id + '/programs'), createRequestOptions(POST, { program_name }));
+    },
+
     fetchStudents(program_id) {
         return request(createEndpoint('/programs/' + program_id + '/students'));
     },
@@ -63,6 +67,10 @@ const Api = {
 
     getReportLink(program_id) {
       return rootNoProxy + '/programs/' + program_id + '/report';
+    },
+
+    getAllStudents() {
+        return request(createEndpoint('/students'));
     }
 };
 

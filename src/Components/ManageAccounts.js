@@ -3,6 +3,10 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import '../ManageAccounts.css'
 import icon from '../Assets/Accounts-icon.png';
 
+/*
+Gets all the Coaches and their permissions
+Currently the API endpoint for coaches is unimplented so it is running on test data
+*/
 class ManageAccountsManager extends Component {
   render() {
     function onRowSelect(row, isSelected){
