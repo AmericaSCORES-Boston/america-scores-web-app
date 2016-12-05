@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import csvLogo from '../../Assets/CSV-icon.png';
-import './CSVPages.css';
+import '../../Main.css';
 import Api from '../../api.js';
 
 
@@ -21,6 +21,7 @@ class CSVLocation extends Component {
     };
   }
 
+  //Makes the API call in this method because it will re-render after state changes
   componentDidMount() {
     let _this = this; //So that we can set the state inside the funciton (otherwise scope messes us up)
     Api.fetchSites().then(function(value) {

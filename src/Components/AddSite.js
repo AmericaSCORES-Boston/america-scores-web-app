@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../ManageAccounts.css';
+import '../Main.css';
 import icon from '../Assets/Location.png';
 import Api from '../api';
 

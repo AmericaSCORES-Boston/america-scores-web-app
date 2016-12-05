@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import csvLogo3 from '../../Assets/CSV-icon3.png';
-import './CSVPages.css';
+import '../../Main.css';
 import Api from '../../api.js';
 
 /*
@@ -15,8 +15,16 @@ class CSVStudent extends Component {
       StudentsArray:[{first_name:"Loading..."}]
     }
   }
-  render() {
+
+  //Makes the API call in this method because it will re-render after state changes
+  componentDidMount() {
     let _this = this;
+
+    if (this.props.location.query.program === '0') {
+      _this.setState({StudentsArray:[{first_name:"Invalid Program"}]});
+      return;
+    }
+
     Api.fetchStudents(this.props.location.query.program).then(function(value) {
       if (value.length === 0) {
         _this.setState({StudentsArray:[{first_name:"No Students Here"}]});
@@ -25,6 +33,9 @@ class CSVStudent extends Component {
         _this.setState({StudentsArray:value});
       }
     });
+  }
+  render() {
+
     return (
       <div className="download-elements">
 

@@ -3,13 +3,6 @@ import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import Sites from '../Sites';
 
-var testdata = [
-      {name: 'Location1'},
-      {name: 'Location2'},
-      {name: 'Location3'},
-      {name: 'Location4'},
-      {name: 'Location5'}
-];
 
 it('renders fully without crashing', () => {
   const div = document.createElement('div');

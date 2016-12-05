@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import csvLogo2 from '../../Assets/CSV-icon2.png';
-import './CSVPages.css';
+import '../../Main.css';
 import Api from '../../api.js';
 
 /*
@@ -17,7 +17,8 @@ class CSVProgram extends Component {
     };
   }
 
-  render() {
+  //Makes the API call in this method because it will re-render after state changes
+  componentDidMount() {
     let _this = this; //so that we can set the state inside the following function (otherwise scope messes us up)
     Api.fetchPrograms(this.props.location.query.location).then(function(value) {
       if (value.length === 0) {
@@ -27,6 +28,9 @@ class CSVProgram extends Component {
         _this.setState({ProgramsArray:value});
       }
     });
+  }
+
+  render() {
 
     return(
       <div className="download-elements">

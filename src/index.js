@@ -13,6 +13,7 @@ import WipeResponse from './Components/CSVPages/WipeResponse';
 import Sites from './Components/Sites';
 import Container from './Components/Container';
 import MyAccountCompiler from './Components/MyAccount';
+import Programs from './Components/Programs';
 
 /*
 This file is what routes all the paths in the react-app
@@ -38,6 +39,7 @@ ReactDOM.render((
                 <Route path="CSVPage2" component={CSVProgram} onEnter={requireAuth}/>
                 <Route path="CSVPage3" component={CSVStudent} onEnter={requireAuth}/>
                 <Route path="WipeResponse" component={WipeResponse} onEnter={requireAuth}/>
+                <Route path="Programs" component={Programs} onEnter={requireAuth}/>
             </Route>
         </Router>
     ),
