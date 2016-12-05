@@ -18,7 +18,12 @@ class CSVStudent extends Component {
   render() {
     let _this = this;
     Api.fetchStudents(this.props.location.query.program).then(function(value) {
-      _this.setState({StudentsArray:value});
+      if (value.length === 0) {
+        _this.setState({StudentsArray:[{first_name:"No Students Here"}]});
+      }
+      else {
+        _this.setState({StudentsArray:value});
+      }
     });
     return (
       <div className="download-elements">
@@ -35,9 +40,10 @@ class CSVStudent extends Component {
         <StudentListBox students={this.state.StudentsArray}/>
         <br/>
 
-        <a href='/RecordResponse'><button>Download</button></a>
+        <a href={Api.getReportLink(this.props.location.query.program)}><button>Download</button></a>
         <a href='/WipeResponse'><button>Wipe Data</button></a>
-
+        <br/>
+        <a href='/CSVPage'><button>Start Over</button></a>
         <br/>
       </div>
     );
