@@ -1,12 +1,16 @@
 const root = "http://crossorigin.me/http://ec2-54-87-140-118.compute-1.amazonaws.com/api",
-    rootNoProxy="http://ec2-54-87-140-118.compute-1.amazonaws.com/api",
-    POST = "POST",
-    PUT = "PUT";
+      rootNoProxy="http://ec2-54-87-140-118.compute-1.amazonaws.com/api",
+      POST = "POST",
+      PUT = "PUT";
 
+// Build the REST endpoint
+// (String) => String
 function createEndpoint(path) {
     return root + path;
 }
 
+// Make a fetch request
+// (String, OptionsObj) => Promise<JSON>
 function request(path, options={}) {
     return fetch(path, options)
         .then(response => response.json())
@@ -16,6 +20,8 @@ function request(path, options={}) {
         .catch(error => error);
 }
 
+// Takes a method and request body data to make options
+// (String, Obj) => OptionsObj
 function createRequestOptions(request_type, data) {
     return {
         method: request_type,
@@ -27,6 +33,8 @@ function createRequestOptions(request_type, data) {
     };
 }
 
+// Exposed obj api with all the functions
+// See the Endpoints Google Doc for explanations
 const Api = {
     fetchSites() {
         return request(createEndpoint('/sites'));
