@@ -1,0 +1,34 @@
+/* CSS for the CSV Data Download Pages */
+.download-elements {
+  text-align: center;
+  margin: auto;
+  font: 24px/36px sans-serif;
+}
+
+.download-elements select {
+  border: solid;
+  padding: 10px;
+  width: 400px;
+}
+
+.download-elements button {
+  border: 1;
+  background: #256ce2;;
+  width: 150px;
+  height: 40px;
+  border: 1;
+  color: white;
+  font: 24px sans-serif;
+  text-align: center;
+}
+
+.student-box {
+  border: solid;
+  padding: 10px;
+  font: 24px/36px sans-serif;
+  width: 500px;
+  height: 200px ;
+  overflow-y: scroll;
+  margin: auto;
+}
+
