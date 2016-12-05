@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import csvLogo from '../Assets/ApolloLocation.png'
-import '../Download.css'
+import './CSVPages/CSVPages.css'
 
+/**
+  This class represents the Download Page. It will deal with
+*/
 class Download extends Component {
   render() {
     return (
@@ -21,7 +24,7 @@ class Download extends Component {
             <option value="location1">Location 1</option>
             <option value="location2">Location 2</option>
             <option value="location3">Location 3</option>
-          </select>
+            </select>
 
           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;
 
@@ -46,6 +49,9 @@ class Download extends Component {
 
           <button type="submit">Export</button>
         </form>
+
+        /* Temporary, eventually need to connect to the form, but point to a different thing */
+        <a href='/WipeResponse'><button>WipeData</button></a>
       </div>
     );
   }

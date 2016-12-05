@@ -1,4 +1,5 @@
 const root = "http://crossorigin.me/http://ec2-54-87-140-118.compute-1.amazonaws.com/api",
+    rootNoProxy="http://ec2-54-87-140-118.compute-1.amazonaws.com/api",
     POST = "POST",
     PUT = "PUT";
 
@@ -58,6 +59,10 @@ const Api = {
 
     fetchStats(program_id) {
         return request(createEndpoint('/programs/' + program_id + '/stats'));
+    },
+
+    getReportLink(program_id) {
+      return rootNoProxy + '/programs/' + program_id + '/report';
     }
 };
 
