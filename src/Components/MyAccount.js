@@ -5,13 +5,14 @@ import icon from '../Assets/User-icon.png';
 
 class MyAccountCompiler extends Component {	
 render() {	
+  
   function renData(constant, rdata) {
       console.log('calling rendata'); 
      return (<div><p><strong>{constant}</strong>{rdata}</p></div>)
-
   }; 
 
-const data = { name: "Alice", email: "alice@email.com", phone: 5036672134, password: "******"};
+  const data = { name: "Alice", email: "alice@email.com", phone: 5036672134, password: "******"};
+  
   return(		
     <div className="all">			
       <div className="Header">				
