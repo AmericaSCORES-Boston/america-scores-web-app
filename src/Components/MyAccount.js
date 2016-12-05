@@ -1,5 +1,5 @@
  import React, { Component } from 'react';
- import '../MyAccount.css';
+ import '../Main.css';
  import icon from '../Assets/User-icon.png';
 
  /*
@@ -9,7 +9,6 @@
  render() {
 
    function renData(constant, rdata) {
-       console.log('calling rendata');
       return (<div><p><strong>{constant}</strong>{rdata}</p></div>)
    };
 
