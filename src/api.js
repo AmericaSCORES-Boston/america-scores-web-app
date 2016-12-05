@@ -1,4 +1,5 @@
 const root = "http://ec2-54-87-140-118.compute-1.amazonaws.com/api",
+    originUrl = "http://ec2-54-87-140-118.compute-1.amazonaws.com/"
     POST = "POST",
     PUT = "PUT";
 
@@ -21,7 +22,7 @@ function createRequestOptions(request_type, data) {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Origin': 'http://ec2-54-87-140-118.compute-1.amazonaws.com/'
+            'Origin': originUrl
         },
         body: JSON.stringify(data)
     };
