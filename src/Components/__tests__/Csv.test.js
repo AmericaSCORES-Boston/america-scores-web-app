@@ -6,21 +6,6 @@ import CSVProgram from '../CSVPages/Program.js';
 import CSVStudent from '../CSVPages/Student.js';
 
 
-it('renders fully without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<CSVLocation/>, div);
-});
-
-it('renders fully without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<CSVLProgram/>, div);
-});
-
-
-it('renders fully without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<CSVStudent/>, div);
-});
 
 describe('CSV Pages', () => {
     it('render correctly', () => {

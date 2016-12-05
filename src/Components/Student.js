@@ -3,12 +3,8 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import icon from '../Assets/User.png';
 
 class StudentManager extends Component {
-  componentDidMount() {
-
-  }
   render() {
     function onRowSelect(row, isSelected){
-      alert(row.dob);
     }
     var testdata = [
       {name: 'A', dob: '11/11/1111', locations: 'l1, l2, l3'},
@@ -30,10 +26,10 @@ class StudentManager extends Component {
       <div className="col-xs-3"></div>
       <div className="col-xs-6 text-center">
       <img src={icon} className="img-responsive center-block" alt="logo" />
-      <h1 className="Student-header"> Students </h1>
+      <h1 className="Student-header"> STUDENT </h1>
       <BootstrapTable data={testdata} triped={true} hover={true} condensed={true} selectRow={selectRowProp}>
-        <TableHeaderColumn isKey={true} dataField="name">Name</TableHeaderColumn>
-        <TableHeaderColumn dataField="locations">Locations</TableHeaderColumn>
+      <TableHeaderColumn isKey={true} dataField="name">Name</TableHeaderColumn>
+      <TableHeaderColumn dataField="locations">Locations</TableHeaderColumn>
       </BootstrapTable>
       </div>
       </div>

@@ -11,7 +11,6 @@ Endpoint: /CSVPage3
 class CSVStudent extends Component {
   constructor() {
     super();
-    alert(this.props.location.query.program);
     this.state = {
       StudentsArray:[{first_name:"Loading..."}]
     }
