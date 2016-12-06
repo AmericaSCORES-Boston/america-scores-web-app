@@ -43,7 +43,7 @@ var Sites = React.createClass({
 
   goToAddSite() {
     window.location = '/AddSite';
-  }
+  },
 
   //This function returns whether selectedRowId is 0 and therefore button should be disabled
   isNoRowSelected: function() {
