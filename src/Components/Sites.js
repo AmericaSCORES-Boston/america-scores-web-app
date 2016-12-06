@@ -41,6 +41,10 @@ var Sites = React.createClass({
 
   },
 
+  goToAddSite() {
+    window.location = '/AddSite';
+  },
+
   //This function returns whether selectedRowId is 0 and therefore button should be disabled
   isNoRowSelected: function() {
     return this.state.selectedRowId === 0;
@@ -76,7 +80,7 @@ var Sites = React.createClass({
             <div className="download-elements">
               <button onClick={_this.seeProgramsOfSelectedSite} disabled={_this.isNoRowSelected()}>See Programs</button> <br/>
               <button onClick={_this.deleteSelectedSite} disabled={_this.isNoRowSelected()}>Delete Site</button>
-              <a href='/addSite'><button>Add Site</button></a>
+              <button onClick={_this.goToAddSite}>Add Site</button>
             </div>
 
           </div>
