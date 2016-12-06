@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "auth0-lock": "^10.7.2",
+    "jquery": "^3.1.1",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.7",
     "react-bootstrap-table": "^2.5.8",

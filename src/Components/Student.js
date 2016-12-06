@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import '../ManageAccounts.css'
+import '../Main.css'
 import icon from '../Assets/User.png';
 import Api from '../api';
 
@@ -10,24 +10,47 @@ Page for Rendering all the students
 var Students = React.createClass({
 
   getInitialState: function() {
-    let _this = this
-    let data = []
-    Api.getAllStudents().then(json => {
-      for (let i = 0; i < json.length; i++) {
-        data.push({name: (json[i].first_name + " " +
-                         json[i].last_name),
-                  DateofBirth: json[i].dob.split("T")[0]});
-      }
-      _this.setState({
-        allStudent : data
-      })
-    });
     return {
       allStudent: []
     }
   },
 
+  //decides how to/ what data to get
   componentDidMount: function() {
+    let _this = this;
+    let data = [];
+    let queryParamProgramId = this.props.location.query.program;
+
+    //if there is no parameter, it
+    if (queryParamProgramId === undefined) {
+      Api.getAllStudents().then(json => {
+        for (let i = 0; i < json.length; i++) {
+          data.push({name: (json[i].first_name + " " +
+                           json[i].last_name),
+                    DateofBirth: json[i].dob.split("T")[0]});
+        }
+        _this.setState({
+          allStudent : data
+        })
+      });
+    }
+    else if (queryParamProgramId < 1) {
+      _this.setState({
+        allStudent : [{name: "Error: No Program Chosen"}]
+      })
+    }
+    else {
+      Api.fetchStudents(queryParamProgramId).then(json => {
+        for (let i = 0; i < json.length; i++) {
+          data.push({name: (json[i].first_name + " " +
+                           json[i].last_name),
+                    DateofBirth: json[i].dob.split("T")[0]});
+        }
+        _this.setState({
+          allStudent : data
+        })
+      });
+    }
   },
 
   render: function() {

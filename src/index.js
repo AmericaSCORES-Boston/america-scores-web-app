@@ -13,6 +13,9 @@ import WipeResponse from './Components/CSVPages/WipeResponse';
 import Sites from './Components/Sites';
 import Container from './Components/Container';
 import MyAccountCompiler from './Components/MyAccount';
+import Programs from './Components/Programs';
+import AddSite from './Components/AddSite';
+import AddProgram from './Components/AddProgram';
 
 /*
 This file is what routes all the paths in the react-app
@@ -38,6 +41,9 @@ ReactDOM.render((
                 <Route path="CSVPage2" component={CSVProgram} onEnter={requireAuth}/>
                 <Route path="CSVPage3" component={CSVStudent} onEnter={requireAuth}/>
                 <Route path="WipeResponse" component={WipeResponse} onEnter={requireAuth}/>
+                <Route path="Programs" component={Programs} onEnter={requireAuth}/>
+                <Route path="AddSite" component={AddSite} onEnter={requireAuth}/>
+                <Route path="AddProgram" component={AddProgram} onEnter={requireAuth}/>
             </Route>
         </Router>
     ),
