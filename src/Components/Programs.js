@@ -56,8 +56,8 @@ var Programs = React.createClass({
   },
 
   //deletes the selected Program
-  deleteSelectedSite() {
-    Api.deleteProgram(this.state.selectedRowId);
+  deleteSelectedProgram() {
+    Api.deleteProgram(this.state.selectedRowId).then(() => {window.location.reload()});
 
   },
 
