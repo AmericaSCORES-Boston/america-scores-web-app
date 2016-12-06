@@ -1,7 +1,7 @@
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import '../Main.css'
-import icon from '../Assets/Location.png';
+import icon from '../Assets/Location2.png';
 import Api from '../api';
 
 /*
@@ -51,6 +51,16 @@ var Programs = React.createClass({
     window.location = '/Students?program=' + this.state.selectedRowId;
   },
 
+  goToAddProgramPage: function() {
+    window.location = '/AddProgram?location=' + this.props.location.query.location;
+  },
+
+  //deletes the selected Program
+  deleteSelectedSite() {
+    Api.deleteProgram(this.state.selectedRowId);
+
+  },
+
   render: function() {
     let _this = this;
     function onRowSelect(row, isSelected) {
@@ -81,7 +91,9 @@ var Programs = React.createClass({
             <div className="download-elements">
               <button onClick={_this.goBack}>Back</button>
               <button onClick={_this.goSeeStudentsOfSelectedProgram}
-                disabled={_this.isNoRowSelected()}>See Students</button>
+                disabled={_this.isNoRowSelected()}>See Students</button> <br/>
+              <button onClick={_this.deleteSelectedProgram} disabled={_this.isNoRowSelected()}>Delete Program</button>
+              <button onClick={_this.goToAddProgramPage}>Add Program</button>
             </div>
           </div>
         </div>

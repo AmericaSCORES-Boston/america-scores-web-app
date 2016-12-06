@@ -1,6 +1,7 @@
+import $ from 'jquery';
 const root = "http://ec2-54-87-140-118.compute-1.amazonaws.com/api",
-    originUrl = "http://ec2-54-87-140-118.compute-1.amazonaws.com/",
     POST = "POST",
+    DELETE = "DELETE",
     PUT = "PUT";
 
 function createEndpoint(path) {
@@ -21,8 +22,7 @@ function createRequestOptions(request_type, data) {
         method: request_type,
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Origin': originUrl
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     };
@@ -37,12 +37,14 @@ const Api = {
         return request(createEndpoint('/sites/' + site_id + '/programs'));
     },
 
-    addProgram(site_id, program_name) {
-        return request(createEndpoint('/sites/' + site_id + '/programs'), createRequestOptions(POST, { program_name }));
+    addProgram(siteId, programName) {
+      return request(createEndpoint('/sites/' + siteId +'/programs'),
+      createRequestOptions(POST, {program_name: programName}));
     },
 
-    addSite(site_id, program_name) {
-        return request(createEndpoint('/sites/' + site_id + '/programs'), createRequestOptions(POST, { program_name }));
+    addSite(siteName, siteAddress) {
+        return request(createEndpoint('/sites/'),
+        createRequestOptions(POST, {site_name: siteName, site_address: siteAddress}));
     },
 
     fetchStudents(program_id) {
@@ -59,7 +61,7 @@ const Api = {
 
     updateStat(stat) {
         const statId = stat.stat_id || -1;
-        return request(createEndpoint('/stats/' + statId), createRequestOptions(PUT), stat);
+        return request(createEndpoint('/stats/' + statId), createRequestOptions(PUT, stat));
     },
 
     fetchStats(program_id) {
@@ -72,6 +74,21 @@ const Api = {
 
     getAllStudents() {
         return request(createEndpoint('/students'));
+    },
+
+    //Tried to use fetch here, but it was giving cors errors. This is also giving us those errors
+    deleteSite(siteId) {
+      return $.ajax({
+            url: root + '/sites/' +siteId,
+            type: DELETE
+        });
+    },
+
+    deleteProgram(programId) {
+      return $.ajax({
+        url: root + '/programs/' + programId,
+        type: DELETE
+      });
     }
 };
 

@@ -20,7 +20,7 @@ class CSVStudent extends Component {
   componentDidMount() {
     let _this = this;
 
-    if (this.props.location.query.program === '0') {
+    if (this.props.location.query.program < 1) {
       _this.setState({StudentsArray:[{first_name:"Invalid Program"}]});
       return;
     }
@@ -34,6 +34,20 @@ class CSVStudent extends Component {
       }
     });
   }
+
+  //This function determines if there is no valid students available for this program
+  //(i.e. either Loading... or None) and therefore if the next button should be disabled
+  noValidOptions() {
+    let studArray = this.state.StudentsArray;
+    return (studArray.length === 1 &&
+            (studArray[0].first_name === 'No Students Here' || studArray[0].first_name === 'Loading...' ));
+  }
+
+  //this function redirects to the url download page after clicking download
+  downloadRedirect() {
+    window.location = Api.getReportLink(this.props.location.query.program);
+  }
+
   render() {
 
     return (
@@ -51,7 +65,8 @@ class CSVStudent extends Component {
         <StudentListBox students={this.state.StudentsArray}/>
         <br/>
 
-        <a href={Api.getReportLink(this.props.location.query.program)}><button>Download</button></a>
+        <button onClick={this.downloadRedirect} disabled={this.noValidOptions()}>Download</button>
+
         <a href='/WipeResponse'><button>Wipe Data</button></a>
         <br/>
         <a href='/CSVPage'><button>Start Over</button></a>

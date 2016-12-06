@@ -35,6 +35,12 @@ var Sites = React.createClass({
     window.location = '/Programs?location=' + this.state.selectedRowId;
   },
 
+  //deletes the selectedSite
+  deleteSelectedSite() {
+    Api.deleteSite(this.state.selectedRowId);
+
+  },
+
   //This function returns whether selectedRowId is 0 and therefore button should be disabled
   isNoRowSelected: function() {
     return this.state.selectedRowId === 0;
@@ -68,8 +74,11 @@ var Sites = React.createClass({
               <TableHeaderColumn isKey={true} dataField="name">Location Name</TableHeaderColumn>
             </BootstrapTable>
             <div className="download-elements">
-              <button onClick={_this.seeProgramsOfSelectedSite} disabled={_this.isNoRowSelected()}>See Programs</button>
+              <button onClick={_this.seeProgramsOfSelectedSite} disabled={_this.isNoRowSelected()}>See Programs</button> <br/>
+              <button onClick={_this.deleteSelectedSite} disabled={_this.isNoRowSelected()}>Delete Site</button>
+              <a href='/addSite'><button>Add Site</button></a>
             </div>
+
           </div>
         </div>
       </div>
