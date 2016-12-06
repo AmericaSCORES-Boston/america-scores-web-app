@@ -1,7 +1,7 @@
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import '../Main.css'
-import icon from '../Assets/Location.png';
+import icon from '../Assets/Location2.png';
 import Api from '../api';
 
 /*
@@ -36,6 +36,11 @@ var Programs = React.createClass({
     }
   },
 
+  //This function returns whether selectedRowId is 0 and therefore button should be disabled
+  isNoRowSelected: function() {
+    return this.state.selectedRowId === 0;
+  },
+
   //this function sends the user back to the Sites page
   goBack: function() {
     window.location = '/Sites';
@@ -44,6 +49,16 @@ var Programs = React.createClass({
   //sends the user to the Students page with the currently selectedRowId
   goSeeStudentsOfSelectedProgram: function() {
     window.location = '/Students?program=' + this.state.selectedRowId;
+  },
+
+  goToAddProgramPage: function() {
+    window.location = '/AddProgram?location=' + this.props.location.query.location;
+  },
+
+  //deletes the selected Program
+  deleteSelectedSite() {
+    Api.deleteProgram(this.state.selectedRowId);
+
   },
 
   render: function() {
@@ -75,7 +90,10 @@ var Programs = React.createClass({
             </BootstrapTable>
             <div className="download-elements">
               <button onClick={_this.goBack}>Back</button>
-              <button onClick={_this.goSeeStudentsOfSelectedProgram}>See Students</button>
+              <button onClick={_this.goSeeStudentsOfSelectedProgram}
+                disabled={_this.isNoRowSelected()}>See Students</button> <br/>
+              <button onClick={_this.deleteSelectedProgram} disabled={_this.isNoRowSelected()}>Delete Program</button>
+              <button onClick={_this.goToAddProgramPage}>Add Program</button>
             </div>
           </div>
         </div>

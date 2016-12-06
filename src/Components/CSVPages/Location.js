@@ -25,8 +25,20 @@ class CSVLocation extends Component {
   componentDidMount() {
     let _this = this; //So that we can set the state inside the funciton (otherwise scope messes us up)
     Api.fetchSites().then(function(value) {
-      _this.setState({SitesArray:value});
+      if (value.length === 0) {
+        _this.setState({SitesArray:[{site_id:0, site_name:"None"}]});
+      }
+      else {
+        _this.setState({SitesArray:value});
+      }
     });
+  }
+
+  //This function determines if there is no valid programs available for all sites
+  //(i.e. either Loading... or None) and therefore if the next button should be disabled
+  noValidOptions() {
+    let siteArray = this.state.SitesArray;
+    return (siteArray.length === 1 && siteArray[0].site_id < 1);
   }
 
   render() {

@@ -30,6 +30,13 @@ class CSVProgram extends Component {
     });
   }
 
+  //This function determines if there is no valid programs available for this site
+  //(i.e. either Loading... or None) and therefore if the next button should be disabled
+  noValidOptions() {
+    let progArray = this.state.ProgramsArray;
+    return (progArray.length === 1 && progArray[0].program_id < 1);
+  }
+
   render() {
 
     return(
@@ -50,7 +57,7 @@ class CSVProgram extends Component {
 
           <br/>
 
-          <button type="next">Next</button>
+          <button type="submit" disabled={this.noValidOptions()}>Next</button>
         </form>
         <a href='/CSVPage'><button>Back</button></a>
       </div>

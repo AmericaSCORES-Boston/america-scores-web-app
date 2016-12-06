@@ -34,7 +34,7 @@ var Students = React.createClass({
         })
       });
     }
-    else if (queryParamProgramId === '0') {
+    else if (queryParamProgramId < 1) {
       _this.setState({
         allStudent : [{name: "Error: No Program Chosen"}]
       })
