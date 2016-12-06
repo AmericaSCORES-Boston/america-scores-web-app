@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './CSVPages.css';
+import '../../Main.css';
 
 class CSVWipeResponse extends Component {
   render() {
