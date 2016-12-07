@@ -37,7 +37,7 @@ var Sites = React.createClass({
 
   //deletes the selectedSite
   deleteSelectedSite() {
-    Api.deleteSite(this.state.selectedRowId);
+    Api.deleteSite(this.state.selectedRowId).then(() => {window.location.reload()});
 
   },
 
@@ -75,10 +75,12 @@ var Sites = React.createClass({
             <img src={icon} className="img-responsive center-block" alt="logo" />
             <h1 className="Account-header"> Sites </h1>
             <BootstrapTable data={this.state.locations} triped={true} hover={true} condensed={true} selectRow={selectRowProp}>
-              <TableHeaderColumn isKey={true} dataField="name">Location Name</TableHeaderColumn>
+              <TableHeaderColumn isKey={true} dataField="name">Location Name(s)</TableHeaderColumn>
             </BootstrapTable>
             <div className="download-elements">
-              <button onClick={_this.seeProgramsOfSelectedSite} disabled={_this.isNoRowSelected()}>See Programs</button> <br/>
+              <button onClick={_this.seeProgramsOfSelectedSite} disabled={_this.isNoRowSelected()}>See Programs</button>
+            </div>
+            <div className="download-elements">
               <button onClick={_this.deleteSelectedSite} disabled={_this.isNoRowSelected()}>Delete Site</button>
               <button onClick={_this.goToAddSite}>Add Site</button>
             </div>
