@@ -42,14 +42,15 @@
 }
 
 .download-elements button {
-  border: 1;
-  background: #256ce2;;
+  border-radius: 12px;
+  background: #256ce2;
   width: 300px;
   height: 40px;
   border: 1;
   color: white;
   font: 24px sans-serif;
   text-align: center;
+
 }
 
 .student-box {
