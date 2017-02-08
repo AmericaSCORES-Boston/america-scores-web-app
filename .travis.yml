@@ -37,3 +37,8 @@ deploy:
     on:
       branch: develop
     wait-until-deployed: true
+
+notifications:
+    slack:
+        rooms:
+            secure: "RXfokVr6IFA2mrqrnlGY3chTJnG3o5sgmOJYnjXjYFjFcnOxYhNciomga4YBibvLVJNvJ+Ru3HJ2sI44B+hao+oiSlCbEtWBLqrKAYeloQ1WRX8xQoD2QnFXnMFi8oa0WROw/yCYj6TVLMCF90WsU1zchY2kzdhBv0QeG7JYNwquC40RF60pg3mU1ZjuJYlwyeXAzOwKy5Pk3cWKD6+RfOlatpYFfJuUKpZRePNgoglQ5cTMdKFjXYF/nYpf4N1q+iaCC9ncW1IRpuKPkUUo34a1R2MrneLCGO+2lhQTMAFVV95cxlT2PAJRPPqOBauYr12Gd+VvDZAFCAazzIfup+yH4nDww0YRNqgdLWdtENKigxQDvXNgPd5twnomuYic546xZTkIqjrJhNYvk+QPkJCT9j39bJDyGt9n4lnM8YFf6vMlwphT/2eNP167UwIV1J161dgL8Kv6ZgCOWpzfU2JaL0kvQoffOFKA5VamU+bCj9dCUU8l3eoNn2kq1hwyPwXtzpXl2ZuXcCza73ba1m8azDrKWFzuE3LBaP1AbhOP7xi2ijlAl1415qIKCPD+iMrkBkOZ+cDpMmj56mztLDpxefbQvoB4817/FXkqTZF56XxpA1gIQziS78gTwrcA2EsyQdk8R3atmzt1TiJVBKQtW1r3vIKe2aHHefsXTnI="
