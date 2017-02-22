@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-if [ -e /amscores/web-app ]; then
-  cd /amscores/web-app
-  /usr/bin/npm stop
+if [[ ! -z $(/usr/local/bin/pm2 list | grep amscores_webapp) ]]; then
+    /usr/local/bin/pm2 delete amscores_backend
 fi
