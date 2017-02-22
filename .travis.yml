@@ -7,7 +7,7 @@ script:
   - npm run build
 
 before_deploy:
-  - zip -r web-app-latest build/ appspec.yml scripts/
+  - zip -r web-app-latest build/ appspec.yml scripts/ package.json
   - mkdir -p web-app
   - mv web-app-latest.zip web-app/
 
