@@ -19,6 +19,12 @@ files:
 #   in the "files" section as they are being copied over to
 #   the Amazon EC2 instance.
 #   For more information, see the documentation.
+permissions:
+  - object: /amscores
+    pattern: "web-app"
+    owner: ubuntu
+    type:
+      - directory
 
 # If you are not running any commands on the Amazon EC2 instance, then remove
 #   the "hooks" section altogether. A blank or incomplete "hooks" section
