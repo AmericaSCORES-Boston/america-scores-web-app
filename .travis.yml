@@ -23,19 +23,19 @@ deploy:
     skip_cleanup: true
     upload-dir: dev
     on:
-      branch: develop
-    bucket: amscores-deploy
+      branch: KC_AWS_Testing
+    bucket: asb-deploy
   - provider: codedeploy
     access_key_id: $AMSCORES_AWS_KEY_ID
     secret_access_key: $AMSCORES_AWS_KEY_SECRET
     region: us-east-1
-    bucket: "amscores-deploy"
+    bucket: asb-deploy
     key: dev/web-app-latest.zip
     bundle_type: zip
-    application: AmScoresWebApp
+    application: ASB-WebApp
     deployment_group: Development
     on:
-      branch: develop
+      branch: KC_AWS_Testing
     wait-until-deployed: true
 
 notifications:
