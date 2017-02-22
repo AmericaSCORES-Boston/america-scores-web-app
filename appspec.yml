@@ -20,6 +20,12 @@ files:
 #   the Amazon EC2 instance.
 #   For more information, see the documentation.
 permissions:
+  - object: /amscores/web-app
+    pattern: "**"
+    owner: ubuntu
+    type:
+      - directory
+      - file
   - object: /amscores
     pattern: "web-app"
     owner: ubuntu
