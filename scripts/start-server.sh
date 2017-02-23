@@ -6,6 +6,7 @@ then
     export NODE_ENV=production
 else
     export NODE_ENV=development
-    /usr/local/bin/pm2 start scripts/start.js -n amscores_webapp
 fi
+
+pushstate-server build
 

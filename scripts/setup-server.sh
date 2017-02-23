@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 cd /amscores/web-app
 
-npm install
+npm install -g pushstate-server
