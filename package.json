@@ -60,7 +60,7 @@
   },
   "scripts": {
     "start": "pm2 start scripts/start.js -n amscores_webapp",
-    "build": "npm scripts/build.js",
+    "build": "node scripts/build.js",
     "debug": "pm2 start scripts/start.js -n amscores_webapp_debug --node-args=\"--debug=7000\"",
     "stop": "if [[ ! -z $(pm2 list | grep amscores_webapp) ]]; then pm2 delete amscores_webapp; fi",
     "test": "node scripts/test.js --env=jsdom",
