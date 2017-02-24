@@ -7,7 +7,7 @@ script:
   - npm run build
 
 before_deploy:
-  - zip -r web-app-latest build/ appspec.yml scripts/stop-server.sh
+  - zip -r web-app-latest build/ appspec.yml scripts/
   - mkdir -p web-app
   - mv web-app-latest.zip web-app/
 
@@ -24,18 +24,40 @@ deploy:
     upload-dir: dev
     on:
       branch: develop
-    bucket: amscores-deploy
+    bucket: asb-deploy
   - provider: codedeploy
     access_key_id: $AMSCORES_AWS_KEY_ID
     secret_access_key: $AMSCORES_AWS_KEY_SECRET
     region: us-east-1
-    bucket: "amscores-deploy"
+    bucket: asb-deploy
     key: dev/web-app-latest.zip
     bundle_type: zip
-    application: AmScoresWebApp
+    application: ASB-WebApp
     deployment_group: Development
     on:
       branch: develop
+    wait-until-deployed: true
+  - provider: s3
+    access_key_id: $AMSCORES_AWS_KEY_ID
+    secret_access_key: $AMSCORES_AWS_KEY_SECRET
+    region: us-east-1
+    local_dir: web-app
+    skip_cleanup: true
+    upload-dir: prod
+    on:
+      branch: master
+    bucket: asb-deploy
+  - provider: codedeploy
+    access_key_id: $AMSCORES_AWS_KEY_ID
+    secret_access_key: $AMSCORES_AWS_KEY_SECRET
+    region: us-east-1
+    bucket: asb-deploy
+    key: prod/web-app-latest.zip
+    bundle_type: zip
+    application: ASB-WebApp
+    deployment_group: Production
+    on:
+      branch: master
     wait-until-deployed: true
 
 notifications:
