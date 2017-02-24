@@ -1,5 +1,4 @@
 process.env.NODE_ENV = 'development';
-process.title = 'asb-web-app';
 
 // Load environment variables from .env file. Surpress warnings using silent
 // if this file is missing. dotenv will never modify any environment variables
