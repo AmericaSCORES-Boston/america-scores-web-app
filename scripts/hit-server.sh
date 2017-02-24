@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-curl localhost:3000/students
+curl localhost:9000

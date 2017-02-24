@@ -8,5 +8,5 @@ else
     export NODE_ENV=development
 fi
 
-pushstate-server build
+pushstate-server build &
 
