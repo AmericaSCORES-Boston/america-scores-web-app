@@ -49,7 +49,7 @@ hooks:
       runas: ubuntu
   AfterInstall:
     - location: /scripts/setup-server.sh
-      timeout: 120
+      timeout: 60
       runas: ubuntu
   ApplicationStart:
     - location: /scripts/start-server.sh
