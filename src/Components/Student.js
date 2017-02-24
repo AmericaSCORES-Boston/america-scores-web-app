@@ -1,6 +1,5 @@
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import '../Main.css'
 import icon from '../Assets/User.png';
 import Api from '../api';
 

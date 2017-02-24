@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../Main.css';
 import Api from '../api';
 
 /*

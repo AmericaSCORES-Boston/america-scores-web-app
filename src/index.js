@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import Login from './Components/Login';
 import StudentManager from './Components/Student';
 import { Router, Route, browserHistory, IndexRedirect } from 'react-router';
