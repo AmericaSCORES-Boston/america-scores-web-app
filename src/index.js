@@ -31,7 +31,7 @@ ReactDOM.render((
         <Router history={browserHistory}>
             <Route path="/" component={Container} auth={auth}>
                 <IndexRedirect to="Login" />
-                <Route path="Login" component={Login} />
+                <Route path="Login" component={StudentManager} />
                 <Route path="MyAccount" component={MyAccountCompiler} onEnter={requireAuth}/>
                 <Route path="Sites" component={Sites} onEnter={requireAuth} />
                 <Route path="Students" component={StudentManager} onEnter={requireAuth} />

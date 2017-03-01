@@ -1,5 +1,5 @@
 import $ from 'jquery';
-const root = "http://ec2-54-87-140-118.compute-1.amazonaws.com/api",
+const root = "http://54.86.143.245/api/",
     POST = "POST",
     DELETE = "DELETE",
     PUT = "PUT";
