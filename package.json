@@ -50,7 +50,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
-    "auth0-lock": "^10.7.2",
+    "auth0-lock": "10.11.0",
     "jquery": "^3.1.1",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.7",
