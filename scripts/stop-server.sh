@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-if [ -e /amscores/web-app ]; then
-  cd /amscores/web-app
-  rm -rf *
+if [[ ! -z $(ps | grep node) ]]; then
+    pkill -n node
 fi
