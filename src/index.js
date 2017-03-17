@@ -31,10 +31,10 @@ ReactDOM.render((
         <Router history={browserHistory}>
             <Route path="/" component={Container} auth={auth}>
                 <IndexRedirect to="Login" />
-                <Route path="Login" component={StudentManager} />
-                <Route path="MyAccount" component={MyAccountCompiler} onEnter={requireAuth}/>
-                <Route path="Sites" component={Sites} onEnter={requireAuth} />
-                <Route path="Students" component={StudentManager} onEnter={requireAuth} />
+                <Route path="Login" component={Login} />
+                <Route path="MyAccount" component={MyAccountCompiler} /*onEnter={requireAuth}*//>
+                <Route path="Sites" component={Sites} /*onEnter={requireAuth}*/ />
+                <Route path="Students" component={StudentManager} /*onEnter={requireAuth}*/ />
                 <Route path="ManageAccounts" component={ManageAccountsManager} onEnter={requireAuth} />
                 <Route path="CSVPage" component={CSVLocation} onEnter={requireAuth}/>
                 <Route path="CSVPage2" component={CSVProgram} onEnter={requireAuth}/>
