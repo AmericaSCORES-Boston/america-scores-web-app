@@ -15,6 +15,7 @@ import MyAccountCompiler from './Components/MyAccount';
 import Programs from './Components/Programs';
 import AddSite from './Components/AddSite';
 import AddProgram from './Components/AddProgram';
+import AddStudent from './Components/AddStudent';
 
 /*
 This file is what routes all the paths in the react-app
@@ -42,6 +43,7 @@ ReactDOM.render((
                 <Route path="WipeResponse" component={WipeResponse} onEnter={requireAuth}/>
                 <Route path="Programs" component={Programs} onEnter={requireAuth}/>
                 <Route path="AddSite" component={AddSite} onEnter={requireAuth}/>
+                <Route path="AddStudent" component={AddStudent} onEnter={requireAuth}/>
                 <Route path="AddProgram" component={AddProgram} onEnter={requireAuth}/>
             </Route>
         </Router>

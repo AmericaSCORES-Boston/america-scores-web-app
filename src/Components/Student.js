@@ -53,7 +53,8 @@ var Students = React.createClass({
   },
 
   render: function() {
-    function onRowSelect(row, isSelected) {
+      let _this=this;
+      function onRowSelect(row, isSelected) {
       console.log(row)
       console.log("selected: " + isSelected)
     }
@@ -69,14 +70,18 @@ var Students = React.createClass({
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-xs-3"></div>
-          <div className="col-xs-6 text-center">
-            <img src={icon} className="img-responsive center-block" alt="logo" />
-            <h1 className="Account-header"> Students </h1>
-            <BootstrapTable data={this.state.allStudent} triped={true} hover={true} condensed={true} selectRow={selectRowProp}>
-              <TableHeaderColumn isKey={true} dataField="name">Name</TableHeaderColumn>
-              <TableHeaderColumn dataField="DateofBirth">Date Of Birth(yyyy-mm-dd)</TableHeaderColumn>
-            </BootstrapTable>
+            <div className="col-xs-3"></div>
+            <div className="col-xs-6 text-center">
+                <img src={icon} className="img-responsive center-block" alt="logo" />
+                <h1 className="Account-header"> Students </h1>
+                <BootstrapTable data={this.state.allStudent} triped={true} hover={true} condensed={true} selectRow={selectRowProp}>
+                    <TableHeaderColumn isKey={true} dataField="name">Name</TableHeaderColumn>
+                    <TableHeaderColumn dataField="DateofBirth">Date Of Birth(yyyy-mm-dd)</TableHeaderColumn>
+                </BootstrapTable>
+                <div className="download-elements">
+                    <a href='/addStudent'><button>Add student</button></a>
+                </div>
+
           </div>
         </div>
       </div>
