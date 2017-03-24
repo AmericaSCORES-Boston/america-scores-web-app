@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Login from './Components/Login';
-import StudentManager from './Components/Student';
+import StudentManager from './Components/Students';
 import { Router, Route, browserHistory, IndexRedirect } from 'react-router';
 import ManageAccountsManager from './Components/ManageAccounts';
 import AuthService from './utils/AuthService'

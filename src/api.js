@@ -32,7 +32,6 @@ const Api = {
     fetchSites() {
         return request(createEndpoint('/sites'));
     },
-
     fetchPrograms(site_id) {
         return request(createEndpoint('/sites/' + site_id + '/programs'));
     },
@@ -48,8 +47,8 @@ const Api = {
     },
 
     addStudent(studentName, studentSite) {
-        return request(createEndpoint('/student/'),
-            createRequestOptions(POST, {student_name: studentName}));
+        return request(createEndpoint('/students/'),
+            createRequestOptions(POST, {student_name: studentName, student_site: studentSite}));
     },
 
     fetchStudents(program_id) {

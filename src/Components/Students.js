@@ -24,9 +24,8 @@ var Students = React.createClass({
     if (queryParamProgramId === undefined) {
       Api.getAllStudents().then(json => {
         for (let i = 0; i < json.length; i++) {
-          data.push({name: (json[i].first_name + " " +
-                           json[i].last_name),
-                    DateofBirth: json[i].dob.split("T")[0]});
+          data.push({name: (json[i].student_name + " " +
+                           json[i].student_site)});
         }
         _this.setState({
           allStudent : data
@@ -41,9 +40,8 @@ var Students = React.createClass({
     else {
       Api.fetchStudents(queryParamProgramId).then(json => {
         for (let i = 0; i < json.length; i++) {
-          data.push({name: (json[i].first_name + " " +
-                           json[i].last_name),
-                    DateofBirth: json[i].dob.split("T")[0]});
+          data.push({name: (json[i].student_name + " " +
+                           json[i].student_site)});
         }
         _this.setState({
           allStudent : data
@@ -53,7 +51,6 @@ var Students = React.createClass({
   },
 
   render: function() {
-      let _this=this;
       function onRowSelect(row, isSelected) {
       console.log(row)
       console.log("selected: " + isSelected)
@@ -74,7 +71,8 @@ var Students = React.createClass({
             <div className="col-xs-6 text-center">
                 <img src={icon} className="img-responsive center-block" alt="logo" />
                 <h1 className="Account-header"> Students </h1>
-                <BootstrapTable data={this.state.allStudent} triped={true} hover={true} condensed={true} selectRow={selectRowProp}>
+                <BootstrapTable data={this.state.allStudent} triped={true} hover={true} condensed={true}
+                                selectRow={selectRowProp}>
                     <TableHeaderColumn isKey={true} dataField="name">Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="DateofBirth">Date Of Birth(yyyy-mm-dd)</TableHeaderColumn>
                 </BootstrapTable>

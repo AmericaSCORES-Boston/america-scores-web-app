@@ -14,7 +14,7 @@ class AddStudent extends Component {
             alert("one of these is empty");
             return;
         }
-        Api.addStudent(studentName, studentSite).then(() => {window.location = '/Student'});
+        Api.addStudent(studentName, studentSite).then(() => {window.location = '/Students'});
 
     }
     render() {

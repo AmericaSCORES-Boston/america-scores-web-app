@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import StudentManager from '../Student.js';
+import StudentManager from '../Students.js';
 
 var locationMock = {query: {}}; //no query params
 var locationMock2 = {query: {site: 0}}; //invalid site
