@@ -16,8 +16,8 @@ after_success:
 
 deploy:
   - provider: s3
-    access_key_id: $TEMP_AMSCORES_AWS_KEY_ID
-    secret_access_key: $TEMP_AMSCORES_AWS_KEY_SECRET
+    access_key_id: $AMSCORES_AWS_KEY_ID
+    secret_access_key: $AMSCORES_AWS_KEY_SECRET
     region: us-east-1
     local_dir: web-app
     skip_cleanup: true
@@ -26,8 +26,8 @@ deploy:
       branch: develop
     bucket: asb-aws-deploy
   - provider: codedeploy
-    access_key_id: $TEMP_AMSCORES_AWS_KEY_ID
-    secret_access_key: $TEMP_AMSCORES_AWS_KEY_SECRET
+    access_key_id: $AMSCORES_AWS_KEY_ID
+    secret_access_key: $AMSCORES_AWS_KEY_SECRET
     region: us-east-1
     bucket: asb-aws-deploy
     key: dev/web-app-latest.zip
@@ -38,18 +38,18 @@ deploy:
       branch: develop
     wait-until-deployed: true
   - provider: s3
-    access_key_id: $TEMP_AMSCORES_AWS_KEY_ID
-    secret_access_key: $TEMP_AMSCORES_AWS_KEY_SECRET
+    access_key_id: $AMSCORES_AWS_KEY_ID
+    secret_access_key: $AMSCORES_AWS_KEY_SECRET
     region: us-east-1
     local_dir: web-app
     skip_cleanup: true
     upload-dir: prod
     on:
-      branch: kcorring/shift_to_asb_aws
+      branch: master
     bucket: asb-aws-deploy
   - provider: codedeploy
-    access_key_id: $TEMP_AMSCORES_AWS_KEY_ID
-    secret_access_key: $TEMP_AMSCORES_AWS_KEY_SECRET
+    access_key_id: $AMSCORES_AWS_KEY_ID
+    secret_access_key: $AMSCORES_AWS_KEY_SECRET
     region: us-east-1
     bucket: asb-aws-deploy
     key: prod/web-app-latest.zip
@@ -57,7 +57,7 @@ deploy:
     application: ASB-WebApp
     deployment_group: Production
     on:
-      branch: kcorring/shift_to_asb_aws
+      branch: master
     wait-until-deployed: true
 
 notifications:
