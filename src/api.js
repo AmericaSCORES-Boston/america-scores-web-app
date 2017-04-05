@@ -1,5 +1,5 @@
 import $ from 'jquery';
-const root = "http://54.86.143.245/api/",
+const root = "http://52.54.56.68/api/",
     POST = "POST",
     DELETE = "DELETE",
     PUT = "PUT";
