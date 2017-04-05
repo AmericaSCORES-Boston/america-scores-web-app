@@ -36,7 +36,7 @@ ReactDOM.render((
                 <Route path="MyAccount" component={MyAccountCompiler} /*onEnter={requireAuth}*//>
                 <Route path="Sites" component={Sites} /*onEnter={requireAuth}*/ />
                 <Route path="Students" component={StudentManager} /*onEnter={requireAuth}*/ />
-                <Route path="ManageAccounts" component={ManageAccountsManager} onEnter={requireAuth} />
+                <Route path="ManageAccounts" component={ManageAccountsManager} /*onEnter={requireAuth}*/ />
                 <Route path="CSVPage" component={CSVLocation} onEnter={requireAuth}/>
                 <Route path="CSVPage2" component={CSVProgram} onEnter={requireAuth}/>
                 <Route path="CSVPage3" component={CSVStudent} onEnter={requireAuth}/>

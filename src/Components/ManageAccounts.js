@@ -33,7 +33,7 @@ class ManageAccountsManager extends Component {
       <div className="col-xs-3"></div>
       <div className="col-xs-6 text-center">
       <img src={icon} className="img-responsive center-block" alt="logo" />
-      <h1 className="Account-header"> Manage Accounts </h1>
+      <h1 className="Account-header"> Coaches </h1>
       <BootstrapTable data={testdata} triped={true} hover={true} condensed={true} selectRow={selectRowProp}>
       <TableHeaderColumn isKey={true} dataField="name">Name</TableHeaderColumn>
       <TableHeaderColumn dataField="type">Account Type</TableHeaderColumn>
