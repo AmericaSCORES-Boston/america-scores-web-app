@@ -35,10 +35,13 @@ const Api = {
     fetchPrograms(site_id) {
         return request(createEndpoint('/sites/' + site_id + '/programs'));
     },
+    fetchProgramsByStudent(studentId) {
+        return request(createEndpoint('/students/' + studentId + '/programs'))
+    },
     //not implemented yet actually
     fetchByAccountType(accountType) {
         console.log("running fetchByAccountType");
-        return request(createEndpoint('/accounts' + '/?acct_type=' + accountType));
+        return request(createEndpoint('/accounts/?acct_type=' + accountType));
     },
 
     addProgram(siteId, programName) {
@@ -62,6 +65,10 @@ const Api = {
 
     fetchStat(stat_id) {
         return request(createEndpoint('/stats/' + stat_id));
+    },
+
+    fetchSingleSite(siteId) {
+        return request(createEndpoint('/sites/' + siteId));
     },
 
     createStat(stat) {
