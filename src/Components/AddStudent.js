@@ -8,13 +8,16 @@ class AddStudent extends Component {
 
     //Tells the Api to add the site based on
     addStudent() {
-        let studentName = document.getElementById("studentName").value;
-        let studentSite = document.getElementById("studentSite").value;
-        if (studentName === "" || studentSite === "") {
+        let studentFname = document.getElementById("studentFname").value;
+        let studentLname = document.getElementById("studentLname").value;
+        let studentDOB = document.getElementById("studentDOB").value;
+        let programID = 1;
+
+        if (studentDOB === "" || studentFname === "" || studentLname === "") {
             alert("one of these is empty");
             return;
         }
-        Api.addStudent(studentName, studentSite).then(() => {window.location = '/Students'});
+        Api.addStudent(studentFname, studentLname, studentDOB, programID).then(() => {window.location = '/students'});
 
     }
     render() {
@@ -22,10 +25,11 @@ class AddStudent extends Component {
             <div className="download-elements">
                 <h2>Add a Student:</h2>
                 <br/>
-                Student Name: &nbsp; <input type="text" id="studentName" />
+                Student First Name: &nbsp; <input type="text" id="studentFname" />
                 <br/>
-                Student Site: <input type="text" id="studentSite" />
+                Student Last Name: <input type="text" id="studentLname" />
                 <br/>
+                Student DOB: <input type="text" id="studentDOB" />
                 <button onClick={this.addStudent}>Add Student</button>
             </div>
         );

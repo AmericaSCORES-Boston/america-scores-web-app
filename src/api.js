@@ -51,9 +51,9 @@ const Api = {
             createRequestOptions(POST, {site_name: siteName, site_address: siteAddress}));
     },
 
-    addStudent(studentName, studentSite) {
-        return request(createEndpoint('/students/'),
-            createRequestOptions(POST, {student_name: studentName, student_site: studentSite}));
+    addStudent(studentFname, studentLname, studentDOB, program_id) {
+        return request(createEndpoint('programs/' + program_id + '/students'),
+            createRequestOptions(POST, {first_name: studentFname, last_name: studentLname, dob:studentDOB}));
     },
 
     fetchStudents(program_id) {
