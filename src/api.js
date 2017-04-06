@@ -35,6 +35,11 @@ const Api = {
     fetchPrograms(site_id) {
         return request(createEndpoint('/sites/' + site_id + '/programs'));
     },
+    //not implemented yet actually
+    fetchByAccountType(accountType) {
+        console.log("running fetchByAccountType");
+        return request(createEndpoint('/accounts' + '/?acct_type=' + accountType));
+    },
 
     addProgram(siteId, programName) {
       return request(createEndpoint('/sites/' + siteId +'/programs'),

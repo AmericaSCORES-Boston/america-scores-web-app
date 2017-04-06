@@ -24,8 +24,7 @@ var Students = React.createClass({
     if (queryParamProgramId === undefined) {
       Api.getAllStudents().then(json => {
         for (let i = 0; i < json.length; i++) {
-          data.push({name: (json[i].student_name + " " +
-                           json[i].student_site)});
+          data.push({name: (json[i].first_name + " " + json[i].last_name), dob: json[i].dob});
         }
         _this.setState({
           allStudent : data
@@ -40,8 +39,7 @@ var Students = React.createClass({
     else {
       Api.fetchStudents(queryParamProgramId).then(json => {
         for (let i = 0; i < json.length; i++) {
-          data.push({name: (json[i].student_name + " " +
-                           json[i].student_site)});
+          data.push({name: (json[i].first_name + " " + json[i].last_name), dob: json[i].dob});
         }
         _this.setState({
           allStudent : data
@@ -74,7 +72,7 @@ var Students = React.createClass({
                 <BootstrapTable data={this.state.allStudent} triped={true} hover={true} condensed={true}
                                 selectRow={selectRowProp}>
                     <TableHeaderColumn isKey={true} dataField="name">Name</TableHeaderColumn>
-                    <TableHeaderColumn dataField="DateofBirth">Date Of Birth(yyyy-mm-dd)</TableHeaderColumn>
+                    <TableHeaderColumn dataField="dob">Date Of Birth(yyyy-mm-dd)</TableHeaderColumn>
                 </BootstrapTable>
                 <div className="download-elements">
                     <a href='/addStudent'><button>Add student</button></a>
