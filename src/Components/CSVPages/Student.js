@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import csvLogo3 from '../../Assets/CSV-icon3.png';
-import '../../Main.css';
 import Api from '../../api.js';
 
 /*

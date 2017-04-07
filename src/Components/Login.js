@@ -1,4 +1,3 @@
-import '../Main.css';
 import React, { PropTypes as T } from 'react'
 import AuthService from '../utils/AuthService'
 import asLogo from '../Assets/aslogo.png'

@@ -1,6 +1,5 @@
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import '../Main.css'
 import icon from '../Assets/User.png';
 import Api from '../api';
 
@@ -25,9 +24,7 @@ var Students = React.createClass({
     if (queryParamProgramId === undefined) {
       Api.getAllStudents().then(json => {
         for (let i = 0; i < json.length; i++) {
-          data.push({name: (json[i].first_name + " " +
-                           json[i].last_name),
-                    DateofBirth: json[i].dob.split("T")[0]});
+          data.push({name: (json[i].first_name + " " + json[i].last_name), dob: json[i].dob});
         }
         _this.setState({
           allStudent : data
@@ -42,9 +39,7 @@ var Students = React.createClass({
     else {
       Api.fetchStudents(queryParamProgramId).then(json => {
         for (let i = 0; i < json.length; i++) {
-          data.push({name: (json[i].first_name + " " +
-                           json[i].last_name),
-                    DateofBirth: json[i].dob.split("T")[0]});
+          data.push({name: (json[i].first_name + " " + json[i].last_name), dob: json[i].dob});
         }
         _this.setState({
           allStudent : data
@@ -54,7 +49,7 @@ var Students = React.createClass({
   },
 
   render: function() {
-    function onRowSelect(row, isSelected) {
+      function onRowSelect(row, isSelected) {
       console.log(row)
       console.log("selected: " + isSelected)
     }
@@ -70,14 +65,19 @@ var Students = React.createClass({
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-xs-3"></div>
-          <div className="col-xs-6 text-center">
-            <img src={icon} className="img-responsive center-block" alt="logo" />
-            <h1 className="Account-header"> Students </h1>
-            <BootstrapTable data={this.state.allStudent} triped={true} hover={true} condensed={true} selectRow={selectRowProp}>
-              <TableHeaderColumn isKey={true} dataField="name">Name</TableHeaderColumn>
-              <TableHeaderColumn dataField="DateofBirth">Date Of Birth(yyyy-mm-dd)</TableHeaderColumn>
-            </BootstrapTable>
+            <div className="col-xs-3"></div>
+            <div className="col-xs-6 text-center">
+                <img src={icon} className="img-responsive center-block" alt="logo" />
+                <h1 className="Account-header"> Students </h1>
+                <BootstrapTable data={this.state.allStudent} triped={true} hover={true} condensed={true}
+                                selectRow={selectRowProp}>
+                    <TableHeaderColumn isKey={true} dataField="name">Name</TableHeaderColumn>
+                    <TableHeaderColumn dataField="dob">Date Of Birth(yyyy-mm-dd)</TableHeaderColumn>
+                </BootstrapTable>
+                <div className="download-elements">
+                    <a href='/addStudent'><button>Add student</button></a>
+                </div>
+
           </div>
         </div>
       </div>
