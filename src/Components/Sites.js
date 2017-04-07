@@ -36,8 +36,15 @@ var Sites = React.createClass({
 
   //deletes the selectedSite
   deleteSelectedSite() {
-    Api.deleteSite(this.state.selectedRowId);
+    var confirmed = confirm('Are you sure you want to delete this site?');
+    if (confirmed) {
+      Api.deleteSite(this.state.selectedRowId).then(() => {window.location.reload()});
+    }
+    return;
+  },
 
+  goToAddSite() {
+    window.location = '/AddSite';
   },
 
   //This function returns whether selectedRowId is 0 and therefore button should be disabled

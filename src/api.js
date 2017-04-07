@@ -22,7 +22,8 @@ function createRequestOptions(request_type, data) {
         method: request_type,
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Origin': 'http://ec2-54-87-140-118.compute-1.amazonaws.com/'
         },
         body: JSON.stringify(data)
     };

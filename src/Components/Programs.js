@@ -55,9 +55,12 @@ var Programs = React.createClass({
   },
 
   //deletes the selected Program
-  deleteSelectedSite() {
-    Api.deleteProgram(this.state.selectedRowId);
-
+  deleteSelectedProgram() {
+    var confirmed = confirm('Are you sure you want to delete this site?');
+    if (confirmed) {
+      Api.deleteProgram(this.state.selectedRowId).then(() => {window.location.reload()});
+    }
+    return;
   },
 
   render: function() {
