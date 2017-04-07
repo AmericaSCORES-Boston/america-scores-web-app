@@ -1,5 +1,4 @@
 import React from 'react'
-import '../Main.css';
 
 /*
 This container sends the auth instance

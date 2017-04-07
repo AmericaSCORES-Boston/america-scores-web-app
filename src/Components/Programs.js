@@ -1,6 +1,5 @@
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import '../Main.css'
 import icon from '../Assets/Location2.png';
 import Api from '../api';
 
@@ -56,9 +55,12 @@ var Programs = React.createClass({
   },
 
   //deletes the selected Program
-  deleteSelectedSite() {
-    Api.deleteProgram(this.state.selectedRowId);
-
+  deleteSelectedProgram() {
+    var confirmed = confirm('Are you sure you want to delete this site?');
+    if (confirmed) {
+      Api.deleteProgram(this.state.selectedRowId).then(() => {window.location.reload()});
+    }
+    return;
   },
 
   render: function() {

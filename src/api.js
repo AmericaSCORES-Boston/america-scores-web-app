@@ -1,5 +1,5 @@
 import $ from 'jquery';
-const root = "http://ec2-54-87-140-118.compute-1.amazonaws.com/api",
+const root = "http://52.54.56.68/api/",
     POST = "POST",
     DELETE = "DELETE",
     PUT = "PUT";
@@ -22,7 +22,8 @@ function createRequestOptions(request_type, data) {
         method: request_type,
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Origin': 'http://ec2-54-87-140-118.compute-1.amazonaws.com/'
         },
         body: JSON.stringify(data)
     };
@@ -32,9 +33,13 @@ const Api = {
     fetchSites() {
         return request(createEndpoint('/sites'));
     },
-
     fetchPrograms(site_id) {
         return request(createEndpoint('/sites/' + site_id + '/programs'));
+    },
+    //not implemented yet actually
+    fetchByAccountType(accountType) {
+        console.log("running fetchByAccountType");
+        return request(createEndpoint('/accounts' + '/?acct_type=' + accountType));
     },
 
     addProgram(siteId, programName) {
@@ -44,7 +49,12 @@ const Api = {
 
     addSite(siteName, siteAddress) {
         return request(createEndpoint('/sites/'),
-        createRequestOptions(POST, {site_name: siteName, site_address: siteAddress}));
+            createRequestOptions(POST, {site_name: siteName, site_address: siteAddress}));
+    },
+
+    addStudent(studentName, studentSite) {
+        return request(createEndpoint('/students/'),
+            createRequestOptions(POST, {student_name: studentName, student_site: studentSite}));
     },
 
     fetchStudents(program_id) {

@@ -7,7 +7,7 @@ script:
   - npm run build
 
 before_deploy:
-  - zip -r web-app-latest build/ appspec.yml scripts/stop-server.sh
+  - zip -r web-app-latest build/ appspec.yml scripts/
   - mkdir -p web-app
   - mv web-app-latest.zip web-app/
 
@@ -24,16 +24,45 @@ deploy:
     upload-dir: dev
     on:
       branch: develop
-    bucket: amscores-deploy
+    bucket: asb-aws-deploy
   - provider: codedeploy
     access_key_id: $AMSCORES_AWS_KEY_ID
     secret_access_key: $AMSCORES_AWS_KEY_SECRET
     region: us-east-1
-    bucket: "amscores-deploy"
+    bucket: asb-aws-deploy
     key: dev/web-app-latest.zip
     bundle_type: zip
-    application: AmScoresWebApp
+    application: ASB-WebApp
     deployment_group: Development
     on:
       branch: develop
     wait-until-deployed: true
+  - provider: s3
+    access_key_id: $AMSCORES_AWS_KEY_ID
+    secret_access_key: $AMSCORES_AWS_KEY_SECRET
+    region: us-east-1
+    local_dir: web-app
+    skip_cleanup: true
+    upload-dir: prod
+    on:
+      branch: master
+    bucket: asb-aws-deploy
+  - provider: codedeploy
+    access_key_id: $AMSCORES_AWS_KEY_ID
+    secret_access_key: $AMSCORES_AWS_KEY_SECRET
+    region: us-east-1
+    bucket: asb-aws-deploy
+    key: prod/web-app-latest.zip
+    bundle_type: zip
+    application: ASB-WebApp
+    deployment_group: Production
+    on:
+      branch: master
+    wait-until-deployed: true
+
+notifications:
+    slack:
+        on_pull_requests: false
+        rooms:
+            - secure: "D8Gps3J/FPlBFWbiIHHX8i4hW3P8OLkdKwh2dby9AYGW3Ea3WfX6QgwA/OPzGQoYQH11ZmKbKLMHwS6/Jcmv1+uS3kmVWp/9Qh7nHTMpl35JJd88fGz2PQzG0U0QQ6VYNJgQvR3Hht+yrxiAdTr7E6StCONShO09SuDjA4NnbyQ5pviKyIEsMswgX0jlydXPKrWtV71eX5W7K920fTXLX+gDJ8fbqI+QpjRdq/TCpzesuB8dihrOpQowh7e8GKhxg2pHlDnCY89S3rlUHpInhbW5N6cGQai4/cWY48/6jZtGLj2LeX0LoYbsw5crbkH2X+CBxt0KsGjPTllkuCBx4NAIdWD7knFYlQhiDSOnv29j778Gm47MNkm6HJKSKf12umNRug+pwCoWVjVFsnMMByv4DD1/8+Sz4B37Xosx5zv+n0Nvo70FjnSxyREUrrAWBmAtAREuGswdxt5JnUEnzGZu9KHOmiCRn8oYlZnRoxrnYwo1xzNPdpPoz8Nb51V1GsZKMqGAPNeeglXfNDOmuyTLSxE5DUuIZt9bnT+SoTuYC4S+Jlnh8GMjL/uNQEyRo6wVwHg/WWulaURBLGNOZLL83qQztK1UtdQpHlCWqNAVYAo1seFntgAXNCoavxLW1SWZqmO3nQBEZHTGwGJzecHZImQ4f2/5uM+EVkn+wZ8=" # web-app channel
+            - secure: "djO5/t9pOlMgKSNx/EP01kusC9PZOEfvgFp7QohABSiikMJfCnXqGmsWV/8COEKoUUIWbWvw2lvQD9XojjcfuWiGSmO+NIvzilLUTp8NWl7t/1D8BfPkMYaSe2V/2hv83fpvd0zlGh19tgR2P3Vf6rwe/NuymG29LJkJSlINI3x4+lslvYGhDcJ1G6a7T14zcKdPjh5Ids0KYV6RBZARjnjviAEqVwd+S/tQVFzgYgEtCL0PVFqu7lVElnpaZ7vtDitdjE4Gp1CLIfqvkQrYskcnxrFqrTABgxbYNnuzzCtY7hwTHf1mvOo/oT6KStr9659dTHmcUuSr0Q4rAaV7/zxrUCFxULKgrFptH2dEj8NA17jL4isGz57JC/11tHiV+2nJOc7mGW+xVO3toeeF2bg84bzrPnD5ZnfQWD+3Kk/NDq0HXIGLvCrnA5rZtrFW5AYsMtVrT4bC6J5KnCIoxwQ2cZrz8+S7DDPRVNdO8xRqNL+3gBXGY6YIzjS6kA3AxE9ZrIw9iJ4A9bVl+3Ev2r42LIiJc2FHNsdBF9Emey2lfFbfLOQ5/jo+9n8285sGQf64cIKt0y/Jclsvhs9xL6eFp+Ivv+hCPFN6nlK2td/C2fvrvlywXk1ock7uBphD11Q1ziTosg1Va4wZZteAIaBuNueOt4NLCvAr4vVaJKc=" # dev-ops channel

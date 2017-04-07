@@ -1,6 +1,5 @@
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
-import '../Main.css'
 import icon from '../Assets/Location.png';
 import Api from '../api';
 
@@ -37,8 +36,15 @@ var Sites = React.createClass({
 
   //deletes the selectedSite
   deleteSelectedSite() {
-    Api.deleteSite(this.state.selectedRowId);
+    var confirmed = confirm('Are you sure you want to delete this site?');
+    if (confirmed) {
+      Api.deleteSite(this.state.selectedRowId).then(() => {window.location.reload()});
+    }
+    return;
+  },
 
+  goToAddSite() {
+    window.location = '/AddSite';
   },
 
   //This function returns whether selectedRowId is 0 and therefore button should be disabled
@@ -70,12 +76,16 @@ var Sites = React.createClass({
           <div className="col-xs-6 text-center">
             <img src={icon} className="img-responsive center-block" alt="logo" />
             <h1 className="Account-header"> Sites </h1>
-            <BootstrapTable data={this.state.locations} triped={true} hover={true} condensed={true} selectRow={selectRowProp}>
+            <BootstrapTable data={this.state.locations} triped={true}
+                            hover={true} condensed={true} selectRow={selectRowProp}>
               <TableHeaderColumn isKey={true} dataField="name">Location Name</TableHeaderColumn>
             </BootstrapTable>
+
             <div className="download-elements">
-              <button onClick={_this.seeProgramsOfSelectedSite} disabled={_this.isNoRowSelected()}>See Programs</button> <br/>
-              <button onClick={_this.deleteSelectedSite} disabled={_this.isNoRowSelected()}>Delete Site</button>
+              <button onClick={_this.seeProgramsOfSelectedSite}
+                      disabled={_this.isNoRowSelected()}>See Programs</button> <br/>
+              <button onClick={_this.deleteSelectedSite}
+                      disabled={_this.isNoRowSelected()}>Delete Site</button>
               <a href='/addSite'><button>Add Site</button></a>
             </div>
 
