@@ -35,8 +35,14 @@ const Api = {
     fetchPrograms(site_id) {
         return request(createEndpoint('/sites/' + site_id + '/programs'));
     },
+    fetchEvents() {
+        return request(createEndpoint('/events'));
+    },
     fetchProgramsByStudent(studentId) {
-        return request(createEndpoint('/students/' + studentId + '/programs'))
+        return request(createEndpoint('/students/' + studentId + '/programs'));
+    },
+    fetchAllPrograms() {
+        return request(createEndpoint('/programs'));
     },
     //not implemented yet actually
     fetchByAccountType(accountType) {
@@ -65,6 +71,10 @@ const Api = {
 
     fetchStat(stat_id) {
         return request(createEndpoint('/stats/' + stat_id));
+    },
+
+    fetchAllStats() {
+        return request(createEndpoint('/stats'));
     },
 
     fetchSingleSite(siteId) {
