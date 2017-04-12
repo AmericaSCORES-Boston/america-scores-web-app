@@ -38,6 +38,9 @@ const Api = {
     fetchEvents() {
         return request(createEndpoint('/events'));
     },
+    fetchSeasons() {
+        return request(createEndpoint('/seasons'));
+    },
     fetchProgramsByStudent(studentId) {
         return request(createEndpoint('/students/' + studentId + '/programs'));
     },
