@@ -29,18 +29,19 @@ var CurrentSeason = React.createClass({
 
     Api.fetchSeasons().then(seasonJson => {
         if (seasonJson != null) {
-            for (let i = 0; i < seasonJson.length; i++) {
+            for (let i = seasonJson.length - 1; i >= 0; i--) {
                 seasonData.push({
                     id: seasonJson[i].season_id,
                     year: seasonJson[i].year,
                     semester: seasonJson[i].season
                 })
             }
-            console.log("after getting seasons: " + seasonData[seasonData.length - 1].year + seasonData[seasonData.length - 1].semester);
             _this.setState({
                 seasons : seasonData,
-                currentSeasonSelection : seasonData[seasonData.length - 1]
+                currentSeasonSelection : seasonData[0]
             })
+        } else {
+            console.log("error getting seasons data");
         }
     }).then(function() {
         _this.populateStudentTable(_this.state.currentSeasonSelection.year, _this.state.currentSeasonSelection.semester);
@@ -51,7 +52,7 @@ var CurrentSeason = React.createClass({
         let studentData = [];
         let _this = this;
         console.log("populating year: " + year + ", season: " + semester)
-        Api.fetchCurrentSeasonData(_this.state.currentSeasonSelection.year, _this.state.currentSeasonSelection.semester).then(currentSeasonJson => {
+        Api.fetchCurrentSeasonData(year, semester).then(currentSeasonJson => {
             for (let j = 0; j < currentSeasonJson.length; j++) {
                 studentData.push({
                     id: currentSeasonJson[j].student_id,
