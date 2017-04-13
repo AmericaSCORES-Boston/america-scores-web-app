@@ -20,11 +20,11 @@ var CurrentSeason = React.createClass({
 
   //decides how to/ what data to get
   componentDidMount: function() {
-    //console.log("made it here");
     let _this = this;
+    console.log("starting state: " + _this.state.currentSeasonSelection);
 
     let seasonData  = [];
-    let studentData = [];
+   // let studentData = [];
     let defaultSeason = null;
 
     Api.fetchSeasons().then(seasonJson => {
@@ -36,42 +36,76 @@ var CurrentSeason = React.createClass({
                     semester: seasonJson[i].season
                 })
             }
-            console.log("last season: " + seasonData[seasonData.length - 1]);
+            console.log("after getting seasons: " + seasonData[seasonData.length - 1].year + seasonData[seasonData.length - 1].semester);
             _this.setState({
                 seasons : seasonData,
                 currentSeasonSelection : seasonData[seasonData.length - 1]
             })
         }
     }).then(function() {
-          Api.fetchCurrentSeasonData(currentSeasonSelection.year, currentSeasonSelection.semester).then(currentSeasonJson => {
-              for (let j = 0; j < currentSeasonJson.length; j++) {
-                  studentData.push({
-                      id: currentSeasonJson[j].student_id,
-                      name: currentSeasonJson[j].student_name,
-                      program: currentSeasonJson[j].program,
-                      school: currentSeasonJson[j].site_name,
-                      preWeight: currentSeasonJson[j].pre_weight,
-                      preHeight: currentSeasonJson[j].pre_height,
-                      prePacer: currentSeasonJson[j].pre_pacer,
-                      postWeight: currentSeasonJson[j].post_weight,
-                      postHeight: currentSeasonJson[j].post_height,
-                      postPacer: currentSeasonJson[j].post_pacer
-                  })
-              }
-              _this.setState({
-                  date : studentData
-              })
-          })
+        _this.populateStudentTable(_this.state.currentSeasonSelection.year, _this.state.currentSeasonSelection.semester);
       })
     },
 
+    populateStudentTable : function(year, semester) {
+        let studentData = [];
+        let _this = this;
+        console.log("populating year: " + year + ", season: " + semester)
+        Api.fetchCurrentSeasonData(_this.state.currentSeasonSelection.year, _this.state.currentSeasonSelection.semester).then(currentSeasonJson => {
+            for (let j = 0; j < currentSeasonJson.length; j++) {
+                studentData.push({
+                    id: currentSeasonJson[j].student_id,
+                    name: currentSeasonJson[j].first_name + " " + currentSeasonJson[j].last_name,
+                    program: currentSeasonJson[j].program_name,
+                    school: currentSeasonJson[j].site_name,
+                    preWeight: currentSeasonJson[j].pre_weight,
+                    preHeight: currentSeasonJson[j].pre_height,
+                    prePacer: currentSeasonJson[j].pre_pacer,
+                    postWeight: currentSeasonJson[j].post_weight,
+                    postHeight: currentSeasonJson[j].post_height,
+                    postPacer: currentSeasonJson[j].post_pacer
+                })
+            }
+            console.log("student elements: " + studentData.length);
+            _this.setState({
+                data : studentData
+            })
+        })
+    },
+
     selectionChangeHandler: function (event){
+      let _this = this;
       //TODO make this actually good...
       let splitVals = event.target.value.split(" ");
-      let seasonObj = {id: splitVals[0], year: splitVals[1], semester: splitVals[2]}
-      this.setState({
+      let seasonObj = {id: /*splitVals[0]*/ 11, year: splitVals[1], semester: splitVals[2]}
+      _this.setState({
         currentSeasonSelection : seasonObj
       })
+      _this.populateStudentTable(seasonObj.year, seasonObj.semester);
+    },
+
+    checkData: function () {
+        let _this = this;
+        console.log(_this.state.data.length === 0);
+        //change this when temp is taken out
+        return _this.state.data.length === 0;
+    },
+
+    generateCSV: function() {
+        let _this = this;
+        let lines = [];
+        //change this when temp is taken out
+        _this.state.data.forEach(function (studentObject, index) {
+            let studentArray = [studentObject.id, studentObject.name, studentObject.school, studentObject.program,
+                               studentObject.preWeight, studentObject.preHeight, studentObject.prePacer, studentObject.postWeight,
+                               studentObject.postHeight, studentObject.postPacer];
+            let singleLine = studentArray.join(",");
+            lines.push(index === 0 ? "data:text/csv;charset=utf-8," + singleLine : singleLine);
+        });
+        var csvContent = lines.join("\n");
+        console.log(csvContent);
+        var encodedUri = encodeURI(csvContent);
+        window.open(encodedUri);
     },
 
     render: function() {
@@ -122,6 +156,8 @@ var CurrentSeason = React.createClass({
                     <TableHeaderColumn dataField="prePacer">Pre Pacer</TableHeaderColumn>
                     <TableHeaderColumn dataField="postPacer">Post Pacer</TableHeaderColumn>
                 </BootstrapTable>
+                <button onClick={this.generateCSV}
+                        /*disabled={this.checkData}*/>Generate CSV</button>
 
           </div>
         </div>
