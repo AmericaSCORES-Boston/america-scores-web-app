@@ -21,11 +21,7 @@ var CurrentSeason = React.createClass({
   //decides how to/ what data to get
   componentDidMount: function() {
     let _this = this;
-    console.log("starting state: " + _this.state.currentSeasonSelection);
-
     let seasonData  = [];
-   // let studentData = [];
-    let defaultSeason = null;
 
     Api.fetchSeasons().then(seasonJson => {
         if (seasonJson != null) {
@@ -51,7 +47,6 @@ var CurrentSeason = React.createClass({
     populateStudentTable : function(year, semester) {
         let studentData = [];
         let _this = this;
-        console.log("populating year: " + year + ", season: " + semester)
         Api.fetchCurrentSeasonData(year, semester).then(currentSeasonJson => {
             for (let j = 0; j < currentSeasonJson.length; j++) {
                 studentData.push({
@@ -67,7 +62,6 @@ var CurrentSeason = React.createClass({
                     postPacer: currentSeasonJson[j].post_pacer
                 })
             }
-            console.log("student elements: " + studentData.length);
             _this.setState({
                 data : studentData
             })
@@ -76,9 +70,8 @@ var CurrentSeason = React.createClass({
 
     selectionChangeHandler: function (event){
       let _this = this;
-      //TODO make this actually good...
       let splitVals = event.target.value.split(" ");
-      let seasonObj = {id: /*splitVals[0]*/ 11, year: splitVals[1], semester: splitVals[2]}
+      let seasonObj = {id: splitVals[0], year: splitVals[1], semester: splitVals[2]}
       _this.setState({
         currentSeasonSelection : seasonObj
       })
@@ -87,15 +80,12 @@ var CurrentSeason = React.createClass({
 
     checkData: function () {
         let _this = this;
-        console.log(_this.state.data.length === 0);
-        //change this when temp is taken out
         return _this.state.data.length === 0;
     },
 
     generateCSV: function() {
         let _this = this;
         let lines = [];
-        //change this when temp is taken out
         _this.state.data.forEach(function (studentObject, index) {
             let studentArray = [studentObject.id, studentObject.name, studentObject.school, studentObject.program,
                                studentObject.preWeight, studentObject.preHeight, studentObject.prePacer, studentObject.postWeight,
@@ -111,8 +101,7 @@ var CurrentSeason = React.createClass({
 
     render: function() {
         function onRowSelect(row, isSelected) {
-        //console.log(row)
-        //console.log("selected: " + isSelected)
+        console.log(row);
         }
 
 
@@ -157,8 +146,7 @@ var CurrentSeason = React.createClass({
                     <TableHeaderColumn dataField="prePacer">Pre Pacer</TableHeaderColumn>
                     <TableHeaderColumn dataField="postPacer">Post Pacer</TableHeaderColumn>
                 </BootstrapTable>
-                <button onClick={this.generateCSV}
-                        /*disabled={this.checkData}*/>Generate CSV</button>
+                <button onClick={this.generateCSV}>Generate CSV</button>
 
           </div>
         </div>

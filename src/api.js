@@ -43,7 +43,6 @@ const Api = {
         return request(createEndpoint('/seasons'));
     },
     fetchCurrentSeasonData(year, semester) {
-        console.log("from api: " + semester + year);
         return request(createEndpoint('/reports?season=' + semester +'&year=' + year));
     },
     fetchProgramsByStudent(studentId) {
