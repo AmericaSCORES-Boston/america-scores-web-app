@@ -54,9 +54,11 @@ var CurrentSeason = React.createClass({
                     name: currentSeasonJson[j].first_name + " " + currentSeasonJson[j].last_name,
                     program: currentSeasonJson[j].program_name,
                     school: currentSeasonJson[j].site_name,
+                    preDate: currentSeasonJson[j].pre_date,
                     preWeight: currentSeasonJson[j].pre_weight,
                     preHeight: currentSeasonJson[j].pre_height,
                     prePacer: currentSeasonJson[j].pre_pacer,
+                    postDate: currentSeasonJson[j].post_date,
                     postWeight: currentSeasonJson[j].post_weight,
                     postHeight: currentSeasonJson[j].post_height,
                     postPacer: currentSeasonJson[j].post_pacer
@@ -139,11 +141,13 @@ var CurrentSeason = React.createClass({
                     <TableHeaderColumn dataField="name">Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="school">School</TableHeaderColumn>
                     <TableHeaderColumn dataField="program">Program</TableHeaderColumn>
+                    <TableHeaderColumn dataField="preDate">Pre Measure Date</TableHeaderColumn>
                     <TableHeaderColumn dataField="preHeight">Pre Height</TableHeaderColumn>
-                    <TableHeaderColumn dataField="postHeight">Post Height</TableHeaderColumn>
                     <TableHeaderColumn dataField="preWeight">Pre Weight</TableHeaderColumn>
-                    <TableHeaderColumn dataField="postWeight">Post Weight</TableHeaderColumn>
                     <TableHeaderColumn dataField="prePacer">Pre Pacer</TableHeaderColumn>
+                    <TableHeaderColumn dataField="postDate">Post Measure Date</TableHeaderColumn>
+                    <TableHeaderColumn dataField="postHeight">Post Height</TableHeaderColumn>
+                    <TableHeaderColumn dataField="postWeight">Post Weight</TableHeaderColumn>
                     <TableHeaderColumn dataField="postPacer">Post Pacer</TableHeaderColumn>
                 </BootstrapTable>
                 <button onClick={this.generateCSV}>Generate CSV</button>
