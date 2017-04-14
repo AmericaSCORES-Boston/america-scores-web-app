@@ -2,6 +2,7 @@ import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {FormControl, FormGroup, ControlLabel} from 'react-bootstrap'
 import icon from '../Assets/User.png';
+import asLogo from '../Assets/aslogo.png'
 import Api from '../api';
 
 
@@ -116,11 +117,11 @@ var CurrentSeason = React.createClass({
         }
 
     return (
-      <div className="container-fluid">
+      <div className="container-fluid currSeason">
         <div className="row">
             <div className="col-xs-3"></div>
             <div className="col-xs-6 text-center">
-                <img src={icon} className="img-responsive center-block" alt="logo" />
+                <img src={asLogo} width="150px" height="168px" alt="AS Logo Icon" />
                 <FormGroup controlId="formControlsSelect">
                       <ControlLabel></ControlLabel>
                       <FormControl componentClass="select" placeholder="No Seasons Found" ref="seasonSelection"
@@ -141,14 +142,12 @@ var CurrentSeason = React.createClass({
                     <TableHeaderColumn dataField="name">Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="school">School</TableHeaderColumn>
                     <TableHeaderColumn dataField="program">Program</TableHeaderColumn>
-                    <TableHeaderColumn dataField="preDate">Pre Measure Date</TableHeaderColumn>
-                    <TableHeaderColumn dataField="preHeight">Pre Height</TableHeaderColumn>
-                    <TableHeaderColumn dataField="preWeight">Pre Weight</TableHeaderColumn>
-                    <TableHeaderColumn dataField="prePacer">Pre Pacer</TableHeaderColumn>
-                    <TableHeaderColumn dataField="postDate">Post Measure Date</TableHeaderColumn>
-                    <TableHeaderColumn dataField="postHeight">Post Height</TableHeaderColumn>
-                    <TableHeaderColumn dataField="postWeight">Post Weight</TableHeaderColumn>
-                    <TableHeaderColumn dataField="postPacer">Post Pacer</TableHeaderColumn>
+                    <TableHeaderColumn dataField="preHeight">Pre Ht</TableHeaderColumn>
+                    <TableHeaderColumn dataField="preWeight">Pre Wt</TableHeaderColumn>
+                    <TableHeaderColumn dataField="prePacer">Pre Pcr</TableHeaderColumn>
+                    <TableHeaderColumn dataField="postHeight">Post Ht</TableHeaderColumn>
+                    <TableHeaderColumn dataField="postWeight">Post Wt</TableHeaderColumn>
+                    <TableHeaderColumn dataField="postPacer">Post Pcr</TableHeaderColumn>
                 </BootstrapTable>
                 <button onClick={this.generateCSV}>Generate CSV</button>
 

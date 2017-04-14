@@ -66,7 +66,7 @@ var ManageAccountsManager = React.createClass ({
       hideSelectColumn: true
     }
     return (
-      <div className="container-fluid">
+      <div className="container-fluid coaches">
       <div className="row">
       <div className="col-xs-3"></div>
       <div className="col-xs-6 text-center">
@@ -75,7 +75,7 @@ var ManageAccountsManager = React.createClass ({
       <BootstrapTable data={this.state.coachData} triped={true} hover={true} condensed={true} selectRow={selectRowProp}>
       <TableHeaderColumn isKey={true} dataField="name">Name</TableHeaderColumn>
       <TableHeaderColumn dataField="type">Account Type</TableHeaderColumn>
-      <TableHeaderColumn dataField="email">Program Permissions</TableHeaderColumn>
+      <TableHeaderColumn dataField="email">Email</TableHeaderColumn>
       </BootstrapTable>
       </div>
       </div>

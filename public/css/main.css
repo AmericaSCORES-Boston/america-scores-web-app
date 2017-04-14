@@ -5,3 +5,31 @@
 tr,td:nth-child(2) {
     width: 200px;
 }
+
+.currSeason .row .col-xs-6.text-center {
+    width: 100%;
+}
+
+.currSeason .row .col-xs-6.text-center [data-field="id"] {
+    width: 40px;
+}
+
+.currSeason .row .col-xs-6.text-center [data-field="name"] {
+    width: 200px;
+}
+
+.currSeason .row .col-xs-6.text-center [data-field="school"] {
+    width: 280px;
+}
+
+.currSeason .row .col-xs-6.text-center [data-field="program"] {
+    width: 154px;
+}
+
+.coaches [data-field="name"] {
+    width: 78px;
+}
+
+.coaches [data-field="type"]{
+    width: 200px;
+}
