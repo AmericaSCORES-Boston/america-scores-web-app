@@ -76,9 +76,7 @@ var Sites = React.createClass({
 
             <div className="download-elements">
               <button onClick={_this.seeProgramsOfSelectedSite}
-                      disabled={_this.isNoRowSelected()}>See Programs</button> <br/>
-              <button onClick={_this.deleteSelectedSite}
-                      disabled={_this.isNoRowSelected()}>Delete Site</button>
+                      disabled={_this.isNoRowSelected()}>See Programs</button>
               <a href='/addSite'><button>Add Site</button></a>
             </div>
 
