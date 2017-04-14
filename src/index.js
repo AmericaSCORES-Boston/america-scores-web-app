@@ -5,7 +5,7 @@ import StudentManager from './Components/Students';
 import { Router, Route, browserHistory, IndexRedirect } from 'react-router';
 import ManageAccountsManager from './Components/ManageAccounts';
 import AuthService from './utils/AuthService'
-import CSVLocation from './Components/CSVPages/Location';
+//import CSVLocation from './Components/CSVPages/Location';
 import CSVProgram from './Components/CSVPages/Program';
 import CSVStudent from './Components/CSVPages/Student';
 import WipeResponse from './Components/CSVPages/WipeResponse';
@@ -16,6 +16,7 @@ import Programs from './Components/Programs';
 import AddSite from './Components/AddSite';
 import AddProgram from './Components/AddProgram';
 import AddStudent from './Components/AddStudent';
+import CurrentSeason from './Components/CurrentSeason';
 
 /*
 This file is what routes all the paths in the react-app
@@ -37,7 +38,7 @@ ReactDOM.render((
                 <Route path="Sites" component={Sites} /*onEnter={requireAuth}*/ />
                 <Route path="Students" component={StudentManager} /*onEnter={requireAuth}*/ />
                 <Route path="ManageAccounts" component={ManageAccountsManager} /*onEnter={requireAuth}*/ />
-                <Route path="CSVPage" component={CSVLocation} onEnter={requireAuth}/>
+                <Route path="CurrentSeason" component={CurrentSeason} /*onEnter={requireAuth}*//>
                 <Route path="CSVPage2" component={CSVProgram} onEnter={requireAuth}/>
                 <Route path="CSVPage3" component={CSVStudent} onEnter={requireAuth}/>
                 <Route path="WipeResponse" component={WipeResponse} onEnter={requireAuth}/>
