@@ -11,7 +11,7 @@
       return (<div><p><strong>{constant}</strong>{rdata}</p></div>)
    };
 
-   const data = { name: "Alice", email: "alice@email.com", phone: 5036672134, password: "******"};
+   const data = { name: "Admin", email: "admin@email.com", phone: 5036672134, password: "******"};
 
    return(
      <div className="all">
