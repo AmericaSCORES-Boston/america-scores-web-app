@@ -24,7 +24,9 @@ var Students = React.createClass({
     if (queryParamProgramId === undefined) {
       Api.getAllStudents().then(json => {
         for (let i = 0; i < json.length; i++) {
-          data.push({name: (json[i].first_name + " " + json[i].last_name), dob: json[i].dob});
+            var dob = json[i].dob.toString();
+            var dobFormatted = dob.substring(0, dob.indexOf('T'));
+          data.push({name: (json[i].first_name + " " + json[i].last_name), dob: dobFormatted});
         }
         _this.setState({
           allStudent : data

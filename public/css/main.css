@@ -1,0 +1,7 @@
+[data-field=dob] {
+    width: 200px;
+}
+
+tr,td:nth-child(2) {
+    width: 200px;
+}
