@@ -3,14 +3,22 @@ const root = "http://52.54.56.68/api/",
     POST = "POST",
     DELETE = "DELETE",
     PUT = "PUT",
-    GET = "GET",
-    authToken = localStorage.getItem('id_token');
+    GET = "GET";
 
 function createEndpoint(path) {
     return root + path;
 }
 
-function request(path, options={method: GET, headers: {'Authorization': authToken}}) {
+function request(path, options) {
+    let authToken = "";
+    if (options === undefined) {
+        if (localStorage === undefined) {
+            console.log("local storage for window not found");
+        } else {
+            authToken = localStorage.getItem('id_token');
+            options = {method: GET, headers: {'Authorization': authToken}};
+        }
+    }
     return fetch(path, options)
         .then(response => response.json())
         .then((responseJson) => {
@@ -20,6 +28,13 @@ function request(path, options={method: GET, headers: {'Authorization': authToke
 }
 
 function createRequestOptions(request_type, data) {
+    let authToken = "";
+    if (localStorage === undefined) {
+        console.log("local storage for window not found");
+    } else {
+        authToken = localStorage.getItem('id_token');
+    }
+
     return {
         method: request_type,
         headers: {
