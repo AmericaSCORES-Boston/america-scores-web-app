@@ -5,7 +5,6 @@ import Api from '../api';
 
 /*
 Gets all the Coaches and their permissions
-Currently the API endpoint for coaches is unimplented so it is running on test data
 */
 var ManageAccountsManager = React.createClass ({
   getInitialState: function() {
@@ -16,15 +15,6 @@ var ManageAccountsManager = React.createClass ({
 
   componentDidMount: function() {
       let _this = this;
-      //TODO stub data
-      var testData = [
-                      {name: 'Guy 1', type: 'Coach', email: 'test@email.com'},
-                      {name: 'Guy 2', type: 'Volunteer', email: 'test@email.com'},
-                      {name: 'Guy 3', type: 'Coach', email: 'test@email.com'},
-                      {name: 'Girl 1', type: 'Volunteer', email: 'test@email.com'},
-                      {name: 'Girl 2', type: 'Coach', email: 'test@email.com'},
-                      {name: 'Girl 3', type: 'Coach', email: 'test@email.com'},
-                     ];
       let data = [];
       //let queryParamProgramId = this.props.location.query.program;
 
@@ -34,8 +24,7 @@ var ManageAccountsManager = React.createClass ({
           data.push({name: (json[i].first_name + " " + json[i].last_name), type: json[i].acct_type, email: json[i].email});
         }
         _this.setState({
-            //TODO giving the stub data to the state
-          coachData : testData
+          coachData : data
         })
       });
 
@@ -45,8 +34,7 @@ var ManageAccountsManager = React.createClass ({
           data.push({name: (json[i].first_name + " " + json[i].last_name), type: json[i].acct_type, email: json[i].email});
         }
         _this.setState({
-            //TODO giving the stub data to the state
-          coachData : testData
+          coachData : data
         })
       });
     },

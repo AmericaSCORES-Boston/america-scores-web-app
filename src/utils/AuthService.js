@@ -25,7 +25,7 @@ export default class AuthService extends EventEmitter {
   }
 
   _doAuthentication(authResult){
-    console.log('it authed')
+    console.log('it authed:' + authResult)
     // Saves the user token
     this.setToken(authResult.idToken)
     // navigate to the home route

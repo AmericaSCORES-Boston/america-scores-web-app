@@ -2,13 +2,15 @@ import $ from 'jquery';
 const root = "http://52.54.56.68/api/",
     POST = "POST",
     DELETE = "DELETE",
-    PUT = "PUT";
+    PUT = "PUT",
+    GET = "GET",
+    authToken = localStorage.getItem('id_token');
 
 function createEndpoint(path) {
     return root + path;
 }
 
-function request(path, options={}) {
+function request(path, options={method: GET, headers: {'Authorization': authToken}}) {
     return fetch(path, options)
         .then(response => response.json())
         .then((responseJson) => {
@@ -21,9 +23,9 @@ function createRequestOptions(request_type, data) {
     return {
         method: request_type,
         headers: {
+            'Authorization': authToken,
             'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Origin': 'http://ec2-54-87-140-118.compute-1.amazonaws.com/'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     };
@@ -53,7 +55,6 @@ const Api = {
     },
     //not implemented yet actually
     fetchByAccountType(accountType) {
-        console.log("running fetchByAccountType");
         return request(createEndpoint('/accounts/?acct_type=' + accountType));
     },
 

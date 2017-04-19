@@ -1,7 +1,6 @@
 import React from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table'
 import {FormControl, FormGroup, ControlLabel} from 'react-bootstrap'
-import icon from '../Assets/User.png';
 import asLogo from '../Assets/aslogo.png'
 import Api from '../api';
 
@@ -97,14 +96,13 @@ var CurrentSeason = React.createClass({
             lines.push(index === 0 ? "data:text/csv;charset=utf-8," + singleLine : singleLine);
         });
         var csvContent = lines.join("\n");
-        console.log(csvContent);
         var encodedUri = encodeURI(csvContent);
         window.open(encodedUri);
     },
 
     render: function() {
         function onRowSelect(row, isSelected) {
-        console.log(row);
+            console.log(row);
         }
 
 
