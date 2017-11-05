@@ -1,5 +1,6 @@
 import $ from 'jquery';
-const root = "http://52.54.56.68/api/",
+const root="http://localhost:8888", 
+//root = "http://52.54.56.68/api/",
     POST = "POST",
     DELETE = "DELETE",
     PUT = "PUT";
@@ -23,7 +24,8 @@ function createRequestOptions(request_type, data) {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Origin': 'http://ec2-54-87-140-118.compute-1.amazonaws.com/'
+           // 'Origin': 'http://ec2-54-87-140-118.compute-1.amazonaws.com/'
+           'Origin':'*'
         },
         body: JSON.stringify(data)
     };
