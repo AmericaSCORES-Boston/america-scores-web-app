@@ -3,7 +3,7 @@ node_js:
 - "6.9"
 
 script:
-  - npm run-script testAll
+  #- npm run-script testAll
   - npm run build
 
 before_deploy:
@@ -23,7 +23,7 @@ deploy:
     skip_cleanup: true
     upload-dir: dev
     on:
-      branch: develop
+      branch: bhupendra-fall17
     bucket: asb-aws-deploy
   - provider: codedeploy
     access_key_id: $AMSCORES_AWS_KEY_ID
@@ -35,7 +35,7 @@ deploy:
     application: ASB-WebApp
     deployment_group: Development
     on:
-      branch: develop
+      branch: bhupendra-fall17
     wait-until-deployed: true
   - provider: s3
     access_key_id: $AMSCORES_AWS_KEY_ID
