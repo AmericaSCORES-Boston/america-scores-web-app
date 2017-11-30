@@ -25,9 +25,8 @@ export default class AuthService extends EventEmitter {
   }
 
   _doAuthentication(authResult){
-    console.log('it authed')
     // Saves the user token
-    this.setToken(authResult.idToken)
+    this.setToken(authResult.idToken,authResult.accessToken)
     // navigate to the home route
     browserHistory.replace('/Login')
   }
@@ -47,9 +46,10 @@ export default class AuthService extends EventEmitter {
     return !!this.getToken()
   }
 
-  setToken(idToken){
+  setToken(idToken,accessToken){
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken)
+      localStorage.setItem('access_token', accessToken)
   }
 
   getToken(){

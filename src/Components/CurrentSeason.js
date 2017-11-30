@@ -9,7 +9,7 @@ import Api from '../api';
 Page for Rendering all the info for the season
 */
 
-var custArr =[{id:'1', name:'2'}];
+// var custArr =[{id:'1', name:'2'}];
 
 var CurrentSeason = React.createClass({
 
@@ -28,6 +28,7 @@ var CurrentSeason = React.createClass({
 
     Api.fetchSeasons().then(seasonJson => {
         if (seasonJson != null) {
+            console.log(seasonJson);
             for (let i = seasonJson.length - 1; i >= 0; i--) {
                 seasonData.push({
                     id: seasonJson[i].season_id,
@@ -53,6 +54,8 @@ var CurrentSeason = React.createClass({
         Api.fetchCurrentSeasonData(year, semester).then(currentSeasonJson => {
             for (let j = 0; j < currentSeasonJson.length; j++) {
                 studentData.push({
+                    // mid:currentSeasonJson[j].measurement_id,
+                    key:j,
                     id: currentSeasonJson[j].student_id,
                     name: currentSeasonJson[j].first_name + " " + currentSeasonJson[j].last_name,
                     program: currentSeasonJson[j].program_name,
@@ -70,6 +73,8 @@ var CurrentSeason = React.createClass({
             _this.setState({
                 data : studentData
             })
+            console.log("see data");
+            console.log(this.state.data);
         })
     },
 
@@ -109,7 +114,6 @@ var CurrentSeason = React.createClass({
         console.log(row);
         }
 
-
         var selectRowProp = {
             mode: "radio",
             clickToSelect: true,
@@ -121,9 +125,11 @@ var CurrentSeason = React.createClass({
     return (
       <div className="container-fluid">
         <div className="row">
+
             <div className="col-md-3"></div>
             <div className="col-xs-6 text-center">
                 <img src={icon} className="img-responsive center-block" alt="logo" />
+                <h1 className="Account-header"> Current Season </h1>
                 <FormGroup controlId="formControlsSelect">
                       <ControlLabel></ControlLabel>
                       <FormControl componentClass="select" placeholder="No Seasons Found" ref="seasonSelection"
@@ -137,25 +143,29 @@ var CurrentSeason = React.createClass({
                         }
                       </FormControl>
                 </FormGroup>
+
             </div>
-                <h1 className="Account-header"> Current Season </h1>
+
             <BootstrapTable data={this.state.data} striped={true} hover={true} condensed={true}
                             selectRow={selectRowProp}>
-                    <TableHeaderColumn isKey={true} dataField="id"> ID </TableHeaderColumn>
 
-                    <TableHeaderColumn dataField="name"> Name </TableHeaderColumn>
+                    <TableHeaderColumn isKey={true} dataField="key"> Serial No </TableHeaderColumn>
+
+                    <TableHeaderColumn dataField="id"> Student ID </TableHeaderColumn>
+
+                    <TableHeaderColumn dataField="name"> Student Name </TableHeaderColumn>
 
                     <TableHeaderColumn dataField="school"> School </TableHeaderColumn>
 
                     <TableHeaderColumn dataField="program">Program</TableHeaderColumn>
-                    {/*<TableHeaderColumn dataField="preDate">Pre Measure Date</TableHeaderColumn>*/}
+                    <TableHeaderColumn dataField="preDate">Pre Measure Date</TableHeaderColumn>
                     {/*<TableHeaderColumn dataField="preHeight">Pre Height</TableHeaderColumn>*/}
                     {/*<TableHeaderColumn dataField="preWeight">Pre Weight</TableHeaderColumn>*/}
-                    {/*<TableHeaderColumn dataField="prePacer">Pre Pacer</TableHeaderColumn>*/}
-                    {/*<TableHeaderColumn dataField="postDate">Post Measure Date</TableHeaderColumn>*/}
+                    <TableHeaderColumn dataField="prePacer">Pre Season</TableHeaderColumn>
+                    <TableHeaderColumn dataField="postDate">Post Measure Date</TableHeaderColumn>
                     {/*<TableHeaderColumn dataField="postHeight">Post Height</TableHeaderColumn>*/}
                     {/*<TableHeaderColumn dataField="postWeight">Post Weight</TableHeaderColumn>*/}
-                    <TableHeaderColumn dataField="postPacer">Post Pacer</TableHeaderColumn>
+                    <TableHeaderColumn dataField="postPacer">Post Season</TableHeaderColumn>
                 </BootstrapTable>
                 <button onClick={this.generateCSV}>Generate CSV</button>
 
@@ -164,6 +174,5 @@ var CurrentSeason = React.createClass({
         </div>
       );
   }
-
 })
 export default CurrentSeason;

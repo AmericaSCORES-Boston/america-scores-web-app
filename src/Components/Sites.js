@@ -76,7 +76,7 @@ var Sites = React.createClass({
           <div className="col-xs-6 text-center">
             <img src={icon} className="img-responsive center-block" alt="logo" />
             <h1 className="Account-header"> Sites </h1>
-            <BootstrapTable data={this.state.locations} triped={true}
+            <BootstrapTable data={this.state.locations} striped={true}
                             hover={true} condensed={true} selectRow={selectRowProp}>
               <TableHeaderColumn isKey={true} dataField="name">Location Name</TableHeaderColumn>
             </BootstrapTable>

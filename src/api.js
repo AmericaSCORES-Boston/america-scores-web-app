@@ -1,5 +1,6 @@
 import $ from 'jquery';
-const root="http://ec2-54-224-133-79.compute-1.amazonaws.com",
+const root="http://localhost:8888",
+    // "http://ec2-54-224-133-79.compute-1.amazonaws.com",
 //root = "http://52.54.56.68/api/",
     POST = "POST",
     DELETE = "DELETE",
@@ -59,6 +60,14 @@ const Api = {
         return request(createEndpoint('/accounts/?acct_type=' + accountType));
     },
 
+    //added delete account bhupendra
+    deleteAccount(AccountID) {
+        return $.ajax({
+            url: root + '/accounts/'+AccountID,
+            type: DELETE
+        });
+    },
+
     addProgram(siteId, programName) {
       return request(createEndpoint('/sites/' + siteId +'/programs'),
       createRequestOptions(POST, {program_name: programName}));
@@ -69,9 +78,16 @@ const Api = {
             createRequestOptions(POST, {site_name: siteName, site_address: siteAddress}));
     },
 
-    addStudent(studentName, studentSite) {
-        return request(createEndpoint('/students/'),
-            createRequestOptions(POST, {student_name: studentName, student_site: studentSite}));
+    // addStudent(studentName, studentSite) {
+    //     return request(createEndpoint('/students/'),
+    //         createRequestOptions(POST, {student_name: studentName, student_site: studentSite}));
+    // },
+
+    //added by bhupendra to add students
+
+    addStudent(first_name,last_name,dob,program_id) {
+        return request(createEndpoint('/programs/'+ program_id +'/students'),
+            createRequestOptions(POST, {first_name, last_name, dob}));
     },
 
     fetchStudents(program_id) {
@@ -124,6 +140,13 @@ const Api = {
         url: root + '/programs/' + programId,
         type: DELETE
       });
+    },
+
+    deleteStudent(StudentID) {
+        return $.ajax({
+            url: root + '/students/'+StudentID,
+            type: DELETE
+        });
     }
 };
 
