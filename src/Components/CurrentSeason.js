@@ -5,6 +5,7 @@ import icon from '../Assets/User.png';
 import Api from '../api';
 
 
+
 /*
 Page for Rendering all the info for the season
 */
@@ -13,61 +14,66 @@ Page for Rendering all the info for the season
 
 var CurrentSeason = React.createClass({
 
-  getInitialState: function() {
-    return {
-      data: [],
-      seasons: [],
-      currentSeasonSelection: null
-    }
-  },
-
-  //decides how to/ what data to get
-  componentDidMount: function() {
-    let _this = this;
-    let seasonData  = [];
-
-    Api.fetchSeasons().then(seasonJson => {
-        if (seasonJson != null) {
-            console.log(seasonJson);
-            for (let i = seasonJson.length - 1; i >= 0; i--) {
-                seasonData.push({
-                    id: seasonJson[i].season_id,
-                    year: seasonJson[i].year,
-                    semester: seasonJson[i].season
-                })
-            }
-            _this.setState({
-                seasons : seasonData,
-                currentSeasonSelection : seasonData[0]
-            })
-        } else {
-            console.log("error getting seasons data");
+    getInitialState: function() {
+        return {
+            data: [],
+            seasons: [],
+            currentSeasonSelection: null
         }
-    }).then(function() {
-        _this.populateStudentTable(_this.state.currentSeasonSelection.year, _this.state.currentSeasonSelection.semester);
-      })
+    },
+
+    //decides how to/ what data to get
+    componentDidMount: function() {
+        let _this = this;
+        let seasonData  = [];
+
+        Api.fetchSeasons().then(seasonJson => {
+            if (seasonJson != null) {
+                console.log(seasonJson);
+                for (let i = seasonJson.length - 1; i >= 0; i--) {
+                    seasonData.push({
+                        id: seasonJson[i].season_id,
+                        year: seasonJson[i].year,
+                        semester: seasonJson[i].season
+                    })
+                }
+                _this.setState({
+                    seasons : seasonData,
+                    currentSeasonSelection : seasonData[0]
+                })
+            } else {
+                console.log("error getting seasons data");
+            }
+        }).then(function() {
+            _this.populateStudentTable(_this.state.currentSeasonSelection.year, _this.state.currentSeasonSelection.semester);
+        })
     },
 
     populateStudentTable : function(year, semester) {
         let studentData = [];
         let _this = this;
         Api.fetchCurrentSeasonData(year, semester).then(currentSeasonJson => {
+            console.log(currentSeasonJson);
             for (let j = 0; j < currentSeasonJson.length; j++) {
                 studentData.push({
                     // mid:currentSeasonJson[j].measurement_id,
                     key:j,
                     id: currentSeasonJson[j].student_id,
-                    name: currentSeasonJson[j].first_name + " " + currentSeasonJson[j].last_name,
+                    firstName: currentSeasonJson[j].first_name,
+                    lastName:currentSeasonJson[j].last_name,
                     program: currentSeasonJson[j].program_name,
                     school: currentSeasonJson[j].site_name,
-                    // preDate: currentSeasonJson[j].pre_date,
+                    dob:new Date(currentSeasonJson[j].dob).toDateString(),
+                    date: (currentSeasonJson[j].pre_date==null ? null : (new Date(currentSeasonJson[j].pre_date).toDateString())) || (currentSeasonJson[j].post_date==null ? null : (new Date(currentSeasonJson[j].post_date).toDateString())),
                     // preWeight: currentSeasonJson[j].pre_weight,
                     // preHeight: currentSeasonJson[j].pre_height,
-                    // prePacer: currentSeasonJson[j].pre_pacer,
-                    // postDate: currentSeasonJson[j].post_date,
+                    preShuttle: currentSeasonJson[j].post_pacer,
+                    postShuttle:currentSeasonJson[j].pre_pacer,
+
+                    postDate: null,
                     // postWeight: currentSeasonJson[j].post_weight,
                     // postHeight: currentSeasonJson[j].post_height,
-                    postPacer: currentSeasonJson[j].post_pacer
+                    season: currentSeasonJson[j].pre_pacer===null ? 'Pre' : 'Post',
                 })
             }
             _this.setState({
@@ -79,13 +85,13 @@ var CurrentSeason = React.createClass({
     },
 
     selectionChangeHandler: function (event){
-      let _this = this;
-      let splitVals = event.target.value.split(" ");
-      let seasonObj = {id: splitVals[0], year: splitVals[1], semester: splitVals[2]}
-      _this.setState({
-        currentSeasonSelection : seasonObj
-      })
-      _this.populateStudentTable(seasonObj.year, seasonObj.semester);
+        let _this = this;
+        let splitVals = event.target.value.split(" ");
+        let seasonObj = {id: splitVals[0], year: splitVals[1], semester: splitVals[2]}
+        _this.setState({
+            currentSeasonSelection : seasonObj
+        })
+        _this.populateStudentTable(seasonObj.year, seasonObj.semester);
     },
 
     checkData: function () {
@@ -98,8 +104,8 @@ var CurrentSeason = React.createClass({
         let lines = [];
         _this.state.data.forEach(function (studentObject, index) {
             let studentArray = [studentObject.id, studentObject.name, studentObject.school, studentObject.program,
-                               studentObject.preWeight, studentObject.preHeight, studentObject.prePacer, studentObject.postWeight,
-                               studentObject.postHeight, studentObject.postPacer];
+                studentObject.preWeight, studentObject.preHeight, studentObject.prePacer, studentObject.postWeight,
+                studentObject.postHeight, studentObject.postPacer];
             let singleLine = studentArray.join(",");
             lines.push(index === 0 ? "data:text/csv;charset=utf-8," + singleLine : singleLine);
         });
@@ -111,68 +117,85 @@ var CurrentSeason = React.createClass({
 
     render: function() {
         function onRowSelect(row, isSelected) {
-        console.log(row);
+            console.log(row);
         }
 
+        /*    var selectRowProp = {
+                mode: "radio",
+                clickToSelect: true,
+                bgColor: "rgb(238, 193, 213)",
+                onSelect: onRowSelect,
+                hideSelectColumn: true
+            }*/
         var selectRowProp = {
-            mode: "radio",
+            mode: "checkbox",
             clickToSelect: true,
-            bgColor: "rgb(238, 193, 213)",
-            onSelect: onRowSelect,
-            hideSelectColumn: true
-        }
+            bgColor: "rgb(238, 193, 213)"
+        };
+        const options = { exportCSVSeparator: '##' };
 
-    return (
-      <div className="container-fluid">
-        <div className="row">
+        return (
+            <div className="container-fluid">
+                <div className="row">
 
-            <div className="col-md-3"></div>
-            <div className="col-xs-6 text-center">
-                <img src={icon} className="img-responsive center-block" alt="logo" />
-                <h1 className="Account-header"> Current Season </h1>
-                <FormGroup controlId="formControlsSelect">
-                      <ControlLabel></ControlLabel>
-                      <FormControl componentClass="select" placeholder="No Seasons Found" ref="seasonSelection"
-                        onChange={this.selectionChangeHandler}>
-                        {
-                            this.state.seasons.map(function(season) {
-                                return <option key={season.id} value={season.id + " " + season.year + " " + season.semester}>
+                    <div className="col-md-3"></div>
+                    <div className="col-xs-6 text-center">
+                        <img src={icon} className="img-responsive center-block" alt="logo" />
+                        <h1 className="Account-header"> Current Season </h1>
+                        <FormGroup controlId="formControlsSelect">
+                            <ControlLabel></ControlLabel>
+                            <FormControl componentClass="select" placeholder="No Seasons Found" ref="seasonSelection"
+                                         onChange={this.selectionChangeHandler}>
+                                {
+                                    this.state.seasons.map(function(season) {
+                                        return <option key={season.id} value={season.id + " " + season.year + " " + season.semester}>
                                             {season.semester + " " + season.year}
-                                       </option>;
-                            })
-                        }
-                      </FormControl>
-                </FormGroup>
+                                        </option>;
+                                    })
+                                }
+                            </FormControl>
+                        </FormGroup>
 
+                    </div>
+
+                    <BootstrapTable data={this.state.data}
+                                    striped
+                                    hover
+                                    condensed
+                                    pagination
+                                    search
+                                    exportCSV={ true } options={ options  }>
+
+                        <TableHeaderColumn isKey={true} dataSort={true} dataField="key" width='40'> S.No. </TableHeaderColumn>
+
+                        {/*<TableHeaderColumn dataField="id"  dataSort={true} csvFieldType='number' width='70'> Student ID </TableHeaderColumn>*/}
+
+
+                        <TableHeaderColumn dataField="school" dataSort={true} csvFieldType='string' width='70'> School </TableHeaderColumn>
+
+                        <TableHeaderColumn dataField="program" dataSort={true} csvFieldType='string' width='70'>Program</TableHeaderColumn>
+                        <TableHeaderColumn dataField="date" dataSort={true} csvFieldType='string' width='50'>Collection Date</TableHeaderColumn>
+
+                        <TableHeaderColumn dataField="firstName"  dataSort={true} csvFieldType='string' width='50'> First Name </TableHeaderColumn>
+                        <TableHeaderColumn dataField="lastName"  dataSort={true} csvFieldType='string' width='50'> Last Name </TableHeaderColumn>
+                        <TableHeaderColumn dataField="dob"  dataSort={true} csvFieldType='string' width='50'> Date of Birth </TableHeaderColumn>
+
+
+
+                        {/*<TableHeaderColumn dataField="preHeight">Pre Height</TableHeaderColumn>*/}
+                        {/*<TableHeaderColumn dataField="preWeight">Pre Weight</TableHeaderColumn>*/}
+                        <TableHeaderColumn dataField="preShuttle" dataSort={true} csvFieldType='number' width='40'>Pre Pacer Score</TableHeaderColumn>
+                        <TableHeaderColumn dataField="postShuttle" dataSort={true} csvFieldType='number' width='40'>Post Pacer Score</TableHeaderColumn>
+                        {/*<TableHeaderColumn dataField="postHeight">Post Height</TableHeaderColumn>*/}
+                        {/*<TableHeaderColumn dataField="postWeight">Post Weight</TableHeaderColumn>*/}
+                        {/*<TableHeaderColumn dataField="season" dataSort={true} csvFieldType='string' width='50'>Season</TableHeaderColumn>*/}
+                    </BootstrapTable>
+                    {/*<button onClick={this.generateCSV}>Generate CSV</button>*/}
+
+                    {/*</div>*/}
+                </div>
             </div>
-
-            <BootstrapTable data={this.state.data} striped={true} hover={true} condensed={true}
-                            selectRow={selectRowProp}>
-
-                    <TableHeaderColumn isKey={true} dataField="key"> Serial No </TableHeaderColumn>
-
-                    <TableHeaderColumn dataField="id"> Student ID </TableHeaderColumn>
-
-                    <TableHeaderColumn dataField="name"> Student Name </TableHeaderColumn>
-
-                    <TableHeaderColumn dataField="school"> School </TableHeaderColumn>
-
-                    <TableHeaderColumn dataField="program">Program</TableHeaderColumn>
-                    <TableHeaderColumn dataField="preDate">Pre Measure Date</TableHeaderColumn>
-                    {/*<TableHeaderColumn dataField="preHeight">Pre Height</TableHeaderColumn>*/}
-                    {/*<TableHeaderColumn dataField="preWeight">Pre Weight</TableHeaderColumn>*/}
-                    <TableHeaderColumn dataField="prePacer">Pre Season</TableHeaderColumn>
-                    <TableHeaderColumn dataField="postDate">Post Measure Date</TableHeaderColumn>
-                    {/*<TableHeaderColumn dataField="postHeight">Post Height</TableHeaderColumn>*/}
-                    {/*<TableHeaderColumn dataField="postWeight">Post Weight</TableHeaderColumn>*/}
-                    <TableHeaderColumn dataField="postPacer">Post Season</TableHeaderColumn>
-                </BootstrapTable>
-                <button onClick={this.generateCSV}>Generate CSV</button>
-
-          {/*</div>*/}
-        </div>
-        </div>
-      );
-  }
+        );
+    }
 })
 export default CurrentSeason;
