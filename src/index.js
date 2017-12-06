@@ -34,11 +34,11 @@ ReactDOM.render((
             <Route path="/" component={Container} auth={auth}>
                 <IndexRedirect to="Login" />
                 <Route path="Login" component={Login} />
-                <Route path="MyAccount" component={MyAccountCompiler} /*onEnter={requireAuth}*//>
-                <Route path="Sites" component={Sites} /*onEnter={requireAuth}*/ />
-                <Route path="Students" component={StudentManager} /*onEnter={requireAuth}*/ />
-                <Route path="ManageAccounts" component={ManageAccountsManager} /*onEnter={requireAuth}*/ />
-                <Route path="CurrentSeason" component={CurrentSeason} /*onEnter={requireAuth}*//>
+                <Route path="MyAccount" component={MyAccountCompiler} onEnter={requireAuth}/>
+                <Route path="Sites" component={Sites} onEnter={requireAuth} />
+                <Route path="Students" component={StudentManager} onEnter={requireAuth} />
+                <Route path="ManageAccounts" component={ManageAccountsManager} onEnter={requireAuth} />
+                <Route path="CurrentSeason" component={CurrentSeason} onEnter={requireAuth}/>
                 <Route path="CSVPage2" component={CSVProgram} onEnter={requireAuth}/>
                 <Route path="CSVPage3" component={CSVStudent} onEnter={requireAuth}/>
                 <Route path="WipeResponse" component={WipeResponse} onEnter={requireAuth}/>
