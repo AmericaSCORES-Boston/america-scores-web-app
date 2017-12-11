@@ -76,11 +76,13 @@ var Sites = React.createClass({
           <div className="col-xs-6 text-center">
             <img src={icon} className="img-responsive center-block" alt="logo" />
             <h1 className="Account-header"> Sites </h1>
-            <BootstrapTable data={this.state.locations} striped={true}
+          </div>
+            <BootstrapTable search data={this.state.locations} striped={true}
                             hover={true} condensed={true} selectRow={selectRowProp}>
               <TableHeaderColumn isKey={true} dataField="name">Location Name</TableHeaderColumn>
             </BootstrapTable>
 
+          <div className="col-xs-12 text-center">
             <div className="download-elements">
               <button onClick={_this.seeProgramsOfSelectedSite}
                       disabled={_this.isNoRowSelected()}>See Programs</button> <br/>
@@ -88,10 +90,9 @@ var Sites = React.createClass({
                       disabled={_this.isNoRowSelected()}>Delete Site</button>
               <a href='/addSite'><button>Add Site</button></a>
             </div>
-
+          </div>
           </div>
         </div>
-      </div>
       );
   }
 

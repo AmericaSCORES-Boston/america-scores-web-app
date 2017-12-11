@@ -79,30 +79,30 @@ var Programs = React.createClass({
       onSelect: onRowSelect,
       hideSelectColumn: true
     }
-
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-xs-3"></div>
+          <div className="col-md-3"></div>
           <div className="col-xs-6 text-center">
             <img src={icon} className="img-responsive center-block" alt="logo" />
             <h1 className="Account-header"> Programs </h1>
-            <BootstrapTable data={this.state.programs} triped={true} hover={true} condensed={true} selectRow={selectRowProp}>
+          </div>
+            <BootstrapTable search data={this.state.programs} striped={true} hover={true} condensed={true} selectRow={selectRowProp}>
               <TableHeaderColumn isKey={true} dataField="name">Program Name(s)</TableHeaderColumn>
             </BootstrapTable>
+            <div className="col-xs-12 text-center">
             <div className="download-elements">
-              <button onClick={_this.goBack}>Back</button>
+              {/*<button onClick={_this.goBack}>Back</button>*/}
               <button onClick={_this.goSeeStudentsOfSelectedProgram}
                 disabled={_this.isNoRowSelected()}>See Students</button> <br/>
               <button onClick={_this.deleteSelectedProgram} disabled={_this.isNoRowSelected()}>Delete Program</button>
               <button onClick={_this.goToAddProgramPage}>Add Program</button>
             </div>
+            </div>
           </div>
         </div>
-      </div>
       );
   }
-
 })
 
 export default Programs;

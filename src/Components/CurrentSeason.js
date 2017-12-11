@@ -5,15 +5,10 @@ import icon from '../Assets/User.png';
 import Api from '../api';
 
 
-
 /*
 Page for Rendering all the info for the season
 */
-
-// var custArr =[{id:'1', name:'2'}];
-
 var CurrentSeason = React.createClass({
-
     getInitialState: function() {
         return {
             data: [],
@@ -26,7 +21,6 @@ var CurrentSeason = React.createClass({
     componentDidMount: function() {
         let _this = this;
         let seasonData  = [];
-
         Api.fetchSeasons().then(seasonJson => {
             if (seasonJson != null) {
                 console.log(seasonJson);
@@ -69,7 +63,6 @@ var CurrentSeason = React.createClass({
                     // preHeight: currentSeasonJson[j].pre_height,
                     preShuttle: currentSeasonJson[j].post_pacer,
                     postShuttle:currentSeasonJson[j].pre_pacer,
-
                     postDate: null,
                     // postWeight: currentSeasonJson[j].post_weight,
                     // postHeight: currentSeasonJson[j].post_height,
@@ -120,19 +113,19 @@ var CurrentSeason = React.createClass({
             console.log(row);
         }
 
-        /*    var selectRowProp = {
-                mode: "radio",
-                clickToSelect: true,
-                bgColor: "rgb(238, 193, 213)",
-                onSelect: onRowSelect,
-                hideSelectColumn: true
-            }*/
         var selectRowProp = {
             mode: "checkbox",
             clickToSelect: true,
             bgColor: "rgb(238, 193, 213)"
         };
-        const options = { exportCSVSeparator: '##' };
+        const options = {
+            exportCSVSeparator: '##' ,
+            sizePerPageList: [ {
+                text: '15', value: 15
+            }, {
+                text: 'All', value: this.state.data.length
+            } ],
+            sizePerPage: 15};
 
         return (
             <div className="container-fluid">
@@ -142,6 +135,7 @@ var CurrentSeason = React.createClass({
                     <div className="col-xs-6 text-center">
                         <img src={icon} className="img-responsive center-block" alt="logo" />
                         <h1 className="Account-header"> Current Season </h1>
+
                         <FormGroup controlId="formControlsSelect">
                             <ControlLabel></ControlLabel>
                             <FormControl componentClass="select" placeholder="No Seasons Found" ref="seasonSelection"
@@ -162,36 +156,22 @@ var CurrentSeason = React.createClass({
                                     striped
                                     hover
                                     condensed
-                                    pagination
                                     search
-                                    exportCSV={ true } options={ options  }>
-
+                                    pagination={true} exportCSV={ true }>
                         <TableHeaderColumn isKey={true} dataSort={true} dataField="key" width='40'> S.No. </TableHeaderColumn>
-
                         {/*<TableHeaderColumn dataField="id"  dataSort={true} csvFieldType='number' width='70'> Student ID </TableHeaderColumn>*/}
-
-
                         <TableHeaderColumn dataField="school" dataSort={true} csvFieldType='string' width='70'> School </TableHeaderColumn>
-
                         <TableHeaderColumn dataField="program" dataSort={true} csvFieldType='string' width='70'>Program</TableHeaderColumn>
                         <TableHeaderColumn dataField="date" dataSort={true} csvFieldType='string' width='50'>Collection Date</TableHeaderColumn>
-
                         <TableHeaderColumn dataField="firstName"  dataSort={true} csvFieldType='string' width='50'> First Name </TableHeaderColumn>
                         <TableHeaderColumn dataField="lastName"  dataSort={true} csvFieldType='string' width='50'> Last Name </TableHeaderColumn>
                         <TableHeaderColumn dataField="dob"  dataSort={true} csvFieldType='string' width='50'> Date of Birth </TableHeaderColumn>
-
-
-
-                        {/*<TableHeaderColumn dataField="preHeight">Pre Height</TableHeaderColumn>*/}
-                        {/*<TableHeaderColumn dataField="preWeight">Pre Weight</TableHeaderColumn>*/}
                         <TableHeaderColumn dataField="preShuttle" dataSort={true} csvFieldType='number' width='40'>Pre Pacer Score</TableHeaderColumn>
                         <TableHeaderColumn dataField="postShuttle" dataSort={true} csvFieldType='number' width='40'>Post Pacer Score</TableHeaderColumn>
-                        {/*<TableHeaderColumn dataField="postHeight">Post Height</TableHeaderColumn>*/}
-                        {/*<TableHeaderColumn dataField="postWeight">Post Weight</TableHeaderColumn>*/}
+
                         {/*<TableHeaderColumn dataField="season" dataSort={true} csvFieldType='string' width='50'>Season</TableHeaderColumn>*/}
                     </BootstrapTable>
                     {/*<button onClick={this.generateCSV}>Generate CSV</button>*/}
-
                     {/*</div>*/}
                 </div>
             </div>

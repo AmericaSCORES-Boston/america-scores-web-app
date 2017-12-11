@@ -28,7 +28,7 @@ export default class AuthService extends EventEmitter {
     // Saves the user token
     this.setToken(authResult.idToken,authResult.accessToken)
     // navigate to the home route
-    browserHistory.replace('/Login')
+    browserHistory.replace('/MyAccount')
   }
 
   _authorizationError(error){

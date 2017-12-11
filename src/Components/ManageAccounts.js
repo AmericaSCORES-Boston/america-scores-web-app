@@ -88,22 +88,32 @@ var ManageAccountsManager = React.createClass ({
     return (
       <div className="container-fluid">
       <div className="row">
-      <div className="col-xs-3"></div>
-      <div className="col-xs-6 text-center">
+      {/*<div className="col-xs-3"></div>*/}
+      {/*<div className="col-xs-6 text-center">*/}
+      <div className="col-md-3"></div>
+          <div className="col-xs-6 text-center">
       <img src={icon} className="img-responsive center-block" alt="logo" />
       <h1 className="Account-header"> Coaches </h1>
-
-      <BootstrapTable data={this.state.coachData} striped={true} hover={true} condensed={true} selectRow={selectRowProp}>
+          </div>
+      <BootstrapTable data={this.state.coachData}
+                      striped
+                      hover
+                      pagination
+                      search
+                      selectRow={selectRowProp}>
       <TableHeaderColumn isKey={true} dataField="id">Account Id</TableHeaderColumn>
       <TableHeaderColumn dataField="name">Name</TableHeaderColumn>
       <TableHeaderColumn dataField="type">Account Type</TableHeaderColumn>
       <TableHeaderColumn dataField="email">Email</TableHeaderColumn>
       </BootstrapTable>
+
+          <div className="col-xs-12 text-center">
           <div className="download-elements">
+              <a href={'/addAccount'}><button>Create Account</button></a>
               <button onClick={_this.deleteSelectedAccount}
                       disabled={_this.isNoRowSelected()}>Delete Account</button>
           </div>
-      </div>
+          </div>
       </div>
       </div>
       );

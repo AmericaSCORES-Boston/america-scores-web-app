@@ -17,6 +17,7 @@ import AddSite from './Components/AddSite';
 import AddProgram from './Components/AddProgram';
 import AddStudent from './Components/AddStudent';
 import CurrentSeason from './Components/CurrentSeason';
+import AddAccount from "./Components/AddAccount";
 
 /*
 This file is what routes all the paths in the react-app
@@ -28,12 +29,23 @@ const requireAuth = (nextState, replace) => {
     replace({ pathname: '/Login' })
   }
 }
+const checkAuth = (nextState, replace) => {
+    // if (!auth.loggedIn()) {
+    //     replace({ pathname: '/Login' })
+    // }
+    if (auth.loggedIn()) {
+        replace({ pathname: '/MyAccount' })
+    }
+    // else{
+    //     replace({ pathname: '/MyAccount' })
+    // }
+}
 
 ReactDOM.render((
         <Router history={browserHistory}>
             <Route path="/" component={Container} auth={auth}>
                 <IndexRedirect to="Login" />
-                <Route path="Login" component={Login} />
+                <Route path="Login" component={Login} onEnter={checkAuth} auth={auth}/>
                 <Route path="MyAccount" component={MyAccountCompiler} onEnter={requireAuth}/>
                 <Route path="Sites" component={Sites} onEnter={requireAuth} />
                 <Route path="Students" component={StudentManager} onEnter={requireAuth} />
@@ -44,6 +56,7 @@ ReactDOM.render((
                 <Route path="WipeResponse" component={WipeResponse} onEnter={requireAuth}/>
                 <Route path="Programs" component={Programs} onEnter={requireAuth}/>
                 <Route path="AddSite" component={AddSite} onEnter={requireAuth}/>
+                <Route path="AddAccount" component={AddAccount} onEnter={requireAuth}/>
                 <Route path="AddStudent" component={AddStudent} onEnter={requireAuth}/>
                 <Route path="AddProgram" component={AddProgram} onEnter={requireAuth}/>
             </Route>
