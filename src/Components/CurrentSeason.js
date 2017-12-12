@@ -112,14 +112,12 @@ var CurrentSeason = React.createClass({
             lines.push(index === 0 ? "data:text/csv;charset=utf-8," + singleLine : singleLine);
         });
         var csvContent = lines.join("\n");
-        console.log(csvContent);
         var encodedUri = encodeURI(csvContent);
         window.open(encodedUri);
     },
 
     render: function() {
         function onRowSelect(row, isSelected) {
-            console.log(row);
         }
 
         var selectRowProp = {

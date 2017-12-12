@@ -62,7 +62,6 @@ const Api = {
     },
     //not implemented yet actually
     fetchByAccountType(accountType) {
-        console.log("running fetchByAccountType");
         return request(createEndpoint('/accounts/?acct_type=' + accountType),{headers: auth(localStorage.getItem('access_token'))});
     },
 

@@ -14,7 +14,6 @@ class AddAccount extends Component {
         let accountLastName = document.getElementById("accountLastName").value;
         let accountPassword = document.getElementById("accountPassword").value;
         let accountType = document.getElementById("accountType").value;
-        console.log(accountType);
         // let studentSite = document.getElementById("studentSite").value;
         if (accountEmailAddress === "" || accountUsername === "" || accountFirstName=="" || accountLastName=="" || accountPassword=="" || accountType=="") {
             alert("Information missing in input field. Please check");
@@ -29,7 +28,6 @@ class AddAccount extends Component {
             return;
         }
         Api.addAccount(accountEmailAddress,accountUsername,accountPassword,accountFirstName,accountLastName,accountType).then((data) => {
-            console.log(data);
             if(data.statusCode===400){
                 alert(data.message);
             }

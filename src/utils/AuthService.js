@@ -84,7 +84,6 @@ export default class AuthService extends EventEmitter {
             returnTo:`${window.location.origin}/Login`,
             clientID: 'F8iBVF34KoTqGgOd4fj5D6IRSax8JWxz'
         })
-        console.log('logout');
         localStorage.removeItem('access_token');
         localStorage.removeItem('id_token');
     }
