@@ -1,7 +1,5 @@
 import $ from 'jquery';
-const root= "http://localhost:8888",
-//dev "http://localhost:8888",
-//root = "http://ec2-54-224-133-79.compute-1.amazonaws.com",
+const root= "http://ec2-54-164-220-164.compute-1.amazonaws.com",
     POST = "POST",
     DELETE = "DELETE",
     GET="GET",
