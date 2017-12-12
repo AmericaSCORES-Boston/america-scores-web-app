@@ -12,8 +12,16 @@ export class Login extends React.Component {
     location: T.object,
     auth: T.instanceOf(AuthService)
   }
+  constructor(){
+      super()
+      console.log('inside login')
+      this.loginAuth = new AuthService();
+      this.loginAuth._doAuthentication()
+
+  }
   render() {
     const { auth } = this.props
+      console.log(auth);
     return (
       <div className="root">
 
@@ -24,9 +32,6 @@ export class Login extends React.Component {
           <Button bsStyle="primary" onClick={auth.login.bind(this)} block>Login</Button>
         </div>
         <br/>
-        {/*<a width="150" height="50" href="https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss" target="_blank" alt="Single Sign On & Token Based Authentication - Auth0">*/}
-            {/*<img width="150" height="50" alt="JWT Auth for open source projects" src="//cdn.auth0.com/oss/badges/a0-badge-light.png"/>*/}
-        {/*</a>*/}
       </div>
     )
   }

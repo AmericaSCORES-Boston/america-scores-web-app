@@ -34,6 +34,7 @@
     "http-proxy-middleware": "0.17.1",
     "jest": "15.1.1",
     "json-loader": "0.5.4",
+    "jsonwebtoken": "^8.1.0",
     "object-assign": "4.1.0",
     "path-exists": "2.1.0",
     "postcss-loader": "0.13.0",
@@ -50,6 +51,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
+    "auth0-js": "^8.12.0",
     "auth0-lock": "10.11.0",
     "jquery": "^3.1.1",
     "react": "^15.3.2",

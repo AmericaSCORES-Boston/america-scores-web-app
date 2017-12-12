@@ -10,6 +10,8 @@ it('renders fully without crashing', () => {
 });
 
 describe('Sites', () => {
+    const ls = require("../../utils/localstorage");
+    ls.setLocalStorage();
     it('renders correctly', () => {
         const render = TestUtils.createRenderer()
         render.render(<Sites />)

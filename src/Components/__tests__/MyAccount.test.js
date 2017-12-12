@@ -7,6 +7,7 @@ import Api from '../../api';
 import { PropTypes as T } from 'react';
 import Auth0Lock from 'auth0-lock';
 
+
 it('renders fully without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<MyAccountCompiler auth={new AuthService('F8iBVF34KoTqGgOd4fj5D6IRSax8JWxz', 'asbadmin.auth0.com')}/>, div);

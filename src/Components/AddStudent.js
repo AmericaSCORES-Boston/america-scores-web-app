@@ -40,11 +40,6 @@ class AddStudent extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label for="studentSite">Student Site</label>
-                                <input type="text" placeholder="Enter Student Site" className="form-control" id="studentSite"/>
-                            </div>
-
-                            <div className="form-group">
                                 <label for="dob">Date of Birth (yyyy-mm-dd)</label>
                                 <input type="text" placeholder="Enter Date of Birth" className="form-control" id="dob"/>
                             </div>

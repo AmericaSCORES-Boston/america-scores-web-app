@@ -23,7 +23,7 @@ deploy:
     skip_cleanup: true
     upload-dir: dev
     on:
-      branch: bhupendra-fall17
+      branch: asb-fall17-newAuth
     bucket: asb-aws-deploy
   - provider: codedeploy
     access_key_id: $AMSCORES_AWS_KEY_ID
@@ -35,7 +35,7 @@ deploy:
     application: ASB-WebApp
     deployment_group: Development
     on:
-      branch: bhupendra-fall17
+      branch: asb-fall17-newAuth
     wait-until-deployed: true
   - provider: s3
     access_key_id: $AMSCORES_AWS_KEY_ID

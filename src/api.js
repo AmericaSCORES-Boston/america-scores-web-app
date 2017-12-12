@@ -1,9 +1,10 @@
 import $ from 'jquery';
-const root= "http://localhost:8888",
+const root= "http://ec2-54-224-133-79.compute-1.amazonaws.com",
 //dev "http://localhost:8888",
-// root = "http://ec2-54-224-133-79.compute-1.amazonaws.com",
+//root = "http://ec2-54-224-133-79.compute-1.amazonaws.com",
     POST = "POST",
     DELETE = "DELETE",
+    GET="GET",
     PUT = "PUT";
 
 function createEndpoint(path) {
@@ -19,67 +20,73 @@ function request(path, options={}) {
         .catch(error => error);
 }
 
-function createRequestOptions(request_type, data) {
+function auth(idToken) {
+    return new Headers({ 'Authorization': 'Bearer '+idToken, 'Connection': 'web' });
+}
+
+function createRequestOptions(request_type, data,bearer_token = 0) {
     return {
         method: request_type,
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
            // 'Origin': 'http://ec2-54-87-140-118.compute-1.amazonaws.com/'
-           'Origin':'*'
+           'Origin':'*',
+            'Authorization':'Bearer '+bearer_token
         },
         body: JSON.stringify(data)
     };
 }
 
 const Api = {
-    fetchSites() {
-        return request(createEndpoint('/sites'));
+    fetchSites(user) {
+        return request(createEndpoint('/sites'), {headers: auth(localStorage.getItem('access_token'))});
     },
     fetchPrograms(site_id) {
-        return request(createEndpoint('/sites/' + site_id + '/programs'));
+        return request(createEndpoint('/sites/' + site_id + '/programs'), {headers: auth(localStorage.getItem('access_token'))});
     },
     fetchEvents() {
-        return request(createEndpoint('/events'));
+        return request(createEndpoint('/events'), {headers: auth(localStorage.getItem('access_token'))});
     },
     fetchSeasons() {
-        return request(createEndpoint('/seasons'));
+        return request(createEndpoint('/seasons'), {headers: auth(localStorage.getItem('access_token'))});
     },
     fetchCurrentSeasonData(year, semester) {
-        return request(createEndpoint('/reports?season=' + semester +'&year=' + year));
+        return request(createEndpoint('/reports?season=' + semester +'&year=' + year), {headers: auth(localStorage.getItem('access_token'))});
     },
     fetchProgramsByStudent(studentId) {
-        return request(createEndpoint('/students/' + studentId + '/programs'));
+        return request(createEndpoint('/students/' + studentId + '/programs'), {headers: auth(localStorage.getItem('access_token'))});
     },
     fetchAllPrograms() {
-        return request(createEndpoint('/programs'));
+        return request(createEndpoint('/programs'), {headers: auth(localStorage.getItem('access_token'))});
     },
     //not implemented yet actually
     fetchByAccountType(accountType) {
         console.log("running fetchByAccountType");
-        return request(createEndpoint('/accounts/?acct_type=' + accountType));
+        return request(createEndpoint('/accounts/?acct_type=' + accountType),{headers: auth(localStorage.getItem('access_token'))});
     },
 
     //added delete account bhupendra
     deleteAccount(AccountID) {
         return $.ajax({
             url: root + '/accounts/'+AccountID,
-            type: DELETE
+            type: DELETE,
+            beforeSend: function(xhr){xhr.setRequestHeader('Authorization' , 'Bearer '+localStorage.getItem('access_token'));}
         });
     },
     addAccount(email,username,password,first_name,last_name,acct_type){
-        return request(createEndpoint('/accounts'), createRequestOptions(POST, {email, username, password, first_name, last_name,acct_type}));
+        return request(createEndpoint('/accounts'), createRequestOptions(POST, {email, username, password, first_name, last_name,acct_type},localStorage.getItem('access_token')));
 
     },
 
     addProgram(siteId, programName) {
       return request(createEndpoint('/sites/' + siteId +'/programs'),
-      createRequestOptions(POST, {program_name: programName}));
+      createRequestOptions(POST, {program_name: programName},localStorage.getItem('access_token')));
     },
 
     addSite(siteName, siteAddress) {
         return request(createEndpoint('/sites/'),
-            createRequestOptions(POST, {site_name: siteName, site_address: siteAddress}));
+            createRequestOptions(POST, {site_name: siteName, site_address: siteAddress},localStorage.getItem('access_token')));
     },
 
     // addStudent(studentName, studentSite) {
@@ -91,36 +98,36 @@ const Api = {
 
     addStudent(first_name,last_name,dob,program_id) {
         return request(createEndpoint('/programs/'+ program_id +'/students'),
-            createRequestOptions(POST, {first_name, last_name, dob}));
+            createRequestOptions(POST, {first_name, last_name, dob},localStorage.getItem('access_token')));
     },
 
     fetchStudents(program_id) {
-        return request(createEndpoint('/programs/' + program_id + '/students'));
+        return request(createEndpoint('/programs/' + program_id + '/students'), {headers: auth(localStorage.getItem('access_token'))});
     },
 
     fetchStat(stat_id) {
-        return request(createEndpoint('/stats/' + stat_id));
+        return request(createEndpoint('/stats/' + stat_id), {headers: auth(localStorage.getItem('access_token'))});
     },
 
     fetchAllStats() {
-        return request(createEndpoint('/stats'));
+        return request(createEndpoint('/stats'), {headers: auth(localStorage.getItem('access_token'))});
     },
 
     fetchSingleSite(siteId) {
-        return request(createEndpoint('/sites/' + siteId));
+        return request(createEndpoint('/sites/' + siteId), {headers: auth(localStorage.getItem('access_token'))});
     },
 
     createStat(stat) {
-        return request(createEndpoint('/stats'), createRequestOptions(POST, stat));
+        return request(createEndpoint('/stats'), createRequestOptions(POST, stat,localStorage.getItem('access_token')));
     },
 
     updateStat(stat) {
         const statId = stat.stat_id || -1;
-        return request(createEndpoint('/stats/' + statId), createRequestOptions(PUT, stat));
+        return request(createEndpoint('/stats/' + statId), createRequestOptions(PUT, stat,localStorage.getItem('access_token')));
     },
 
     fetchStats(program_id) {
-        return request(createEndpoint('/programs/' + program_id + '/stats'));
+        return request(createEndpoint('/programs/' + program_id + '/stats'), {headers: auth(localStorage.getItem('access_token'))});
     },
 
     getReportLink(program_id) {
@@ -128,28 +135,31 @@ const Api = {
     },
 
     getAllStudents() {
-        return request(createEndpoint('/students'));
+        return request(createEndpoint('/students'), {headers: auth(localStorage.getItem('access_token'))});
     },
 
     //Tried to use fetch here, but it was giving cors errors. This is also giving us those errors
     deleteSite(siteId) {
       return $.ajax({
             url: root + '/sites/' +siteId,
-            type: DELETE
+            type: DELETE,
+            beforeSend: function(xhr){xhr.setRequestHeader('Authorization' , 'Bearer '+localStorage.getItem('access_token'));}
         });
     },
 
     deleteProgram(programId) {
       return $.ajax({
         url: root + '/programs/' + programId,
-        type: DELETE
+        type: DELETE,
+          beforeSend: function(xhr){xhr.setRequestHeader('Authorization' , 'Bearer '+localStorage.getItem('access_token'));}
       });
     },
 
     deleteStudent(StudentID) {
         return $.ajax({
             url: root + '/students/'+StudentID,
-            type: DELETE
+            type: DELETE,
+            beforeSend: function(xhr){xhr.setRequestHeader('Authorization' , 'Bearer '+localStorage.getItem('access_token'));}
         });
     }
 };

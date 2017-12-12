@@ -22,23 +22,21 @@ import AddAccount from "./Components/AddAccount";
 /*
 This file is what routes all the paths in the react-app
 */
-const auth = new AuthService('F8iBVF34KoTqGgOd4fj5D6IRSax8JWxz', 'asbadmin.auth0.com');
+// const auth = new AuthService('F8iBVF34KoTqGgOd4fj5D6IRSax8JWxz', 'asbadmin.auth0.com');
+const auth = new AuthService();
+
 // validate authentication for private routes
 const requireAuth = (nextState, replace) => {
-  if (!auth.loggedIn()) {
-    replace({ pathname: '/Login' })
-  }
+    if (!auth.loggedIn()) {
+        replace({ pathname: '/Login' })
+    }
 }
+
+
 const checkAuth = (nextState, replace) => {
-    // if (!auth.loggedIn()) {
-    //     replace({ pathname: '/Login' })
-    // }
     if (auth.loggedIn()) {
         replace({ pathname: '/MyAccount' })
     }
-    // else{
-    //     replace({ pathname: '/MyAccount' })
-    // }
 }
 
 ReactDOM.render((
