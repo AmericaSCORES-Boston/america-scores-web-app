@@ -18,6 +18,7 @@ import AddProgram from './Components/AddProgram';
 import AddStudent from './Components/AddStudent';
 import CurrentSeason from './Components/CurrentSeason';
 import AddAccount from "./Components/AddAccount";
+import EditStudent from "./Components/EditStudent";
 
 /*
 This file is what routes all the paths in the react-app
@@ -57,6 +58,7 @@ ReactDOM.render((
                 <Route path="AddAccount" component={AddAccount} onEnter={requireAuth}/>
                 <Route path="AddStudent" component={AddStudent} onEnter={requireAuth}/>
                 <Route path="AddProgram" component={AddProgram} onEnter={requireAuth}/>
+                <Route path="EditStudent" component={EditStudent} onEnter={requireAuth}/>
             </Route>
         </Router>
     ),

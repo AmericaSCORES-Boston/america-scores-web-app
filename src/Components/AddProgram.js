@@ -35,7 +35,7 @@ class AddProgram extends Component {
                 <div className="col-md-6">
                     <form>
                         <div className="form-group">
-                            <label for="programName">Program Name</label>
+                            <label htmlFor="programName">Program Name</label>
                             <input type="text" className="form-control" id="programName" placeholder="Program Name"/>
                         </div>
 

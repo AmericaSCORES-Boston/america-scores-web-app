@@ -34,6 +34,7 @@ class AddAccount extends Component {
                 alert(data.message);
             }
            else{
+                alert('Account Created. Verfication Email Sent to '+accountEmailAddress+'. Please email them Username/Password.');
                 window.location = '/ManageAccounts'
             }
         });

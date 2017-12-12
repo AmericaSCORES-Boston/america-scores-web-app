@@ -79,7 +79,8 @@ var Sites = React.createClass({
           </div>
             <BootstrapTable search data={this.state.locations} striped={true}
                             hover={true} condensed={true} selectRow={selectRowProp}>
-              <TableHeaderColumn isKey={true} dataField="name">Location Name</TableHeaderColumn>
+              <TableHeaderColumn isKey={true} dataField="id" width={50}>Location ID</TableHeaderColumn>
+              <TableHeaderColumn  dataField="name" width={50}>Location Name</TableHeaderColumn>
             </BootstrapTable>
 
           <div className="col-xs-12 text-center">

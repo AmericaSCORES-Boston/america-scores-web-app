@@ -88,13 +88,13 @@ var Programs = React.createClass({
             <h1 className="Account-header"> Programs </h1>
           </div>
             <BootstrapTable search data={this.state.programs} striped={true} hover={true} condensed={true} selectRow={selectRowProp}>
-              <TableHeaderColumn isKey={true} dataField="name">Program Name(s)</TableHeaderColumn>
+              <TableHeaderColumn isKey={true} dataField="id">Program ID</TableHeaderColumn>
+              <TableHeaderColumn dataField="name">Program Name(s)</TableHeaderColumn>
             </BootstrapTable>
             <div className="col-xs-12 text-center">
             <div className="download-elements">
               {/*<button onClick={_this.goBack}>Back</button>*/}
-              <button onClick={_this.goSeeStudentsOfSelectedProgram}
-                disabled={_this.isNoRowSelected()}>See Students</button> <br/>
+              <button onClick={_this.goSeeStudentsOfSelectedProgram} disabled={_this.isNoRowSelected()}>See Students</button> <br/>
               <button onClick={_this.deleteSelectedProgram} disabled={_this.isNoRowSelected()}>Delete Program</button>
               <button onClick={_this.goToAddProgramPage}>Add Program</button>
             </div>

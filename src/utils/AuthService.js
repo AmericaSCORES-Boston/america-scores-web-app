@@ -25,26 +25,15 @@ export default class AuthService extends EventEmitter {
     }
 
     _doAuthentication(){
-        console.log('inside doAuthentication');
         if(window.location.hash){
             this.lock.parseHash((err, authResult) => {
-                console.log(authResult);
                 if (authResult && authResult.accessToken && authResult.idToken) {
-                    console.log(authResult);
                     this.setToken(authResult.idToken,authResult.accessToken)
 
                     this.lock.client.userInfo(authResult.accessToken,function(err, user) {
                         // Now you have the user's information
                         if(user){
-                            console.log(user);
                             localStorage.setItem('user',JSON.stringify(user));
-                           /* localStorage.setItem('user', {
-                                'nickname': user.nickname,
-                                'email':user.name,
-                                'update_at':user.updated_at
-                                },
-                            )*/
-                            console.log(localStorage.getItem('user'));
                         }
                         browserHistory.replace('/MyAccount');
                     });

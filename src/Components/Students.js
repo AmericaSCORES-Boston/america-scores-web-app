@@ -11,7 +11,9 @@ var Students = React.createClass({
   getInitialState: function() {
     return {
       allStudent: [],
-        selectedRowId: 0
+        selectedRowId: 0,
+        name:' ',
+        dob:' '
     }
   },
 
@@ -25,7 +27,7 @@ var Students = React.createClass({
     if (queryParamProgramId === undefined) {
       Api.getAllStudents().then(json => {
         for (let i = 0; i < json.length; i++) {
-          data.push({id:(json[i].student_id),name: (json[i].first_name + " " + json[i].last_name), dob: new Date(json[i].dob).toDateString()});
+          data.push({id:(json[i].student_id),name: (json[i].first_name + " " + json[i].last_name), dob: this.formatDate(json[i].dob)});
         }
         _this.setState({
           allStudent : data
@@ -40,7 +42,7 @@ var Students = React.createClass({
     else {
       Api.fetchStudents(queryParamProgramId).then(json => {
         for (let i = 0; i < json.length; i++) {
-          data.push({id:(json[i].student_id),name: (json[i].first_name + " " + json[i].last_name), dob: new Date(json[i].dob).toDateString()});
+          data.push({id:(json[i].student_id),name: (json[i].first_name + " " + json[i].last_name), dob: this.formatDate(json[i].dob)});
         }
         _this.setState({
           allStudent : data
@@ -62,20 +64,46 @@ var Students = React.createClass({
         return;
     },
 
+    goEditSelectedStudent: function(programId,name,dob) {
+        window.location = '/EditStudent?student='+this.state.selectedRowId+'&program='+programId+'&name='+name+'&dob='+dob;
+    },
+
+    formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1), day = '' + d.getDate(),year = d.getFullYear();
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+        return [year, month, day].join('-');
+    },
 
     render: function() {
       let _this=this;
       let programId=this.props.location.query.program;
+
       var path ='/addStudent?program='+programId;
         function onRowSelect(row, isSelected){
             if(isSelected){
-                _this.setState({selectedRowId:row.id});
+                _this.setState({
+                    selectedRowId:row.id,
+                    name:row.name,
+                    dob:row.dob
+                });
+
             }
             else
                 _this.setState({selectedRowId:0});
-            console.log(row)
-            console.log("selected: " + isSelected)
+        }
 
+        function onSelectAll(isSelected, rows) {
+            alert(`is select all: ${isSelected}`);
+            if (isSelected) {
+                alert('Current display and selected data: ');
+            } else {
+                alert('unselect rows: ');
+            }
+            for (let i = 0; i < rows.length; i++) {
+                alert(rows[i].id);
+            }
         }
 
     var selectRowProp = {
@@ -83,7 +111,9 @@ var Students = React.createClass({
       clickToSelect: true,
       bgColor: "rgb(238, 193, 213)",
       onSelect: onRowSelect,
-      hideSelectColumn: true
+      hideSelectColumn: true,
+        onSelectAll: onSelectAll
+
     }
 
     return (
@@ -95,8 +125,6 @@ var Students = React.createClass({
                 <img src={icon} className="img-responsive center-block" alt="logo" />
                 <h1 className="Account-header"> Students </h1>
             </div>
-
-
                 <BootstrapTable data={this.state.allStudent}
                                 striped
                                 hover
@@ -104,7 +132,7 @@ var Students = React.createClass({
                                 pagination
                                 search
                                 selectRow={selectRowProp}>
-                    <TableHeaderColumn isKey={true} dataField="id">Student ID</TableHeaderColumn>
+                    <TableHeaderColumn isKey={true} dataField="id" width='100'>Student ID</TableHeaderColumn>
                     <TableHeaderColumn dataField="name">Name</TableHeaderColumn>
                     <TableHeaderColumn dataField="dob">Date Of Birth</TableHeaderColumn>
                 </BootstrapTable>
@@ -112,8 +140,8 @@ var Students = React.createClass({
             <div className="col-xs-12 text-center">
                 <div className="download-elements">
                     <a href={path}><button>Add student</button></a>
-                    <button onClick={_this.deleteSelectedStudent}
-                            disabled={_this.isNoRowSelected()}>Delete Student</button>
+                    <button onClick={()=>_this.goEditSelectedStudent(programId,this.state.name,this.state.dob)} disabled={_this.isNoRowSelected()}>Edit Student</button> <br/>
+                    <button onClick={_this.deleteSelectedStudent} disabled={_this.isNoRowSelected()}>Delete Student</button>
                 </div>
             </div>
 

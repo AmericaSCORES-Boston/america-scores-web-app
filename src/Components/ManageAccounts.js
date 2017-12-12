@@ -26,7 +26,6 @@ var ManageAccountsManager = React.createClass ({
         for (let i = 0; i < json.length; i++) {
           data.push({id:json[i].acct_id, name:(json[i].first_name + " " + json[i].last_name), type: json[i].acct_type, email: json[i].email});
         }
-        console.log(data);
         _this.setState({
             //TODO giving the stub data to the state
           coachData : data

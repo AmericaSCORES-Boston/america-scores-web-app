@@ -1,5 +1,5 @@
 import $ from 'jquery';
-const root= "http://ec2-54-224-133-79.compute-1.amazonaws.com",
+const root= "http://localhost:8888",
 //dev "http://localhost:8888",
 //root = "http://ec2-54-224-133-79.compute-1.amazonaws.com",
     POST = "POST",
@@ -89,16 +89,15 @@ const Api = {
             createRequestOptions(POST, {site_name: siteName, site_address: siteAddress},localStorage.getItem('access_token')));
     },
 
-    // addStudent(studentName, studentSite) {
-    //     return request(createEndpoint('/students/'),
-    //         createRequestOptions(POST, {student_name: studentName, student_site: studentSite}));
-    // },
-
     //added by bhupendra to add students
-
     addStudent(first_name,last_name,dob,program_id) {
         return request(createEndpoint('/programs/'+ program_id +'/students'),
             createRequestOptions(POST, {first_name, last_name, dob},localStorage.getItem('access_token')));
+    },
+
+    updateStudent(student_id,first_name,last_name,dob,programID){
+        return request(createEndpoint('/students/'+student_id+'/programs/'+programID),
+            createRequestOptions(PUT,{first_name,last_name,dob},localStorage.getItem('access_token')));
     },
 
     fetchStudents(program_id) {

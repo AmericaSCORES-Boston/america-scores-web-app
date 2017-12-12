@@ -23,7 +23,6 @@ var CurrentSeason = React.createClass({
         let seasonData  = [];
         Api.fetchSeasons().then(seasonJson => {
             if (seasonJson != null) {
-                console.log(seasonJson);
                 for (let i = seasonJson.length - 1; i >= 0; i--) {
                     seasonData.push({
                         id: seasonJson[i].season_id,
@@ -47,7 +46,6 @@ var CurrentSeason = React.createClass({
         let studentData = [];
         let _this = this;
         Api.fetchCurrentSeasonData(year, semester).then(currentSeasonJson => {
-            console.log(currentSeasonJson);
             for (let j = 0; j < currentSeasonJson.length; j++) {
                 studentData.push({
                     // mid:currentSeasonJson[j].measurement_id,
@@ -57,9 +55,13 @@ var CurrentSeason = React.createClass({
                     lastName:currentSeasonJson[j].last_name,
                     program: currentSeasonJson[j].program_name,
                     school: currentSeasonJson[j].site_name,
-                    dob:new Date(currentSeasonJson[j].dob).toDateString(),
-                    date: (currentSeasonJson[j].pre_date==null ? null : (new Date(currentSeasonJson[j].pre_date).toDateString())) || (currentSeasonJson[j].post_date==null ? null : (new Date(currentSeasonJson[j].post_date).toDateString())),
-                    // preWeight: currentSeasonJson[j].pre_weight,
+                    dob: this.formatDate(currentSeasonJson[j].dob),
+                    // new Date(currentSeasonJson[j].dob).toDateString(),
+                    // date: (currentSeasonJson[j].pre_date==null ? null : (new Date(currentSeasonJson[j].pre_date).toDateString())) || (currentSeasonJson[j].post_date==null ? null : (new Date(currentSeasonJson[j].post_date).toDateString())),
+                    date: (currentSeasonJson[j].pre_date==null ?
+                        null:this.formatDate(currentSeasonJson[j].pre_date)) ||
+                    (currentSeasonJson[j].post_date==null ? null : this.formatDate(currentSeasonJson[j].post_date)),
+                        // preWeight: currentSeasonJson[j].pre_weight,
                     // preHeight: currentSeasonJson[j].pre_height,
                     preShuttle: currentSeasonJson[j].post_pacer,
                     postShuttle:currentSeasonJson[j].pre_pacer,
@@ -72,8 +74,6 @@ var CurrentSeason = React.createClass({
             _this.setState({
                 data : studentData
             })
-            console.log("see data");
-            console.log(this.state.data);
         })
     },
 
@@ -90,6 +90,15 @@ var CurrentSeason = React.createClass({
     checkData: function () {
         let _this = this;
         return _this.state.data.length === 0;
+    },
+
+    formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1), day = '' + d.getDate(),year = d.getFullYear();
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [year, month, day].join('-');
     },
 
     generateCSV: function() {
