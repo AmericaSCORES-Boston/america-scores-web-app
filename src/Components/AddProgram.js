@@ -11,7 +11,7 @@ class AddProgram extends Component {
     let programName = document.getElementById("programName").value;
 
     if (programName === "") {
-      alert("one of these is empty");
+      alert("Check the program name field");
       return;
     }
 
@@ -28,13 +28,34 @@ class AddProgram extends Component {
       );
     }
     return (
-      <div className="download-elements">
-        <h2>Add a Program:</h2>
-        <br/>
-        Program Name: &nbsp; <input type="text" id="programName" />
-        <br/>
-        <button onClick={() => {_this.addProgram(locId)}}>Add Program</button>
-      </div>
+
+        <div className="container-fluid">
+            <div className="row">
+                <h2>Add a Program:</h2>
+                <div className="col-md-6">
+                    <form>
+                        <div className="form-group">
+                            <label htmlFor="programName">Program Name</label>
+                            <input type="text" className="form-control" id="programName" placeholder="Program Name"/>
+                        </div>
+
+                        <div className="form-group">
+                            <button onClick={() => {_this.addProgram(locId)}}>Add Program</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+      // {/*<div className="download-elements">*/}
+      //   {/*<h2>Add a Program:</h2>*/}
+      //   {/*<br/>*/}
+      //   {/*Program Name: &nbsp; <input type="text" id="programName" />*/}
+      //   {/*<br/>*/}
+      //   {/*<button onClick={() => {_this.addProgram(locId)}}>Add Program</button>*/}
+      // {/*</div>*/}
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-
+// import AuthService from './utils/AuthService';
 /*
 This container sends the auth instance
 */
@@ -11,7 +11,6 @@ export class Container extends React.Component {
         auth: this.props.route.auth //sends auth instance from route to children
       })
     }
-
     return (
       <div>
         {children}

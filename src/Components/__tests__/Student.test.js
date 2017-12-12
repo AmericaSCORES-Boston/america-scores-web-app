@@ -13,6 +13,8 @@ it('renders fully without crashing', () => {
 });
 
 describe('Student page without query params', () => {
+    const ls = require("../../utils/localstorage");
+    ls.setLocalStorage();
     it('renders correctly', () => {
         const render = TestUtils.createRenderer()
         render.render(<StudentManager location={locationMock}/>)
@@ -23,6 +25,8 @@ describe('Student page without query params', () => {
 
 
 describe('Student page with invalid site', () => {
+    const ls = require("../../utils/localstorage");
+    ls.setLocalStorage();
     it('renders correctly', () => {
         const render = TestUtils.createRenderer()
         render.render(<StudentManager location={locationMock2}/>)
@@ -32,6 +36,8 @@ describe('Student page with invalid site', () => {
 });
 
 describe('Student page with invalid site', () => {
+    const ls = require("../../utils/localstorage");
+    ls.setLocalStorage();
     it('renders correctly', () => {
         const render = TestUtils.createRenderer()
         render.render(<StudentManager location={locationMock3}/>)

@@ -3,6 +3,7 @@ import AuthService from '../utils/AuthService'
 import asLogo from '../Assets/aslogo.png'
 import { Button }  from 'react-bootstrap'
 
+
 /*
 Page for accessing the 0Auth Login
 */
@@ -11,18 +12,26 @@ export class Login extends React.Component {
     location: T.object,
     auth: T.instanceOf(AuthService)
   }
+  constructor(){
+      super()
+      this.loginAuth = new AuthService();
+      this.loginAuth._doAuthentication()
+
+  }
   render() {
     const { auth } = this.props
     return (
       <div className="root">
-        <h2>
-          <img src={asLogo} width="150px" height="168px" alt="AS Logo Icon" />
-        </h2>
+          <div className="page-header text-center">
+              <h1>Welcome</h1>
+          </div>
+       <div className="text-center" style={{width: 160, height: 200,margin: 'auto'}}>
+          <img src={asLogo} width="150px" height="168px"  alt="AS Logo Icon" />
+       </div>
         <div style={{maxWidth: 150, maxHeight:50, margin: 'auto'}}>
-          <Button bsStyle="primary" onClick={auth.login.bind(this)} block>Login</Button>
+          <Button bsStyle="primary" onClick={auth.login.bind(this)} block>Continue</Button>
         </div>
         <br/>
-        <a width="150" height="50" href="https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss" target="_blank" alt="Single Sign On & Token Based Authentication - Auth0"><img width="150" height="50" alt="JWT Auth for open source projects" src="//cdn.auth0.com/oss/badges/a0-badge-light.png"/></a>
       </div>
     )
   }

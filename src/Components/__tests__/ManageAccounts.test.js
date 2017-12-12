@@ -12,12 +12,15 @@ var testdata = [
   {name: 'Girl 3', type: 'Coach', permissions: 'Program 5'},
 ];
 
+
 it('renders fully without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<ManageAccountsManager accounts={[]} />, div);
 });
 
 describe('the ManageAccountsManager', () => {
+    const ls = require("../../utils/localstorage");
+    ls.setLocalStorage();
     it('renders correctly', () => {
         const render = TestUtils.createRenderer()
         render.render(<ManageAccountsManager />)
