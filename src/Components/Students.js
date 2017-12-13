@@ -27,7 +27,7 @@ var Students = React.createClass({
     if (queryParamProgramId === undefined) {
       Api.getAllStudents().then(json => {
         for (let i = 0; i < json.length; i++) {
-          data.push({id:(json[i].student_id),name: (json[i].first_name + " " + json[i].last_name), dob: this.formatDate(json[i].dob)});
+          data.push({id:(json[i].student_id),name: (json[i].first_name + " " + json[i].last_name), dob: json[i].dob.split('T')[0]});
         }
         _this.setState({
           allStudent : data
@@ -42,7 +42,7 @@ var Students = React.createClass({
     else {
       Api.fetchStudents(queryParamProgramId).then(json => {
         for (let i = 0; i < json.length; i++) {
-          data.push({id:(json[i].student_id),name: (json[i].first_name + " " + json[i].last_name), dob: this.formatDate(json[i].dob)});
+          data.push({id:(json[i].student_id),name: (json[i].first_name + " " + json[i].last_name), dob: json[i].dob.split('T')[0]});
         }
         _this.setState({
           allStudent : data
@@ -69,7 +69,7 @@ var Students = React.createClass({
     },
 
     formatDate(date) {
-    var d = new Date(date+':00:00:00'),
+    var d = new Date(date),
         month = '' + (d.getMonth() + 1), day = '' + d.getDate(),year = d.getFullYear();
         if (month.length < 2) month = '0' + month;
         if (day.length < 2) day = '0' + day;

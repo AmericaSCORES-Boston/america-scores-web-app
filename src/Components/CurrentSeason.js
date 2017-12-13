@@ -55,7 +55,7 @@ var CurrentSeason = React.createClass({
                     lastName:currentSeasonJson[j].last_name,
                     program: currentSeasonJson[j].program_name,
                     school: currentSeasonJson[j].site_name,
-                    dob: (currentSeasonJson[j].dob),
+                    dob: currentSeasonJson[j].dob.split('T')[0],
                     // new Date(currentSeasonJson[j].dob).toDateString(),
                     date: (currentSeasonJson[j].pre_date==null ? null : (new Date(currentSeasonJson[j].pre_date).toDateString())) ||
                     (currentSeasonJson[j].post_date==null ? null : (new Date(currentSeasonJson[j].post_date).toDateString())),
@@ -88,6 +88,14 @@ var CurrentSeason = React.createClass({
             currentSeasonSelection : seasonObj
         })
         _this.populateStudentTable(seasonObj.year, seasonObj.semester);
+    },
+
+    formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1), day = '' + d.getDate(),year = d.getFullYear();
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+        return [year, month, day].join('-');
     },
 
     checkData: function () {
