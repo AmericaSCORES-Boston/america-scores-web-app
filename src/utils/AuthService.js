@@ -82,12 +82,13 @@ export default class AuthService extends EventEmitter {
 
     logout(){
         // Clear user token and profile data from localStorage
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('id_token');
+        localStorage.removeItem('expires_at');
         this.lock.logout({
             returnTo:`${window.location.origin}/Login`,
             clientID: 'F8iBVF34KoTqGgOd4fj5D6IRSax8JWxz'
         })
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('id_token');
-        localStorage.removeItem('expires_at');
+
     }
 }
