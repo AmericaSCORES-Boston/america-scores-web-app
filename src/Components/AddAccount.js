@@ -28,6 +28,7 @@ class AddAccount extends Component {
             return;
         }
         Api.addAccount(accountEmailAddress,accountUsername,accountPassword,accountFirstName,accountLastName,accountType).then((data) => {
+            console.log(data);
             if(data.statusCode===400){
                 alert(data.message);
             }
