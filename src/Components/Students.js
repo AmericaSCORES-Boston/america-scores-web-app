@@ -69,7 +69,7 @@ var Students = React.createClass({
     },
 
     formatDate(date) {
-    var d = new Date(date),
+    var d = new Date(date+':00:00:00'),
         month = '' + (d.getMonth() + 1), day = '' + d.getDate(),year = d.getFullYear();
         if (month.length < 2) month = '0' + month;
         if (day.length < 2) day = '0' + day;
