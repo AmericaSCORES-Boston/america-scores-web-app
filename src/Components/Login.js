@@ -16,7 +16,6 @@ export class Login extends React.Component {
       super()
       this.loginAuth = new AuthService();
       this.loginAuth._doAuthentication()
-
   }
   render() {
     const { auth } = this.props

@@ -28,7 +28,7 @@ export default class AuthService extends EventEmitter {
         if(window.location.hash){
             this.lock.parseHash((err, authResult) => {
                 if (authResult && authResult.accessToken && authResult.idToken) {
-                    this.setToken(authResult.idToken,authResult.accessToken)
+                    this.setSession(authResult)
 
                     this.lock.client.userInfo(authResult.accessToken,function(err, user) {
                         // Now you have the user's information
@@ -50,8 +50,6 @@ export default class AuthService extends EventEmitter {
 
     }
 
-
-
     _authorizationError(error){
         // Unexpected authentication error
         console.log('Authentication Error', error)
@@ -64,13 +62,17 @@ export default class AuthService extends EventEmitter {
 
     loggedIn(){
         // Checks if there is a saved token and it's still valid
-        return !!this.getToken()
+        let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+        return new Date().getTime() < expiresAt;
+        // return !!this.getToken()
     }
 
-    setToken(idToken,accessToken){
+    setSession(authResult){
         // Saves user token to localStorage
-        localStorage.setItem('id_token', idToken)
-        localStorage.setItem('access_token', accessToken)
+        let expiresAt= JSON.stringify((authResult.expiresIn*1000)+new Date().getTime());
+        localStorage.setItem('id_token', authResult.idToken);
+        localStorage.setItem('access_token', authResult.accessToken);
+        localStorage.setItem('expires_at',expiresAt);
     }
 
     getToken(){
@@ -86,5 +88,6 @@ export default class AuthService extends EventEmitter {
         })
         localStorage.removeItem('access_token');
         localStorage.removeItem('id_token');
+        localStorage.removeItem('expires_at');
     }
 }

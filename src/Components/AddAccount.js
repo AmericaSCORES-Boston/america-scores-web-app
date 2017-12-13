@@ -28,12 +28,13 @@ class AddAccount extends Component {
             return;
         }
         Api.addAccount(accountEmailAddress,accountUsername,accountPassword,accountFirstName,accountLastName,accountType).then((data) => {
-            console.log(data);
+            //console.log(data);
             if(data.statusCode===400){
                 alert(data.message);
             }
            else{
-                alert('Account Created. Verfication Email Sent to '+accountEmailAddress+'. Please email them Username/Password.');
+                alert('Account Created. Verfication Email Sent to '+accountEmailAddress+'. Please email the details to'+ accountFirstName+ ' '+
+                    accountLastName+ 'username:'+accountUsername+'password:'+accountPassword);
                 window.location = '/ManageAccounts'
             }
         });
